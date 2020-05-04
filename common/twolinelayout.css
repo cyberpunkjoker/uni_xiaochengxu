@@ -1,0 +1,26 @@
+.twolinebox {
+	padding: 0 16px 14px;
+	border-bottom:1px solid #F2F2F2;
+}
+
+.twolinebox .twolineflex {
+	display: flex;
+}
+
+.twolinebox .twolineflex view {
+	margin-top: 12px;
+	text-align: left;
+	font-size:14px;
+	font-weight:400;
+	color:rgba(51,51,51,1);
+}
+
+.twolinebox .twolineflex .right {
+	flex: 2;
+}
+
+
+.twolinebox .twolineflex .left {
+	flex: 1;
+	text-align: center;
+}

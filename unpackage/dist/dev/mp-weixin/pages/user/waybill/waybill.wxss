@@ -1,0 +1,117 @@
+.timebox {
+	text-align: center;
+	font-size: 12px;
+	font-weight: normal;
+	color: rgba(153, 153, 153, 1);
+	margin: 12px auto 5px;
+}
+
+.itembox {
+	height: 52px;
+	border-bottom: 1px solid #F2F2F2;
+}
+
+.one {
+	float: left;
+	margin-left: 16px;
+	line-height: 52px;
+	font-size: 14px;
+	font-weight: 500;
+	color: rgba(44, 46, 46, 1);
+}
+
+.one image {
+	float: left;
+	display: block;
+	margin: 12px 5px 0 0;
+	width: 30px;
+	height: 30px;
+}
+
+.two {
+	float: right;
+	font-size: 14px;
+	font-weight: 400;
+	color: rgba(51, 51, 51, 1);
+	line-height: 20px;
+}
+
+.two image {
+	display: block;
+	float: right;
+	margin: 20px 16px 0 0;
+	width: 8px;
+	height: 14px;
+}
+
+.itembox .two .content {
+	font-size: 14px;
+	line-height: 52px;
+	margin: 0 16px 0 0;
+	font-size: 14px;
+	font-weight: 400;
+	color: rgba(102, 102, 102, 1);
+}
+
+.red {
+	color: #FE5000 !important;
+}
+
+.green {
+	color: #79D66D !important;
+}
+
+.blue {
+	color: #29C9FF !important;
+}
+
+.fontsize12 {
+	font-size: 12px !important;
+}
+
+.twolinebox {
+	padding: 0 16px 14px;
+	border-bottom:1px solid #F2F2F2;
+}
+
+.twolinebox .twolineflex {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+
+.twolinebox .twolineflex view {
+	margin-top: 12px;
+	text-align: left;
+	font-size:14px;
+	font-weight:400;
+	color:rgba(51,51,51,1);
+}
+
+.twolinebox .twolineflex .right {
+	-webkit-box-flex: 2;
+	-webkit-flex: 2;
+	        flex: 2;
+}
+
+.twolinebox .twolineflex .left {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	text-align: center;
+}
+
+.red.data-v-5fd6dc8f {
+  font-size: 12px;
+  color: #FE5000;
+}
+.tabtop.data-v-5fd6dc8f {
+  margin-top: 12px;
+}
+.content.data-v-5fd6dc8f {
+  padding-top: 12px;
+}
+.outer.data-v-5fd6dc8f {
+  padding: 12px 0;
+}
+

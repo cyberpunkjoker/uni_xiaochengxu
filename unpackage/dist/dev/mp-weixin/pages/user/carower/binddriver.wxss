@@ -1,0 +1,48 @@
+text.data-v-5d474649 {
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-size: 14px;
+}
+.redbig.data-v-5d474649 {
+  color: #FE5000;
+  font-size: 14px;
+}
+.blue.data-v-5d474649 {
+  color: #29C9FF;
+}
+.red.data-v-5d474649 {
+  font-size: 12px;
+  color: #FE5000;
+}
+.green.data-v-5d474649 {
+  color: #79D66D;
+}
+.outer.data-v-5d474649 {
+  margin-top: 12px;
+}
+.outer .itembox.data-v-5d474649 {
+  height: 52px;
+  border-bottom: 1px solid #F2F2F2;
+}
+.outer .itembox .one.data-v-5d474649 {
+  float: left;
+  margin-left: 16px;
+  line-height: 52px;
+}
+.outer .itembox .two.data-v-5d474649 {
+  float: right;
+}
+.outer .itembox .two image.data-v-5d474649 {
+  display: block;
+  float: right;
+  margin: 20px 16px 0 0;
+  width: 8px;
+  height: 14px;
+}
+.outer .itembox .two text.data-v-5d474649 {
+  line-height: 52px;
+  margin: 0 16px;
+}
+.btntop.data-v-5d474649 {
+  margin-top: 100px;
+}
+

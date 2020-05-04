@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "收货人运单查看",
+  "usingComponents": {
+    "tab-bar": "/pages/components/tabbar",
+    "info-box": "/pages/components/boxstyle/infobox"
+  }
+}

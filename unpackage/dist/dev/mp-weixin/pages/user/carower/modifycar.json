@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "修改车辆",
+  "usingComponents": {
+    "info-box": "/pages/components/boxstyle/infobox"
+  }
+}

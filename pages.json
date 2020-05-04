@@ -1,0 +1,159 @@
+{
+	"pages": [{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/login/status",
+			"style": {
+				"navigationBarTitleText": "选择登录身份"
+			}
+		},
+		{
+			"path": "pages/user/user",
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
+		},
+		{
+			"path": "pages/user/carower/drivernone",
+			"style": {
+				"navigationBarTitleText": "车主车辆管理"
+			}
+		},
+		{
+			"path": "pages/user/carower/carnone",
+			"style": {
+				"navigationBarTitleText": "车主车辆管理"
+			}
+		},
+		{
+			"path": "pages/user/carower/managementcar",
+			"style": {
+				"navigationBarTitleText": "车主车辆管理"
+			}
+		},
+		{
+			"path": "pages/user/carower/modifycar",
+			"style": {
+				"navigationBarTitleText": "修改车辆"
+			}
+		},
+		{
+			"path": "pages/user/carower/adddriver",
+			"style": {
+				"navigationBarTitleText": "添加司机"
+			}
+		},
+		{
+			"path": "pages/user/carower/binddriver",
+			"style": {
+				"navigationBarTitleText": "绑定司机列表"
+			}
+		},
+		{
+			"path": "pages/user/carower/editcar",
+			"style": {
+				"navigationBarTitleText": "编辑车辆信息"
+			}
+		},
+		{
+			"path": "pages/user/carmanagement/carmanagement",
+			"style": {
+				"navigationBarTitleText": "司机车辆管理"
+			}
+		},
+		{
+			"path": "pages/user/waybill/waybill",
+			"style": {
+				"navigationBarTitleText": "收货人运单查看"
+			}
+		},
+		{
+			"path": "pages/order/carwarn",
+			"style": {
+				"navigationBarTitleText": "车主车辆管理"
+			}
+		},
+		{
+			"path": "pages/order/orderlist/orderlist",
+			"style": {
+				"navigationBarTitleText": "运单查看"
+			}
+		},
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "四川顺程物流有限公司"
+			}
+		},
+		{
+			"path": "pages/home/image/upload",
+			"style": {
+				"navigationBarTitleText": "开始卸货打卡"
+			}
+		},
+		{
+			"path": "pages/home/image/signupload",
+			"style": {
+				"navigationBarTitleText": "上传签收单图片"
+			}
+		},
+		{
+			"path": "pages/home/image/doneimg",
+			"style": {
+				"navigationBarTitleText": "到货打卡"
+			}
+		},
+		{
+			"path": "pages/home/weight/weight",
+			"style": {
+				"navigationBarTitleText": "选择物料填写"
+			}
+		},
+		{
+			"path": "pages/home/weight/apply",
+			"style": {
+				"navigationBarTitleText": "运单申请"
+			}
+		},
+		{
+			"path": "pages/user/carower/addcar",
+			"style": {
+				"navigationBarTitleText": "新增车辆"
+			}
+		}
+		
+
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#EDEDED"
+	},
+	"tabBar": {
+		"color": "#666666",
+		"selectedColor": "#333",
+		"borderStyle": "black",
+		"backgroundColor": "#FAFAFA",
+		"list": [{
+				"pagePath": "pages/home/home",
+				"iconPath": "static/img/home.png",
+				"selectedIconPath": "static/img/homexuan.png",
+				"text": "首页"
+			}, {
+				"pagePath": "pages/order/orderlist/orderlist",
+				"iconPath": "static/img/yundan.png",
+				"selectedIconPath": "static/img/yundannone.png",
+				"text": "运单查看"
+			},
+			{
+				"pagePath": "pages/user/user",
+				"iconPath": "static/img/user.png",
+				"selectedIconPath": "static/img/userxuan.png",
+				"text": "个人中心"
+			}
+		]
+	}
+}

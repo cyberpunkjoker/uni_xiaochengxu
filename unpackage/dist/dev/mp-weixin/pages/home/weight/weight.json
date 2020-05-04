@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "选择物料填写",
+  "usingComponents": {
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "info-box": "/pages/components/boxstyle/infobox",
+    "btn": "/pages/components/boxstyle/buttonstyle"
+  }
+}

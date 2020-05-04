@@ -1,0 +1,1 @@
+<view class="data-v-51896998"><image src="../../../static/img/nocar.png" mode class="data-v-51896998"></image><view class="content data-v-51896998"><text class="data-v-51896998">暂无绑定车辆</text></view><btn vue-id="b8341f6a-1" toPages="{{toPages}}" class="data-v-51896998" bind:__l="__l" vue-slots="{{['default']}}">添加车辆</btn></view>

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "开始卸货打卡",
+  "usingComponents": {
+    "info-box": "/pages/components/boxstyle/infobox",
+    "btn": "/pages/components/boxstyle/buttonstyle"
+  }
+}

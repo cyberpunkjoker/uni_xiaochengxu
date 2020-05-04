@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "添加司机",
+  "usingComponents": {
+    "info-box": "/pages/components/boxstyle/infobox"
+  }
+}

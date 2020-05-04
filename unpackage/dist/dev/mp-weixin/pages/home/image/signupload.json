@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "上传签收单图片",
+  "usingComponents": {
+    "info-box": "/pages/components/boxstyle/infobox",
+    "btn": "/pages/components/boxstyle/buttonstyle"
+  }
+}

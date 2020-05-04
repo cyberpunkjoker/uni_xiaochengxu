@@ -1,0 +1,1 @@
+<view class="data-v-42be7393"><image src="../../static/img/nowifi.png" mode class="data-v-42be7393"></image><view class="content data-v-42be7393"><text class="data-v-42be7393">暂无网络</text></view><btn vue-id="07eb0896-1" toPages="{{toPages}}" class="data-v-42be7393" bind:__l="__l" vue-slots="{{['default']}}">刷新重试</btn></view>

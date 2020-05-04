@@ -1,0 +1,16 @@
+image.data-v-42be7393 {
+  display: block;
+  margin: 127px auto 0;
+  width: 138px;
+  height: 138px;
+}
+.content.data-v-42be7393 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #999999;
+  line-height: 22px;
+  margin-top: 24px;
+  margin-bottom: 200px;
+  text-align: center;
+}
+

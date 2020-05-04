@@ -1,0 +1,34 @@
+text.data-v-bc85065e {
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-size: 14px;
+}
+.outer.data-v-bc85065e {
+  margin-top: 12px;
+}
+.outer .itembox.data-v-bc85065e {
+  height: 52px;
+  border-bottom: 1px solid #F2F2F2;
+}
+.outer .itembox .one.data-v-bc85065e {
+  float: left;
+  margin-left: 16px;
+  line-height: 52px;
+}
+.outer .itembox .two.data-v-bc85065e {
+  float: right;
+}
+.outer .itembox .two image.data-v-bc85065e {
+  display: block;
+  float: right;
+  margin: 20px 16px 0 0;
+  width: 8px;
+  height: 14px;
+}
+.outer .itembox .two text.data-v-bc85065e {
+  line-height: 52px;
+  margin: 0 16px;
+}
+.btntop.data-v-bc85065e {
+  margin-top: 100px;
+}
+

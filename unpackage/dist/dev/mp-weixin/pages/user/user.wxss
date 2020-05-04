@@ -1,0 +1,36 @@
+image.data-v-549fbaee {
+  width: 100%;
+}
+text.data-v-549fbaee {
+  font-family: PingFangSC-Regular, PingFang SC;
+}
+.outbox.data-v-549fbaee {
+  -webkit-transform: translate(0, -46px);
+          transform: translate(0, -46px);
+}
+.outbox .itembox.data-v-549fbaee {
+  height: 80px;
+  border-bottom: 1px solid #F2F2F2;
+}
+.outbox .itembox image.data-v-549fbaee {
+  float: left;
+  margin: 17px 0 0 14px;
+  width: 46px;
+  height: 46px;
+}
+.outbox .itembox text.data-v-549fbaee {
+  float: left;
+  line-height: 80px;
+  margin: 0 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333333;
+}
+.outbox .itembox .tologo.data-v-549fbaee {
+  display: block;
+  float: right;
+  margin: 33px 16px;
+  width: 8px;
+  height: 14px;
+}
+
