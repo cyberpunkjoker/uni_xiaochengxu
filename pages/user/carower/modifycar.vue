@@ -145,15 +145,9 @@
 						uni.navigateTo({
 							url: "/pages/user/carower/managementcar"
 						})
-						uni.showToast({
-							content: this.data.desc
-						})
+						
 					}
 				}
-
-
-
-
 
 			}
 		},

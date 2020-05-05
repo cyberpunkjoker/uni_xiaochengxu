@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   "uni-popup": () =>
-    __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 220))
+    __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 240))
 }
 var render = function() {
   var _vm = this
@@ -136,7 +136,14 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 23));
+
+
+
+
+
+
+
 
 
 
@@ -246,7 +253,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 __webpack_require__(/*! ../../../common/itemcontent.css */ 67);
-__webpack_require__(/*! ../../../common/threecols.css */ 173);var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 220));};var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 192));};var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/buttonstyle.vue */ 199));};var _default =
+__webpack_require__(/*! ../../../common/threecols.css */ 173);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 240));};var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 198));};var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/buttonstyle.vue */ 205));};var _default =
 
 {
   data: function data() {
@@ -257,8 +264,22 @@ __webpack_require__(/*! ../../../common/threecols.css */ 173);var uniPopup = fun
       // 控制按钮是否选中
       selectedList: [],
       // 当前选中状态
-      current: '' };
-
+      current: '',
+      userInfo: '',
+      // 订单id
+      id: 4,
+      // 获取货物详情列表
+      goodsDetailList: [],
+      newWeight: '',
+      // 填写框内的内容
+      name: '',
+      num: '',
+      size: '',
+      weight: '',
+      // 父组件上的值
+      valueArr: []
+      // popupList:['popup1', 'popup2']
+    };
   },
 
   methods: {
@@ -266,23 +287,96 @@ __webpack_require__(/*! ../../../common/threecols.css */ 173);var uniPopup = fun
       // 置空选中状态
       this.selectedList = new Array(this.formList.length).fill(false);
       this.$set(this.selectedList, i, !this.selectedList[i]);
+      this.current = i;
+      this.name = this.goodsDetailList[this.current].materielName;
+      this.num = this.goodsDetailList[this.current].materielSpecifications;
+      this.size = this.goodsDetailList[this.current].materielNumber;
     },
 
     // 打开下边栏
-    open: function open() {
+    open: function open(index) {
+      console.log(index);
       this.$refs.popup.open();
     },
-    close: function close() {
+    toPages: function toPages(index) {
+      this.$set(this.valueArr, this.current, this.newWeight);
+      // this.valueArr[this.current] = this.newWeight;
       this.$refs.popup.close();
-    } },
+    },
+
+    onChange: function onChange() {
+
+      console.log(this.fatherValue, this.newWeight);
+    },
+
+    getOrderInfo: function () {var _getOrderInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var opts, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                opts = {
+                  url: '/personal/driver/getTaskAppRecord',
+                  method: 'post' };_context.next = 3;return (
+
+
+                  this.$http.httpTokenRequest(opts));case 3:res = _context.sent;
+                console.log(res);
+                this.userInfo = res.data.result;case 6:case "end":return _context.stop();}}}, _callee, this);}));function getOrderInfo() {return _getOrderInfo.apply(this, arguments);}return getOrderInfo;}(),
+
+
+    // 获取货物详情
+    getGoodsInfo: function () {var _getGoodsInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var opts, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+                opts = {
+                  url: '/personal/driver/getDetails?orderId=' + this.id,
+                  method: 'post' };_context2.next = 3;return (
+
+
+                  this.$http.httpTokenRequest(opts));case 3:res = _context2.sent;
+                console.log(res);
+                this.goodsDetailList = res.data.result.materielDetails;
+
+                this.valueArr = new Array(this.goodsDetailList.length).fill('');
+                // this.userInfo = res.data.result;
+              case 7:case "end":return _context2.stop();}}}, _callee2, this);}));function getGoodsInfo() {return _getGoodsInfo.apply(this, arguments);}return getGoodsInfo;}(),
+
+    submitBtn: function () {var _submitBtn = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var _this = this;var copyList, opts, params, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+                console.log(this.goodsDetailList);
+                console.log(this.valueArr);
+                copyList = this.goodsDetailList.concat();
+
+                console.log(copyList);
+                console.log(copyList === this.goodsDetailList);
+
+                copyList.map(function (i, idx) {
+                  copyList.materielWeight = _this.valueArr[idx];
+                });
+                opts = {
+                  url: '/personal/driver/modTaskAppRecord',
+                  method: 'post' };
+
+                params = {
+                  id: this.id,
+                  materielDetails: copyList };
+
+                console.log(params);_context3.next = 11;return (
+                  this.$http.httpTokenRequest(opts, params));case 11:res = _context3.sent;
+                console.log(res);
+
+
+                res.data.code === 0 &&
+                uni.navigateTo({
+                  url: '/pages/home/home' });case 14:case "end":return _context3.stop();}}}, _callee3, this);}));function submitBtn() {return _submitBtn.apply(this, arguments);}return submitBtn;}() },
+
+
+
+
 
   onLoad: function onLoad() {
+    this.getOrderInfo();
+    this.getGoodsInfo();
   },
 
   components: {
     infoBox: infoBox,
     uniPopup: uniPopup,
     btn: btn } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

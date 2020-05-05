@@ -133,15 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 192));};var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/buttonstyle.vue */ 199));};var _default =
-
-
-
-
-
-
-
-
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 198));};var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/buttonstyle.vue */ 205));};var messBox = function messBox() {return __webpack_require__.e(/*! import() | pages/components/message */ "pages/components/message").then(__webpack_require__.bind(null, /*! ../../components/message.vue */ 226));};var uploadMode = function uploadMode() {return __webpack_require__.e(/*! import() | pages/components/uploadMode */ "pages/components/uploadMode").then(__webpack_require__.bind(null, /*! ../../components/uploadMode.vue */ 233));};var _default =
 
 
 
@@ -173,12 +165,24 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 {
   data: function data() {
-    return {};
-
+    return {
+      message: '',
+      reminNum: 200 };
 
   },
 
-  methods: {},
+  methods: {
+    clearText: function clearText() {
+      this.message = "";
+    },
+
+    onTextChange: function onTextChange() {
+      this.reminNum = 200 - this.message.length;
+    },
+
+    getMessage: function getMessage(data) {
+      console.log(data);
+    } },
 
 
   onLoad: function onLoad() {
@@ -187,7 +191,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   components: {
     infoBox: infoBox,
-    btn: btn } };exports.default = _default;
+    btn: btn,
+    messBox: messBox,
+    uploadMode: uploadMode } };exports.default = _default;
 
 /***/ }),
 

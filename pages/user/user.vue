@@ -3,13 +3,13 @@
 		<image src="../../static/img/bgcar.png"></image>
 		<view class="outbox">
 			<info-box>
-				<view class="itembox" v-for="(item,index) in contentList" :key="index">
+				<view class="itembox" v-for="(item,index) in contentList" :key="index" @tap="toOtherPage(index)">
 					<image :src="imgUrl[index]" mode=""></image>
 					<text>{{item}}</text>
 					<image class="tologo" src="../../static/img/right.png" mode=""></image>
 				</view>
-		</info-box>
-	</view>
+			</info-box>
+		</view>
 	</view>
 </template>
 
@@ -34,8 +34,31 @@
 		},
 
 		methods: {
-			toPages(i) {
-				console.log(i)
+			toOtherPage(i) {
+				i === 0 &&
+					uni.navigateTo({
+						url: '/pages/user/waybill/waybill'
+					});
+
+				i === 1 &&
+					uni.navigateTo({
+						url: '/pages/user/carower/managementcar'
+					});
+
+				i === 2 &&
+					uni.navigateTo({
+						url: '/pages/user/carmanagement/carmanagement'
+					});
+
+				i === 3 && 
+				uni.setStorage({
+					key: 'USER_TOKEN',
+					data: ""
+				}) &&
+				uni.reLaunch({
+					url: "/pages/login/login"
+				})
+
 			}
 		},
 

@@ -10,7 +10,7 @@ image.data-v-42be7393 {
   color: #999999;
   line-height: 22px;
   margin-top: 24px;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
   text-align: center;
 }
 

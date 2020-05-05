@@ -543,7 +543,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 __webpack_require__(/*! ../../../common/itemcontent.css */ 67);
-__webpack_require__(/*! ../../../common/twolinelayout.css */ 116);var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 192));};var tabBar = function tabBar() {return __webpack_require__.e(/*! import() | pages/components/tabbar */ "pages/components/tabbar").then(__webpack_require__.bind(null, /*! ../../components/tabbar.vue */ 206));};var _default =
+__webpack_require__(/*! ../../../common/twolinelayout.css */ 116);var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 198));};var tabBar = function tabBar() {return __webpack_require__.e(/*! import() | pages/components/tabbar */ "pages/components/tabbar").then(__webpack_require__.bind(null, /*! ../../components/tabbar.vue */ 212));};var _default =
 
 {
   data: function data() {

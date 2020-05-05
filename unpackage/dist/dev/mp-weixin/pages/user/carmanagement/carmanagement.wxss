@@ -3,7 +3,7 @@ text.data-v-bc85065e {
   font-size: 14px;
 }
 .outer.data-v-bc85065e {
-  margin-top: 12px;
+  margin: 12px 0;
 }
 .outer .itembox.data-v-bc85065e {
   height: 52px;

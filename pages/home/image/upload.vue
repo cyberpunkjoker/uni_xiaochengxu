@@ -6,22 +6,11 @@
 					<text>上传开始卸货图片</text>
 				</view>
 				<!-- 上传图片模块 -->
-				<view class="upload">
-
-				</view>
+				<upload-mode></upload-mode>
 
 				<text class="tips">最多可上传三张</text>
 
-				<view class="warp">
-					<textarea value="" placeholder="备注(选填)" />
-					<view class="right">
-						<text>余200个字</text>
-					</view>
-					<view class="left">
-						<text>清空</text>
-					</view>
-					
-				</view>
+				<messBox tipMess="备注(选填)" @getMess="getMessage"></messBox>
 
 			</view>
 	</info-box>
@@ -36,14 +25,29 @@
 <script>
 import infoBox from "../../components/boxstyle/infobox.vue"
 import btn from "../../components/boxstyle/buttonstyle.vue"
+import messBox from '../../components/message.vue'
+import uploadMode from '../../components/uploadMode.vue'
+
 	export default {
 		data() {
 			return {
-				
+				message: '',
+				reminNum: 200
 			}
 		},
 		
 		methods: {
+			clearText() {
+				this.message= ""
+			},
+			
+			onTextChange() {
+				this.reminNum = 200 - this.message.length
+			},
+			
+			getMessage(data) {
+				console.log(data)
+			}
 		},
 		
 		onLoad() {
@@ -52,7 +56,9 @@ import btn from "../../components/boxstyle/buttonstyle.vue"
 		
 		components: {
 			infoBox,
-			btn
+			btn,
+			messBox,
+			uploadMode
 		}
 		
 		
@@ -75,35 +81,40 @@ import btn from "../../components/boxstyle/buttonstyle.vue"
 			  font-weight:400;
 			  color:rgba(153,153,153,1);
 		  }
-		  .warp {
-			  position: relative;
-			  font-size:12px;
-			  font-weight:400;
-			  margin: 12px 0 28px 0;
-			  color:rgba(153,153,153,1);
-			  textarea {
-				  box-sizing: border-box;
-				  height:118px;
-				  width: 100%;
-				  padding: 8px 16px;
-				  font-size: 14px;
-				  border:1px solid rgba(242,242,242,1);
-			  }
-			  .left {
-				  position: absolute;
-				  bottom: 12px;
-				  left: 16px;
-			  }
-			  .right {
-				  position: absolute;
-				  bottom: 12px;
-				  right: 16px;
-			  }
-		  }
 	  }
   
 		.btn {
 			margin-top: 140px;
 		}
   }
+
+	.upload {
+			padding-bottom: 10px;
+			.add {
+				position: relative;
+				width: 69px;
+				height: 69px;
+				border: 1px dashed #000;
+				.spacer1 {
+					width: 1px;
+					height: 25px;
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					transform: translate(-50%, -50%);
+					background-color: #000;
+				}
+				.spacer2 {
+					width: 25px;
+					height: 1px;
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					transform: translate(-50%, -50%);
+					background-color: #000;
+				}
+			}
+		}
+
+	
 </style>

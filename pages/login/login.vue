@@ -63,7 +63,7 @@
 			toStatusPage() {
 				const params = {
 					userPhone: "13550096964",
-					code: "903521"
+					code: "533231"
 				}
 				const info = parseQueryString(params)
 
@@ -88,7 +88,6 @@
 				};
 				const res = await this.$http.httpRequest(opts, params);
 				
-				console.log(res)
 			}
 		},
 		

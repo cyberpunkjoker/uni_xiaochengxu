@@ -28,11 +28,14 @@
 
 <script>
 	import infoBox from "../../components/boxstyle/infobox.vue"
+	import {parseQueryString} from "../../../utils/query.js"
+	
 	export default {
 		data() {
 			return {
 				name: '',
-				phone:''
+				phone:'',
+				id: ''
 			}
 		},
 
@@ -42,21 +45,42 @@
 			},
 			
 			async submitInfo() {
-				const opts = {
-					url: "",
-					method: ""
+				// 请求之前先判断一下
+				if(this.name.length===0 && this.phone.length!==11) {
+					uni.showModal({
+						content: "请输入姓名和手机号"
+					})
 				}
+				
+				
 				
 				const params = {
-					
+					carId: Number(this.id),
+					name: this.name,
+					phone: this.phone
 				}
+				const info = parseQueryString(params);
 				
-				const res = await this.$http.httpTokenRequest(opts, params);
+				const opts = {
+					url: "/sc/driverMng/bindDriver" +info,
+					method: "post"
+				}
+				const res = await this.$http.httpTokenRequest(opts);
+				console.log(res)
+				if(res.data.desc === "[请输入正确的手机号]") {
+					uni.showModal({
+						content: "请输入正确的手机号"
+					})
+				}
 			}
 			
 			
 		},
-
+		
+		onLoad(options) {
+			this.id = options.id
+		},
+		
 		components: {
 			infoBox
 		}

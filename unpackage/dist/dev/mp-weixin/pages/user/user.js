@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../components/boxstyle/infobox.vue */ 192));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../components/boxstyle/infobox.vue */ 198));};var _default =
 
 
 
@@ -169,13 +169,37 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   },
 
   methods: {
-    toPages: function toPages(i) {
-      console.log(i);
+    toOtherPage: function toOtherPage(i) {
+      i === 0 &&
+      uni.navigateTo({
+        url: '/pages/user/waybill/waybill' });
+
+
+      i === 1 &&
+      uni.navigateTo({
+        url: '/pages/user/carower/managementcar' });
+
+
+      i === 2 &&
+      uni.navigateTo({
+        url: '/pages/user/carmanagement/carmanagement' });
+
+
+      i === 3 &&
+      uni.setStorage({
+        key: 'USER_TOKEN',
+        data: "" }) &&
+
+      uni.reLaunch({
+        url: "/pages/login/login" });
+
+
     } },
 
 
   components: {
     infoBox: infoBox } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

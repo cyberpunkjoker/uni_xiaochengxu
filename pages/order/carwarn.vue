@@ -1,11 +1,11 @@
 <template>
 	<view>
-		<image src="../../static/img/nowifi.png" mode=""></image>
+		<image src="../../static/img/nocar.png" mode=""></image>
 		<view class="content">
-			<text>暂无网络</text>
+			<text>暂无内容</text>
 		</view>
 		
-		<btn :toPages="toPages">刷新重试</btn>
+		<btn v-if="showBtn" @tap="toApply">申请运单</btn>
 	</view>
 </template>
 
@@ -20,10 +20,14 @@ import btn from "../components/boxstyle/buttonstyle.vue"
 		},
 		
 		methods: {
-			toPages() {
-				
+			toApply() {
+				console.log(1313123)
+				uni.navigateTo({
+					url: '/pages/home/weight/apply'
+				})
 			}
 		},
+		props:["showBtn"],
 		
 		components: {
 			btn
@@ -46,7 +50,7 @@ import btn from "../components/boxstyle/buttonstyle.vue"
 		color:rgba(153,153,153,1);
 		line-height:22px;
 		margin-top: 24px;
-		margin-bottom: 200px;
+		margin-bottom: 100px;
 		text-align: center;
 	}
 	

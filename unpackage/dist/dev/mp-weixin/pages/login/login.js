@@ -209,7 +209,7 @@ var _default =
     toStatusPage: function toStatusPage() {
       var params = {
         userPhone: "13550096964",
-        code: "903521" };
+        code: "533231" };
 
       var info = (0, _query.parseQueryString)(params);
 
@@ -232,9 +232,8 @@ var _default =
                   phone: this.userPhone,
                   smsTypeEnum: "LOGIN_SMS" };_context.next = 4;return (
 
-                  this.$http.httpRequest(opts, params));case 4:res = _context.sent;
+                  this.$http.httpRequest(opts, params));case 4:res = _context.sent;case 5:case "end":return _context.stop();}}}, _callee, this);}));function sendCode() {return _sendCode.apply(this, arguments);}return sendCode;}() },
 
-                console.log(res);case 6:case "end":return _context.stop();}}}, _callee, this);}));function sendCode() {return _sendCode.apply(this, arguments);}return sendCode;}() },
 
 
 

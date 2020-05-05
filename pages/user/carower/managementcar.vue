@@ -25,10 +25,10 @@
 				</view>
 
 				<view class="itembox" v-if="item.examineStatusEnum!==0">
-					<view v-if="item.examineStatusEnum == 1" @tap="toBindCar">
+					<view v-if="item.examineStatusEnum == 1" @tap="toBindCar(item)">
 						<text class="one">绑定司机</text>
 						<view class="two">
-							<text class="content red fontsize12">前往绑定司机</text>
+							<text class="content"></text>
 							<image src="../../../static/img/right.png" mode=""></image>
 						</view>
 					</view>
@@ -89,9 +89,11 @@
 				})
 				
 			},
-			toBindCar() {
+			toBindCar(i) {
+				const id = parseQueryString({id: i.carId})
+				console.log(i)
 				uni.navigateTo({
-					url: '/pages/user/carower/binddriver'
+					url: '/pages/user/carower/binddriver'+id
 				})
 			},
 			messageToSee(i) {
@@ -122,6 +124,5 @@
 
 	.outer {
 		margin: 12px 0;
-
 	}
 </style>

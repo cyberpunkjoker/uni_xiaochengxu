@@ -1,1 +1,1 @@
-<button class="submitbtn" form-type="submit" data-event-opts="{{[['tap',[['toPages',['$event']]]]]}}" bindtap="__e"><slot></slot></button>
+<button class="submitbtn" form-type="submit"><slot></slot></button>

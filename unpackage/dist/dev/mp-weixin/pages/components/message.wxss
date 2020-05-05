@@ -1,0 +1,28 @@
+.warp.data-v-124f2c04 {
+  position: relative;
+  font-size: 12px;
+  font-weight: 400;
+  margin: 12px 0 28px 0;
+  color: #999999;
+}
+.warp textarea.data-v-124f2c04 {
+  box-sizing: border-box;
+  height: 135px;
+  width: 100%;
+  padding: 8px 16px;
+  font-size: 14px;
+  border: 1px solid #f2f2f2;
+}
+.warp .left.data-v-124f2c04 {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  z-index: 3;
+}
+.warp .right.data-v-124f2c04 {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  z-index: 3;
+}
+

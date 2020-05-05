@@ -1,5 +1,8 @@
 <template>
-		<button form-type="submit" class="submitbtn" @tap="toPages">
+		<!-- <button form-type="submit" class="submitbtn" @tap="toPages">
+			<slot></slot>
+		</button> -->
+		<button form-type="submit" class="submitbtn">
 			<slot></slot>
 		</button>
 </template>

@@ -1,0 +1,61 @@
+.input-flex-select.data-v-457b4864 {
+  width: 100%;
+}
+.pickerBox.data-v-457b4864 {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  padding: 20px 20px;
+  background-color: #fff;
+  text-align: center;
+}
+.flexbox.data-v-457b4864 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #F2F2F2;
+}
+.cancel.data-v-457b4864 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  font-size: 16px;
+  font-weight: 500;
+  color: #939699;
+}
+.content.data-v-457b4864 {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+          flex: 2;
+  font-size: 16px;
+  font-weight: 500;
+  color: #4b4c4d;
+}
+.sure.data-v-457b4864 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffcb29;
+}
+.tabbar.data-v-457b4864 {
+  height: 40px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  border-bottom: 1px solid #F2F2F2;
+}
+.tabbar .timepickerbox.data-v-457b4864 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
+.tabbar .current.data-v-457b4864 {
+  border-bottom: 4px solid #FFCB29;
+}
+

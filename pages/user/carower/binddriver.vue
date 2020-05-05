@@ -2,33 +2,36 @@
 	<view>
 		<view class="outer">
 			<info-box>
-				<view class="itembox">
-					<text class="one">司机信息</text>
-					<view class="two">
-						<text class="content red">解除绑定</text>
-						<image src="../../../static/img/right.png" mode=""></image>
-					</view>
+				<view 
+				v-for="(item, index) in bindDriverList"
+				:key="index"
+				>
+					<view class="itembox" @tap="deleteDriver(item)">
+							<text class="one">司机信息</text>
+							<view class="two">
+								<text class="content red">解除绑定</text>
+								<image src="../../../static/img/right.png" mode=""></image>
+							</view>
+						</view>
+						
+						<view class="itembox">
+							<text class="one">姓名</text>
+							<view class="two">
+								<text class="content">{{item.name}}</text>
+							</view>
+						</view>
+						
+						<view class="itembox">
+							<text class="one">手机号</text>
+							<view class="two">
+								<text class="content redbig">{{item.phone}}</text>
+							</view>
+						</view>
 				</view>
-				
-				<view class="itembox">
-					<text class="one">姓名</text>
-					<view class="two">
-						<text class="content">成都德格隆贸易有限公司</text>
-					</view>
-				</view>
-				
-				<view class="itembox">
-					<text class="one">手机号</text>
-					<view class="two">
-						<text class="content redbig">sddsd</text>
-					</view>
-				</view>
-								
+
 			</info-box>
-			
-			
 			<view class="btntop">
-				<btn>添加司机</btn>
+				<btn @tap='addDriver'>添加司机</btn>
 			</view>
 			
 		</view>
@@ -39,80 +42,85 @@
 <script>
 	import infoBox from "../../components/boxstyle/infobox.vue"
 	import btn from "../../components/boxstyle/buttonstyle.vue"
+	import "../../../common/itemcontent.css"
+	import { parseQueryString } from "../../../utils/query.js"
 	
 	export default {
 		data() {
 			return {
-
+				carId: '',
+				bindDriverList:[]
 			}
 		},
 
 		methods: {
-
+			async getBindInfo() {
+				const opts = {
+					url: "/sc/driverMng/getDriverByPage",
+					method: "post"
+				}
+				const param = {
+					current: 0,
+					data: {
+						id: Number(this.carId)
+					}
+				}
+				const res = await this.$http.httpTokenRequest(opts, param);
+				console.log(res)
+				
+				if(res.data.result.records.length === 0) {
+					uni.navigateTo({
+						url: "/pages/user/carower/adddriver?id="+ this.carId
+					})
+				}else {
+					this.bindDriverList = res.data.result.records;
+				}
+			},
+			
+			async deleteDriver(item) {
+				console.log()
+				const param = {
+					carId: this.carId,
+					driverId: item.dirverId
+				}
+				const info = parseQueryString(param)
+				
+				const opts = {
+					url: "/sc/driverMng/unBindDriver" + info,
+					method: "post"
+				}
+				
+				const res = await this.$http.httpTokenRequest(opts);
+				if(res.data.desc !== "操作成功") {
+					uni.showModal({
+						content: "解绑失败请重试"
+					})
+				}
+				
+				console.log(res)
+			},
+			
+			addDriver() {
+				uni.navigateTo({
+					url: "/pages/user/carower/adddriver"
+				})
+				
+			}
 		},
-
+		onLoad(optios) {
+			this.carId = optios.id;
+			this.getBindInfo();
+		},
 		components: {
 			infoBox,
 			btn
 		}
-
-
 	}
 </script>
 
 <style lang="less" scoped>
-	text {
-		font-family: PingFangSC-Regular, PingFang SC;
-		font-size: 14px;
-	}
-
-	// 公共样式部分
-	.redbig {
-		color: #FE5000;
-		font-size: 14px;
-	}
-
-	.blue {
-		color: #29C9FF;
-	}
-
-	.red {
-		font-size: 12px;
-		color: #FE5000;
-	}
-
-	.green {
-		color: #79D66D;
-	}
-
 	.outer {
 		margin-top: 12px;
-		.itembox {
-			height: 52px;
-			border-bottom: 1px solid #F2F2F2;
-			.one {
-				float: left;
-				margin-left: 16px;
-				line-height: 52px;
-			}
-
-			.two {
-				float: right;
-				image {
-					display: block;
-					float: right;
-					margin: 20px 16px 0 0;
-					width: 8px;
-					height: 14px;
-				}
-				text {
-					line-height: 52px;
-					margin: 0 16px;
-				}
-			}
-
-
-		}
 	}
 
 	.btntop {

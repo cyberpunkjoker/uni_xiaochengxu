@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../components/boxstyle/buttonstyle.vue */ 199));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../components/boxstyle/buttonstyle.vue */ 205));};var _default =
 
 
 
@@ -155,13 +155,18 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   },
 
   methods: {
-    toPages: function toPages() {
+    toApply: function toApply() {
+      console.log(1313123);
+      uni.navigateTo({
+        url: '/pages/home/weight/apply' });
 
     } },
 
+  props: ["showBtn"],
 
   components: {
     btn: btn } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

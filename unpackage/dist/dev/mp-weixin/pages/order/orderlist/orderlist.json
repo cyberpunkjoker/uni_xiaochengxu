@@ -2,6 +2,7 @@
   "navigationBarTitleText": "运单查看",
   "usingComponents": {
     "tab-bar": "/pages/components/tabbar2",
-    "info-box": "/pages/components/boxstyle/infobox"
+    "info-box": "/pages/components/boxstyle/infobox",
+    "tip-img": "/pages/order/carwarn"
   }
 }

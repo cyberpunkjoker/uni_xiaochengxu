@@ -1,31 +1,34 @@
 <template>
 	<view>
-		<view class="outer">
+
+		<view v-for="(item,index) in carInfoList" :key="index" class="outer">
 			<info-box>
+
 				<view class="itembox">
-					<text class="one">车牌号：{{carNum}}</text>
+					<text class="one">车牌号：{{item.carNo}}</text>
 				</view>
 
 				<view class="itembox">
 					<text class="one">车辆所属挂靠公司</text>
 					<view class="two">
-						<text class="content">成都德格隆贸易有限公司</text>
+						<text class="content">{{item.companyName}}</text>
 					</view>
 				</view>
 
 				<view class="itembox">
 					<text class="one">车型</text>
 					<view class="two">
-						<text class="content">sddsd</text>
+						<text class="content">{{carModeList[item.carType-1]}}</text>
 					</view>
 				</view>
-				
+
 				<view class="itembox">
 					<text class="one">货箱长度</text>
 					<view class="two">
-						<text class="content">sddsd</text>
+						<text class="content">{{item.containerLength}}</text>
 					</view>
 				</view>
+
 
 			</info-box>
 		</view>
@@ -39,12 +42,26 @@
 	export default {
 		data() {
 			return {
-				carNum: "dshdjsd"
+				carNum: "dshdjsd",
+				carInfoList: [],
+				carModeList: ['自翻卸车', '四轴车', '六轴车'],
 			}
 		},
 
 		methods: {
+			async getDriverInfo() {
+				const opts = {
+					url: '/sc/carMng/getDriverCarsByPage',
+					method: 'post'
+				};
+				const res = await this.$http.httpTokenRequest(opts);
+				this.carInfoList = res.data.result;
 
+				console.log(res)
+			}
+		},
+		onLoad() {
+			this.getDriverInfo()
 		},
 
 		components: {
@@ -62,7 +79,7 @@
 	}
 
 	.outer {
-		margin-top: 12px;
+		margin: 12px 0;
 
 		.itembox {
 			height: 52px;

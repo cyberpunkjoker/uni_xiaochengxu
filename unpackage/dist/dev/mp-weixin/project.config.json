@@ -41,22 +41,8 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/user/carower/addcar",
-					"pathName": "pages/user/carower/addcar",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/user/carower/managementcar",
-					"pathName": "pages/user/carower/managementcar",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/user/carower/modifycar",
-					"pathName": "pages/user/carower/modifycar",
+					"name": "pages/home/weight/apply",
+					"pathName": "pages/home/weight/apply",
 					"query": "",
 					"scene": null
 				},
@@ -69,8 +55,36 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/user/carower/adddriver",
-					"pathName": "pages/user/carower/adddriver",
+					"name": "pages/login/login",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/home/weight/apply",
+					"pathName": "pages/home/weight/apply",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/home/weight/weight",
+					"pathName": "pages/home/weight/weight",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/home/image/upload",
+					"pathName": "pages/home/image/upload",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order/orderlist/orderlist",
+					"pathName": "pages/order/orderlist/orderlist",
 					"scene": null
 				}
 			]

@@ -1,17 +1,17 @@
 <template>
 	<view class="pickerBox">
 		<view class="flexbox">
-			<view class="cancel" @click="cancel">取消</view>
-			<view class="content">计划承运方向</view>
-			<view class="sure" @click="choiceSelect">确定</view>
+			<view class="cancel" @tap="justClose">取消</view>
+			<view class="content">{{title}}</view>
+			<view class="sure" @tap="reSelected">确定</view>
 		</view>
 
 		<picker-view style="height: 300px;" indicator-style="height: 36px; line-height:36px" :value="value" @change="bindChange">
 			<picker-view-column class="flex-col">
-				<view class="item flex-center" v-for="item in data1" :key="item">{{item}}</view>
+				<view class="item flex-center" v-for="item in []" :key="item">{{item}}</view>
 			</picker-view-column>
 			<picker-view-column class="flex-col">
-				<view class="item flex-center" v-for="item in data" :key="item">{{item}}</view>
+				<view class="item flex-center" v-for="item in dataList" :key="item">{{item}}</view>
 			</picker-view-column>
 			<picker-view-column class="flex-col">
 				<view class="item flex-center" v-for="item in []" :key="item">{{item}}</view>
@@ -23,26 +23,29 @@
 <script>
 	export default {
 		name: "picker-region",
-		props: ['data1', 'data2', 'data3', 'data4', 'data5'],
+		props: ['dataList','title'],
 		data: function() {
 			return {
-				data: [1, 2, 2, 23, 3232, 4, 5, 6, 6, 6, 6],
+				// 记录当前索引
+				recordList: [],
+				status: false,
 			}
 		},
 
 		methods: {
-
-			bindChange: function(e) {
-
+			bindChange(e) {
+				this.recordList = e.detail.value;
 			},
-			pickerBoxShow: function() {
-				this.showClass = "";
+			
+			justClose() {
+				this.status = true;
+				this.$emit('showStatus', this.status)
 			},
-			choiceSelect: function() {
-
-			},
-			cancel: function() {
-				// this.showClass = "pickerBoxHide";
+			
+			reSelected() {
+				this.status = true
+				this.$emit('showStatus', this.status)
+				this.$emit('listenChild', this.recordList)
 			}
 		}
 	}
