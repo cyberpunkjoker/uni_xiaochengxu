@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/home/home",
     "pages/login/status",
     "pages/user/user",
     "pages/user/carower/drivernone",
@@ -14,7 +15,6 @@
     "pages/user/waybill/waybill",
     "pages/order/carwarn",
     "pages/order/orderlist/orderlist",
-    "pages/home/home",
     "pages/home/image/upload",
     "pages/home/image/signupload",
     "pages/home/image/doneimg",
@@ -54,6 +54,11 @@
       }
     ]
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于运输路程显示"
+    }
+  },
   "usingComponents": {},
-  "sitemapLocation": "sitemap83.json"
+  "sitemapLocation": "sitemap70.json"
 }

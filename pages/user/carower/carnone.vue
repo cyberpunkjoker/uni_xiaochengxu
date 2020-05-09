@@ -5,7 +5,7 @@
 			<text>暂无绑定车辆</text>
 		</view>
 		
-		<btn :toPages="toPages">添加车辆</btn>
+		<btn @tap="toPages">添加车辆</btn>
 	</view>
 </template>
 
@@ -22,7 +22,7 @@ import btn from "../../components/boxstyle/buttonstyle.vue"
 		methods: {
 			toPages() {
 				uni.navigateTo({
-				    url: '/pages/user/carower/binddriver'
+				    url: '/pages/user/carower/addcar'
 				});
 			}
 		},

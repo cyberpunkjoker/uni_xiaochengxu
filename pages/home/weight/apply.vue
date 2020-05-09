@@ -19,7 +19,7 @@
 				<view class="itembox" @tap="toChooseTime">
 					<text class="one">预计到厂时间</text>
 					<view class="two">
-						<text class="content">tdgshdsjd</text>
+						<text class="content">{{arriveTime}}</text>
 						<image src="../../../static/img/right.png" mode=""></image>
 					</view>
 				</view>
@@ -49,7 +49,10 @@
 
 		<!-- pick3 -->
 		<uni-popup ref="popup3" type="bottom">
-			<time-picker :timeList="timeList"></time-picker>
+			<time-picker 
+			:timeList="timeList"
+			@showSeletedTime="timeSelect"
+			></time-picker>
 		</uni-popup>
 
 		<view class="btn">
@@ -82,19 +85,24 @@
 				current1: 0,
 				current2: 0,
 				// 判断是哪个页面
-				popupList: ["popup","popup2","popup3"],
+				// popupList: ["popup","popup2","popup3"],
 				popName: '',
 				// 当前时间列表
 				timeList:[[],[],[],[],[]],
 				// 选中的预计到厂时间
-				arriveTime: "2020-05-07 01:57:53"
+				arriveTime: ""
 			}
 		},
 
 		methods: {
 			// 接收子组件的传值
 			showIndex(data){
-				this.current=data[1];
+				console.log(data)
+				if (data.length === 0){
+					this.current = 0
+				}else {
+					this.current = data[1];
+				}
 			},
 			
 			showStatus(data) {
@@ -105,8 +113,13 @@
 			
 			
 			showIndex1(data){
-				this.current1=data[1];
-				console.log(this.current1)
+				console.log(data)
+				if(data.length === 0) {
+					console.log(1)
+					this.current1 = 0
+				}else {
+					this.current1 = data[1];
+				}
 			},
 			
 			showStatus1(data) {
@@ -114,9 +127,24 @@
 					this.$refs.popup2.close();
 				}
 			},
-
 			
 			
+			timeSelect(data) {
+				console.log(data);
+				let timeArr = [];
+				data.map((item,index)=>{
+					 timeArr.push(this.timeList[index][item]);
+				})
+				const mouth = timeArr[1]<10 ? "0"+timeArr[1] : timeArr[1]
+				const day = timeArr[2]<10 ? "0"+timeArr[2] : timeArr[2]
+				const hour = timeArr[3]<10 ? "0"+timeArr[3] : timeArr[3]
+				const fen = timeArr[4]<10 ? "0"+timeArr[4] : timeArr[4]
+				
+				this.arriveTime = timeArr[0]+"-"+mouth+"-"+day+" "+hour+":"+fen+":00";
+				
+				this.$refs.popup3.close();
+			},
+			 
 			toChooseCar() {
 				this.$refs.popup.open()
 			},
@@ -133,14 +161,12 @@
 			// 获取页面内信息
 			async getCarInfo() {
 				const opts = {
-					url: "/sc/carMng/getCarsByPage",
+					url: "/sc/carMng/getCanUseCars",
 					method: "post"
 				}
-				const param = {
-					current: 0
-				}
-				const res = await this.$http.httpTokenRequest(opts, param);
-				this.infoList = res.data.result.records;
+				
+				const res = await this.$http.httpTokenRequest(opts);
+				this.infoList = res.data.result;
 				this.infoList.map((item,index)=>{
 					this.carList.push(item.carNo);
 				})
@@ -148,7 +174,8 @@
 					this.carIdList.push(item.carId);
 				})
 				
-				console.log(this.carList)
+				console.log(this.infoList)
+				console.log(this.carIdList)
 			},
 			
 			async getPlanInfo() {
@@ -183,7 +210,7 @@
 				// 添加年份列表
 				// this.timeList[1] =
 				new Array(10).fill(year).map((item, i)=>{
-					this.timeList[0].push(item+i);
+					this.timeList[0].push(item-5+i);
 				})
 				new Array(12).fill('').map((item, i)=>{
 					this.timeList[1].push(i+1);
@@ -211,6 +238,8 @@
 					routeId: this.planListId[this.current1]
 				}
 				
+				console.log(params);
+				
 				const opts = {
 					url: "/personal/driver/modTaskAppRoute",
 					method: "post"
@@ -219,14 +248,11 @@
 				const res = await this.$http.httpTokenRequest(opts,params);
 				if(res.data.desc === "操作成功") {
 					uni.navigateBack({
-						delta: 2
+						delta: 1
 					});
 				}
 				
 				console.log(res)
-				
-				
-				
 			},
 		},
 

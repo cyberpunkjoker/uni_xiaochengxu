@@ -7,30 +7,29 @@
 		</view>
 
 		<view class="tabbar">
-			<view v-for="(item, index) in tablist" 
-			:key="item" @tap="clickTab(index)" 
-			:class="index === current ? 'timepickerbox current' : 'timepickerbox'"
-			>
+			<view v-for="(item, index) in tablist" :key="item" @tap="clickTab(index)" :class="index === current ? 'timepickerbox current' : 'timepickerbox'">
 				{{item}}
 			</view>
 		</view>
-		
-		<!-- <view 
-		class="" v-for="(item, index) in tablist"
-		:key="index"
+
+		<!-- 		<view 
+		v-for="(item, index) in timeList" 
+		:key="index" 
+		v-if="index === current"
 		> -->
-			<picker-view 
-			style="height: 300px;" 
-			indicator-style="height: 36px; line-height:36px" 
-			:value="value" 
-			@change='"bindChange"'
-			>
-				<picker-view-column class="flex-col">
-					<view class="item flex-center" v-for="item in timeList[current]" :key="item">{{item}}</view>
-				</picker-view-column>
-			</picker-view>
-		</view>
+		<picker-view 
+		style="height: 300px;" 
+		indicator-style="height: 36px; line-height:36px" 
+		@change="bindChange"
+		:value="value"
+		>
+			<picker-view-column class="flex-col">
+				<view class="item flex-center" v-for="item in timeList[current]" :key="item">{{item}}</view>
+			</picker-view-column>
+		</picker-view>
+	</view>
 	<!-- </view> -->
+
 </template>
 
 <script>
@@ -41,35 +40,41 @@
 				recordList: [],
 				status: false,
 				current: 0,
-				tablist: ["年","月","日","时","分"],
+				tablist: ["年", "月", "日", "时", "分"],
 				// 日期数组
 				year: '',
 				mouth: '',
 				day: '',
 				hour: '',
 				minutes: '',
+				timeArr: [],
+				value: [0]
 			}
 		},
-		props:['timeList'],
+		props: ['timeList'],
 		methods: {
 			bindChange(e) {
-				if(this.current === 0) {
-					this.year = e.detail.value;
-				}
-				console.log(this.recordList)
+				if (this.current === 0) this.year = e.detail.value;
+				if (this.current === 1) this.mouth = e.detail.value;
+				if (this.current === 2) this.day = e.detail.value;
+				if (this.current === 3) this.hour = e.detail.value;
+				if (this.current === 4) this.minutes = e.detail.value;
+				this.timeArr = [this.year, this.mouth, this.day, this.hour, this.minutes]
+				console.log(this.day)
 			},
-			
+
 			justClose() {
 				this.status = true;
 				this.$emit('showStatus', this.status)
 			},
-			
+
 			reSelected() {
 				this.status = true
 				this.$emit('showStatus', this.status)
-				this.$emit('listenChild', this.recordList)
+				// this.$emit('listenChild', this.recordList)
+				this.$emit("showSeletedTime", this.timeArr)
 			},
-			
+
 			clickTab(index) {
 				this.current = index;
 				console.log(this.current)
@@ -121,17 +126,18 @@
 		font-weight: 500;
 		color: rgba(255, 203, 41, 1);
 	}
-	
+
 	.tabbar {
 		height: 40px;
 		display: flex;
 		border-bottom: 1px solid #F2F2F2;
+
 		.timepickerbox {
 			flex: 1;
 		}
+
 		.current {
 			border-bottom: 4px solid #FFCB29;
 		}
 	}
 </style>
-

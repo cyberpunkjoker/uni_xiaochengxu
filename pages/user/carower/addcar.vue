@@ -10,13 +10,17 @@
 					<text class="textcon">车牌号</text>
 					<view class="uni-form-item uni-column fatherbox">
 						<input class="uni-input" name="carnum" v-model="carNum" placeholder="请输入车牌号" />
-						<image src="../../../static/img/clear.png" mode=""></image>
+						<image src="../../../static/img/clear.png" mode=""
+						@tap="toClearCarNo"
+						></image>
 					</view>
 
 					<text class="textcon">车辆所属挂靠公司全称</text>
 					<view class="uni-form-item uni-column fatherbox">
 						<input class="uni-input" name="company" v-model="companyName" placeholder="请输入车辆所属挂靠公司全称" />
-						<image src="../../../static/img/clear.png" mode=""></image>
+						<image src="../../../static/img/clear.png" mode=""
+						@tap="toClearCarName"
+						></image>
 					</view>
 
 				</form>
@@ -62,7 +66,7 @@
 				carModeList: ['自翻卸车', '四轴车', '六轴车'],
 				carList: ['9米以内', '9.6米', '11米', '13米', '其他'],
 				// 上传长度
-				upLength:[9,9.6,11,12],
+				upLength: [9, 9.6, 11, 12],
 				// 当前选中状态
 				carCurrent: 0,
 				longCurrent: 0,
@@ -78,7 +82,7 @@
 				const carNo = e.detail.value.carnum;
 				const company = e.detail.value.company;
 				const long = e.detail.value.long;
-				
+
 				console.log(carNo, company, long)
 				if (phone.length !== 11 || code.length === 0) {
 					uni.showModal({
@@ -86,6 +90,14 @@
 						showCancel: false
 					});
 				}
+			},
+
+			toClearCarNo() {
+				this.carNum = ''
+			},
+			
+			toClearCarName() {
+				this.companyName = ''
 			},
 
 			// 页面跳转表单验证部分
@@ -100,11 +112,22 @@
 			chooseLong(i) {
 				this.longCurrent = i;
 			},
-
+			isLicensePlate(str) {
+				return /^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$/.test(str);
+			},
 			// 添加车辆信息
 			async addCarInfo() {
+				// 正则验证车牌,验证通过返回true,不通过返回false
+				const isTrue =  this.isLicensePlate(this.carNum)
+				if(!isTrue) {
+					uni.showModal({
+						content: "请输入正确车牌号"
+					})
+				}
+				
 				//判断length的值
 				let length = (this.longCurrent === 4 && Number(this.length)) || this.upLength[this.longCurrent]
+				
 				const opts = {
 					url: '/sc/carMng/addCar',
 					method: 'post'
@@ -116,20 +139,22 @@
 					companyName: this.companyName,
 					containerLength: length
 				}
+
+				// console.log(param)
+
+				// console.log(res)
+				// console.log(res.data.code)
 				
-				console.log(param)
+				res.data.code === 1 &&
+					uni.showModal({
+						content: res.data.desc
+					})
 				
-				const res = await this.$http.httpTokenRequest(opts, param)
-				console.log(res.data.desc)
-				
-				res.data.desc === "操作成功" && 
-				uni.navigateTo({
-					url: "/pages/user/carower/managementcar"
-				})
-				
+				res.data.code === 0 &&
+					uni.reLaunch({
+						url: "/pages/home/home"
+					})
 			}
-
-
 		},
 
 		components: {
@@ -201,6 +226,7 @@
 				top: 10px;
 				width: 20px;
 				height: 20px;
+				z-index: 3;
 			}
 		}
 

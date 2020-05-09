@@ -1,5 +1,10 @@
 .upload.data-v-455008d7 {
   padding-bottom: 10px;
+  height: 75px;
+}
+.upload .outerbox.data-v-455008d7 {
+  float: left;
+  margin-right: 20px;
 }
 .upload .add.data-v-455008d7 {
   position: relative;
@@ -26,5 +31,13 @@
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   background-color: #000;
+}
+.addimg.data-v-455008d7 {
+  width: 69px;
+  height: 69px;
+}
+.addimg image.data-v-455008d7 {
+  width: 69px;
+  height: 69px;
 }
 

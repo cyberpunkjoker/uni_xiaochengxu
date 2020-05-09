@@ -44,30 +44,32 @@
 		},
 
 		methods: {
-			formSubmit(e) {
-				console.log(e)
-				const phone = e.detail.value.phone;
-				const code = e.detail.value.code;
-				console.log(phone)
-				// if (phone.length !== 11 || code.length === 0) {
-				// 	uni.showModal({
-				// 		content: '请确认手机号和验证码是否输入正确',
-				// 		showCancel: false
-				// 	});
-				// }
-
+			// formSubmit(e) {
+			// 	console.log(e)
+			// 	const phone = e.detail.value.phone;
+			// 	const code = e.detail.value.code;
+			// 	console.log(phone)
+			// 	if (phone.length !== 11 || code.length === 0) {
+			// 		uni.showModal({
+			// 			content: '请确认手机号和验证码是否输入正确',
+			// 			showCancel: false
+			// 		});
+			// 	}
+			// },
+			
+			isTruePhoneNum(str) {
+				return /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/ .test(str);
 			},
-
 
 			// 页面跳转表单验证部分
 			toStatusPage() {
 				const params = {
-					userPhone: "13550096964",
-					code: "533231"
+					userPhone: this.userPhone,
+					code: this.code
 				}
 				const info = parseQueryString(params)
 
-				// this.userPhone.length === 11 && this.code.length !== 0 &&
+				this.userPhone.length === 11 && this.code.length !== 0 &&
 					uni.navigateTo({
 						url: '/pages/login/status' + info
 					});
@@ -78,6 +80,13 @@
 			},
 
 			async sendCode() {
+				const isTure = this.isTruePhoneNum(this.userPhone);
+				if(!isTure) {
+					uni.showModal({
+						content:"请输入正确的手机号码"
+					})
+				}
+				
 				const opts = {
 					url: '/sc/sms/send',
 					method: 'post'
@@ -88,10 +97,12 @@
 				};
 				const res = await this.$http.httpRequest(opts, params);
 				
-			}
+				console.log(res);
+			},
 		},
 		
 		onLoad() {
+			// this.shouquan();
 		}
 
 	}

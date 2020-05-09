@@ -24,7 +24,7 @@
 				<view class="carmode">
 					<text class="textcon">点击选择车型</text>
 					<view class="modeitem">
-						<view v-for="(item,index) in carModeList" :key="index" @tap="chooseCar(index)" :class="index===carCurrent ? 'itemcurrent' : '' ">
+						<view v-for="(item,index) in carModeList" :key="index" @tap="chooseCar(index)" :class="index===carCurrent-1 ? 'itemcurrent' : '' ">
 							{{item}}
 							<image v-if="carCurrent===index" src="../../../static/img/selected.png" mode=""></image>
 						</view>
@@ -109,8 +109,15 @@
 				})
 			},
 
+			isLicensePlate(str) {
+				return /^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$/.test(str);
+			},
+
 			// 提交修改信息
 			async modifyInfo() {
+				const isTrue =  this.isLicensePlate(this.carNum)
+				
+				
 				const opts = {
 					url: '/sc/carMng/modCar',
 					method: 'post'
@@ -134,11 +141,17 @@
 				} else {
 					const res = await this.$http.httpTokenRequest(opts, params);
 					console.log(res)
-					if (res.data.desc !== "操作成功") {
-						uni.showModal({
-							content: res.data.desc,
-							showCancel: false
-						})
+					if (res.data.code !== 0) {
+						if(!isTrue) {
+							uni.showModal({
+								content: "请输入正确车牌号"
+							})
+						}else{
+							uni.showModal({
+								content: "内容不能为空",
+								showCancel: false
+							})
+						}
 					}
 					// 保证长度大于9
 					else {

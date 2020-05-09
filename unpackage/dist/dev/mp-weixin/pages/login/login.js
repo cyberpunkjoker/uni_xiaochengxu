@@ -190,30 +190,32 @@ var _default =
   },
 
   methods: {
-    formSubmit: function formSubmit(e) {
-      console.log(e);
-      var phone = e.detail.value.phone;
-      var code = e.detail.value.code;
-      console.log(phone);
-      // if (phone.length !== 11 || code.length === 0) {
-      // 	uni.showModal({
-      // 		content: '请确认手机号和验证码是否输入正确',
-      // 		showCancel: false
-      // 	});
-      // }
+    // formSubmit(e) {
+    // 	console.log(e)
+    // 	const phone = e.detail.value.phone;
+    // 	const code = e.detail.value.code;
+    // 	console.log(phone)
+    // 	if (phone.length !== 11 || code.length === 0) {
+    // 		uni.showModal({
+    // 			content: '请确认手机号和验证码是否输入正确',
+    // 			showCancel: false
+    // 		});
+    // 	}
+    // },
 
+    isTruePhoneNum: function isTruePhoneNum(str) {
+      return /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/.test(str);
     },
-
 
     // 页面跳转表单验证部分
     toStatusPage: function toStatusPage() {
       var params = {
-        userPhone: "13550096964",
-        code: "533231" };
+        userPhone: this.userPhone,
+        code: this.code };
 
       var info = (0, _query.parseQueryString)(params);
 
-      // this.userPhone.length === 11 && this.code.length !== 0 &&
+      this.userPhone.length === 11 && this.code.length !== 0 &&
       uni.navigateTo({
         url: '/pages/login/status' + info });
 
@@ -223,21 +225,30 @@ var _default =
       this.userPhone = '';
     },
 
-    sendCode: function () {var _sendCode = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var opts, params, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+    sendCode: function () {var _sendCode = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var isTure, opts, params, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                isTure = this.isTruePhoneNum(this.userPhone);
+                if (!isTure) {
+                  uni.showModal({
+                    content: "请输入正确的手机号码" });
+
+                }
+
                 opts = {
                   url: '/sc/sms/send',
                   method: 'post' };
 
                 params = {
                   phone: this.userPhone,
-                  smsTypeEnum: "LOGIN_SMS" };_context.next = 4;return (
+                  smsTypeEnum: "LOGIN_SMS" };_context.next = 6;return (
 
-                  this.$http.httpRequest(opts, params));case 4:res = _context.sent;case 5:case "end":return _context.stop();}}}, _callee, this);}));function sendCode() {return _sendCode.apply(this, arguments);}return sendCode;}() },
+                  this.$http.httpRequest(opts, params));case 6:res = _context.sent;
 
+                console.log(res);case 8:case "end":return _context.stop();}}}, _callee, this);}));function sendCode() {return _sendCode.apply(this, arguments);}return sendCode;}() },
 
 
 
   onLoad: function onLoad() {
+    // this.shouquan();
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

@@ -1552,7 +1552,7 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 116:
+/***/ 131:
 /*!******************************************************************************!*\
   !*** C:/Users/joker/Videos/Code/uniapp/uni_project/common/twolinelayout.css ***!
   \******************************************************************************/
@@ -1703,7 +1703,9 @@ function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {var baseUrl = 'http://192.168.0.108:8001';
+/* WEBPACK VAR INJECTION */(function(uni) {var baseUrl = 'http://192.168.0.104:8001';
+
+// const baseUrl = 'http://192.168.0.108:8001';
 var httpRequest = function httpRequest(opts, data) {
   var httpDefaultOpts = {
     url: baseUrl + opts.url,
@@ -1777,7 +1779,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 173:
+/***/ 180:
 /*!**************************************************************************!*\
   !*** C:/Users/joker/Videos/Code/uniapp/uni_project/common/threecols.css ***!
   \**************************************************************************/
@@ -9565,17 +9567,6 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 
 /***/ }),
 
-/***/ 67:
-/*!****************************************************************************!*\
-  !*** C:/Users/joker/Videos/Code/uniapp/uni_project/common/itemcontent.css ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ 7:
 /*!*********************************************************************************!*\
   !*** C:/Users/joker/Videos/Code/uniapp/uni_project/pages.json?{"type":"style"} ***!
@@ -9584,7 +9575,18 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/login/login": { "navigationBarTitleText": "首页" }, "pages/login/status": { "navigationBarTitleText": "选择登录身份" }, "pages/user/user": { "navigationBarTitleText": "个人中心" }, "pages/user/carower/drivernone": { "navigationBarTitleText": "车主车辆管理" }, "pages/user/carower/carnone": { "navigationBarTitleText": "车主车辆管理" }, "pages/user/carower/managementcar": { "navigationBarTitleText": "车主车辆管理" }, "pages/user/carower/modifycar": { "navigationBarTitleText": "修改车辆" }, "pages/user/carower/adddriver": { "navigationBarTitleText": "添加司机" }, "pages/user/carower/binddriver": { "navigationBarTitleText": "绑定司机列表" }, "pages/user/carower/editcar": { "navigationBarTitleText": "编辑车辆信息" }, "pages/user/carmanagement/carmanagement": { "navigationBarTitleText": "司机车辆管理" }, "pages/user/waybill/waybill": { "navigationBarTitleText": "收货人运单查看" }, "pages/order/carwarn": { "navigationBarTitleText": "车主车辆管理" }, "pages/order/orderlist/orderlist": { "navigationBarTitleText": "运单查看" }, "pages/home/home": { "navigationBarTitleText": "四川顺程物流有限公司" }, "pages/home/image/upload": { "navigationBarTitleText": "开始卸货打卡" }, "pages/home/image/signupload": { "navigationBarTitleText": "上传签收单图片" }, "pages/home/image/doneimg": { "navigationBarTitleText": "到货打卡" }, "pages/home/weight/weight": { "navigationBarTitleText": "选择物料填写" }, "pages/home/weight/apply": { "navigationBarTitleText": "运单申请" }, "pages/user/carower/addcar": { "navigationBarTitleText": "新增车辆" }, "pages/block/block": {} }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#EDEDED" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/login/login": { "navigationBarTitleText": "首页" }, "pages/home/home": { "navigationBarTitleText": "四川顺程物流有限公司" }, "pages/login/status": { "navigationBarTitleText": "选择登录身份" }, "pages/user/user": { "navigationBarTitleText": "个人中心" }, "pages/user/carower/drivernone": { "navigationBarTitleText": "车主车辆管理" }, "pages/user/carower/carnone": { "navigationBarTitleText": "车主车辆管理" }, "pages/user/carower/managementcar": { "navigationBarTitleText": "车主车辆管理" }, "pages/user/carower/modifycar": { "navigationBarTitleText": "修改车辆" }, "pages/user/carower/adddriver": { "navigationBarTitleText": "添加司机" }, "pages/user/carower/binddriver": { "navigationBarTitleText": "绑定司机列表" }, "pages/user/carower/editcar": { "navigationBarTitleText": "编辑车辆信息" }, "pages/user/carmanagement/carmanagement": { "navigationBarTitleText": "司机车辆管理" }, "pages/user/waybill/waybill": { "navigationBarTitleText": "收货人运单查看" }, "pages/order/carwarn": { "navigationBarTitleText": "车主车辆管理" }, "pages/order/orderlist/orderlist": { "navigationBarTitleText": "运单查看" }, "pages/home/image/upload": { "navigationBarTitleText": "开始卸货打卡" }, "pages/home/image/signupload": { "navigationBarTitleText": "上传签收单图片" }, "pages/home/image/doneimg": { "navigationBarTitleText": "到货打卡" }, "pages/home/weight/weight": { "navigationBarTitleText": "选择物料填写" }, "pages/home/weight/apply": { "navigationBarTitleText": "运单申请" }, "pages/user/carower/addcar": { "navigationBarTitleText": "新增车辆" }, "pages/block/block": { "navigationBarTitleText": "none" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#EDEDED" } };exports.default = _default;
+
+/***/ }),
+
+/***/ 75:
+/*!****************************************************************************!*\
+  !*** C:/Users/joker/Videos/Code/uniapp/uni_project/common/itemcontent.css ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 

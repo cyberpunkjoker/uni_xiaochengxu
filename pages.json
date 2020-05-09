@@ -5,6 +5,14 @@
 				"navigationBarTitleText": "首页"
 			}
 		},
+
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "四川顺程物流有限公司"
+			}
+
+		},
 		{
 			"path": "pages/login/status",
 			"style": {
@@ -83,12 +91,7 @@
 				"navigationBarTitleText": "运单查看"
 			}
 		},
-		{
-			"path": "pages/home/home",
-			"style": {
-				"navigationBarTitleText": "四川顺程物流有限公司"
-			}
-		},
+
 		{
 			"path": "pages/home/image/upload",
 			"style": {
@@ -128,9 +131,9 @@
 		{
 			"path": "pages/block/block",
 			"style": {
+				"navigationBarTitleText": "none"
 			}
 		}
-		
 
 	],
 	"globalStyle": {

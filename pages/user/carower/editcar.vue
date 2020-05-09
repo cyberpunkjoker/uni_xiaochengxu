@@ -20,7 +20,7 @@
 				<view class="itembox">
 					<text class="one">车型</text>
 					<view class="two">
-						<text class="content">{{carModeList[info.carType]}}</text>
+						<text class="content">{{carModeList[info.carType-1]}}</text>
 					</view>
 				</view>
 						

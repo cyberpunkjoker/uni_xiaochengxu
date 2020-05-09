@@ -1,9 +1,6 @@
 image.data-v-549fbaee {
   width: 100%;
 }
-text.data-v-549fbaee {
-  font-family: PingFangSC-Regular, PingFang SC;
-}
 .outbox.data-v-549fbaee {
   -webkit-transform: translate(0, -46px);
           transform: translate(0, -46px);

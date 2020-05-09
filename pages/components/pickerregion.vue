@@ -29,6 +29,7 @@
 				// 记录当前索引
 				recordList: [],
 				status: false,
+				value: [0,0,0]
 			}
 		},
 

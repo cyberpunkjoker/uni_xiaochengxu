@@ -69,11 +69,38 @@
 	font-size: 12px !important;
 }
 
-text.data-v-06639fbd {
+text.data-v-51896998 {
   font-family: PingFangSC-Regular, PingFang SC;
-  font-size: 14px;
 }
+image.data-v-51896998 {
+  display: block;
+  margin: 127px auto 0;
+  width: 138px;
+  height: 138px;
+}
+.content.data-v-51896998 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #999999;
+  line-height: 22px;
+  margin-top: 24px;
+  margin-bottom: 200px;
+  text-align: center;
+}
+
 .outer.data-v-06639fbd {
   margin: 12px 0;
+}
+.bottobox.data-v-06639fbd {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 83px;
+  padding-top: 20px;
+  background: #fafafa;
+}
+.bigbox.data-v-06639fbd {
+  margin-bottom: 100px;
 }
 

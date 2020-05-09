@@ -38,7 +38,7 @@
 				],
 				current: 0,
 				// 获得到首页的传参
-				info: null
+				info: null,
 			}
 		},
 
@@ -48,6 +48,10 @@
 			},
 			// 提交数据并跳转
 			async toChoosePage() {
+				const openCode = uni.getStorageSync('USER_OPENCODE')
+
+				console.log(openCode)
+
 				const opts = {
 					url: "/sc/user/login",
 					method: "post"
@@ -55,6 +59,7 @@
 				const param = {
 					phone: this.info.userPhone,
 					code: this.info.code,
+					openId: openCode,
 					identityEnum: this.statusCode[this.current]
 				}
 				const res = await this.$http.httpRequest(opts, param);
@@ -64,22 +69,78 @@
 					key: "USER_TOKEN",
 					data: res.data.result,
 				})
-				
+
 				// 在页面跳转之前将数据存入本地
-				 uni.setStorage({
-				 	key: 'USER_STATUS',
+				uni.setStorage({
+					key: 'USER_STATUS',
 					data: this.statusCode[this.current],
-				 })
-				
-				res.data.code === 0 && uni.reLaunch({
-					url: '/pages/home/home'
 				})
+
+				uni.setStorage({
+					key: "USER_PHONE",
+					data: this.info.userPhone,
+				})
+
+				if (res.data.code === 0) {
+					if (this.statusCode[this.current] === "CONSIGNEE") {
+						uni.reLaunch({
+							url: '/pages/user/user'
+						})
+					} else {
+						uni.reLaunch({
+							url: '/pages/home/home'
+						})
+						this.shouquan();
+					}
+				}
+			},
+
+			// 获取提示信息
+			shouquan() {
+				const tmplIds = 'P0yJj1sqB8oNODpPd5TpUA9I-qMCM-tih783bIpLZLQ'
+				wx.requestSubscribeMessage({
+					tmplIds: ["P0yJj1sqB8oNODpPd5TpUA9I-qMCM-tih783bIpLZLQ"],
+					subscription_type: 'permanent',
+					success(res) {
+						console.log("成功", res)
+					},
+					fail(res) {
+						console.log("失败", res)
+					}
+				})
+			},
+
+			// 获取小程序openid
+			getOpenId() {
+				uni.login({
+					success: function(res) {
+						console.log(res.code)
+						uni.setStorage({
+							key: "USER_OPENCODE",
+							data: res.code,
+						})
+
+					}
+				})
+
+
+				uni.getLocation({
+					type: 'wgs84',
+					success: function(res) {
+						console.log('当前位置的经度：' + res.longitude);
+						console.log('当前位置的纬度：' + res.latitude);
+					}
+				});
+
+
 			}
+
 		},
 
 		onLoad(options) {
 			//options可以接到index 传过来的值
 			this.info = options
+			this.getOpenId();
 		},
 	}
 </script>

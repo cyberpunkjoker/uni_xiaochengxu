@@ -6,16 +6,13 @@
 		<info-box>
 			<view class="itembox" @tap="firstClick">
 				<text class="one">车牌号：{{userInfo.carNo}}</text>
-				<view class="two">
-					<text class="content red fontsize12">查看详情</text>
-					<image src="../../../static/img/right.png"></image>
-				</view>
+				
 			</view>
 
 			<view class="itembox">
 				<text class="one">订单号</text>
 				<view class="two">
-					<text class="content">1111211415415</text>
+					<text class="content">{{userInfo.orderNo}}</text>
 				</view>
 			</view>
 
@@ -37,19 +34,19 @@
 					<view class="thctitle">
 						<text>选择物料规格型号进行重量填写</text>
 					</view>
-
-					<view class="outsidebox"
-					 v-for="(item, index) in goodsDetailList"
-					 @tap="chooseItem(index)"
-					 :key="index" 
-					 @click="open"
-					 >
+					
+					<view class="outsidebox" 
+					v-for="(item, index) in goodsDetailList" 
+					@tap="chooseItem(index)" 
+					:key="index"
+					@click="open"
+					>
 						<view class="clos left">
-							<view>名称：<text>{{item.materielName}}</text></view>
-							<view>规格：<text>{{item.materielSpecifications}}</text></view>
+							<view>名称：<text>{{item.materialName}}</text></view>
+							<view>规格：<text>{{item.materialType}}</text></view>
 						</view>
 						<view class="clos middle">
-							<view>数量：<text>{{item.materielNumber}}</text></view>
+							<view>数量：<text>{{item.materialNum}}</text></view>
 							<view>重量：<text>{{valueArr[index]!=="" ? valueArr[index]+"吨": "未填写"}}</text></view>
 						</view>
 						<view class="clos right">
@@ -62,47 +59,37 @@
 			</info-box>
 		</view>
 
-		<!-- pick弹窗部分 -->
-		
-	<!-- 	<view 
-		v-for="(item,index) in valueArr"
-		:key="index"
-		> -->
-		
-		<!-- 改动态绑定popup的问题，不行就自己封装一个 -->
-		
-			<uni-popup ref="popup" type="bottom">
-				<view class="tips">
-					<view class="poptop">
-						<view class="title">
-							<text>填写物料重量</text>
-							<image src="../../../static/img/cha.png" mode="" @tap="close"></image>
-						</view>
+		<uni-popup ref="popup" type="bottom">
+			<view class="tips">
+				<view class="poptop">
+					<view class="title">
+						<text>填写物料重量</text>
+						<image src="../../../static/img/cha.png" mode="" @tap="close"></image>
 					</view>
-					<view class="outer">
-						<view class="outsidebox none">
-							<view class="clos left">
-								<view>名称：<text>{{name}}</text></view>
-								<view>规格：<text>{{size}}</text></view>
-							</view>
-							<view class="clos middle">
-								<view>数量：<text>{{num}}</text></view>
-								<view>重量：<text>{{newWeight}}</text></view>
-							</view>
-						</view>
-					</view>
-			
-					<view class="container">
-						<input type="text" v-model="newWeight" @input="onChange" placeholder="请输入物料重量" />
-					</view>
-					<view class="btnouter" @tap="toPages" >
-						<btn >确认</btn>
-					</view>
-			
 				</view>
-			</uni-popup>
-		<!-- </view> -->
-		
+				<view class="outer">
+					<view class="outsidebox none">
+						<view class="clos left">
+							<view>名称：<text>{{name}}</text></view>
+							<view>规格：<text>{{size}}</text></view>
+						</view>
+						<view class="clos middle">
+							<view>数量：<text>{{num}}</text></view>
+							<view>重量：<text>{{newWeight}}</text></view>
+						</view>
+					</view>
+				</view>
+
+				<view class="container">
+					<input type="text" v-model="newWeight" placeholder="请输入物料重量" />
+				</view>
+				<view class="btnouter" @tap="toPages">
+					<btn>确认</btn>
+				</view>
+
+			</view>
+		</uni-popup>
+
 		<!-- 按钮提交 -->
 		<view style="margin-top: 20px;">
 			<btn @tap="submitBtn">提交</btn>
@@ -129,7 +116,7 @@
 				current: '',
 				userInfo: '',
 				// 订单id
-				id: 4,
+				id: '',
 				// 获取货物详情列表
 				goodsDetailList: [],
 				newWeight: '',
@@ -150,9 +137,9 @@
 				this.selectedList = new Array(this.formList.length).fill(false)
 				this.$set(this.selectedList, i, !this.selectedList[i])
 				this.current = i;
-				this.name = this.goodsDetailList[this.current].materielName
-				this.num = this.goodsDetailList[this.current].materielSpecifications
-				this.size = this.goodsDetailList[this.current].materielNumber
+				this.name = this.goodsDetailList[this.current].materialName
+				this.num = this.goodsDetailList[this.current].materialType
+				this.size = this.goodsDetailList[this.current].materialNum
 			},
 
 			// 打开下边栏
@@ -166,48 +153,37 @@
 				this.$refs.popup.close()
 			},
 			
-			onChange() {
-				
-				console.log(this.fatherValue, this.newWeight)
+			close() {
+				this.$refs.popup.close()
 			},
-
-			async getOrderInfo() {
-				const opts = {
-					url: '/personal/driver/getTaskAppRecord',
-					method: 'post'
-				};
-
-				const res = await this.$http.httpTokenRequest(opts);
-				console.log(res);
-				this.userInfo = res.data.result;
-			},
-
+			
 			// 获取货物详情
 			async getGoodsInfo() {
 				const opts = {
-					url: '/personal/driver/getDetails?orderId='+this.id,
+					url: '/personal/driver/getDetails?orderId=' + this.id,
 					method: 'post'
 				};
-				
 				const res = await this.$http.httpTokenRequest(opts);
-				console.log(res);
 				this.goodsDetailList = res.data.result.materielDetails;
+				console.log(this.goodsDetailList)
 				
 				this.valueArr = new Array(this.goodsDetailList.length).fill('');
-				// this.userInfo = res.data.result;
+				this.userInfo = res.data.result;
 			},
-			
+
 			async submitBtn() {
-				console.log(this.goodsDetailList)
-				console.log(this.valueArr)
+				// let copyList = new Array(this.goodsDetailList.length).fill({});
 				let copyList = this.goodsDetailList.concat();
-				
-				console.log(copyList);
-				console.log(copyList === this.goodsDetailList);
-				
-				copyList.map((i, idx)=>{
-					copyList.materielWeight = this.valueArr[idx];
+
+				copyList.map((i, idx) => {
+					// copyList[idx].materielName = this.goodsDetailList[idx].materialName
+					// copyList[idx].materielNumber = this.goodsDetailList[idx].materialNum
+					// copyList[idx].materielSpecifications = this.goodsDetailList[idx].materialType
+					copyList[idx].materialWeight = this.valueArr[idx];
 				})
+				
+				console.log(copyList)
+				
 				const opts = {
 					url: '/personal/driver/modTaskAppRecord',
 					method: 'post',
@@ -216,22 +192,23 @@
 					id: this.id,
 					materielDetails: copyList
 				}
+					
 				console.log(params)
-				const res = await this.$http.httpTokenRequest(opts,params);
-				console.log(res);
-				
-				
-				res.data.code === 0 && 
-				uni.navigateTo({
-					url: '/pages/home/home'
-				})
+				const res = await this.$http.httpTokenRequest(opts, params);
+				console.log(res)
+				res.data.code === 0 &&
+					uni.navigateBack({
+						delta: 1
+					})
 			}
 		},
+		
+		onShow() {
+			this.getGoodsInfo()
+		},
 
-
-	onLoad() {
-			this.getOrderInfo();
-			this.getGoodsInfo();
+		onLoad(options) {
+		    this.id = options.id
 		},
 
 		components: {

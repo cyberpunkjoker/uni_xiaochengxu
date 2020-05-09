@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "车主车辆管理",
   "usingComponents": {
-    "info-box": "/pages/components/boxstyle/infobox"
+    "info-box": "/pages/components/boxstyle/infobox",
+    "no-car": "/pages/user/carower/carnone",
+    "btn": "/pages/components/boxstyle/buttonstyle"
   }
 }

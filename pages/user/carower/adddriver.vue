@@ -28,13 +28,15 @@
 
 <script>
 	import infoBox from "../../components/boxstyle/infobox.vue"
-	import {parseQueryString} from "../../../utils/query.js"
-	
+	import {
+		parseQueryString
+	} from "../../../utils/query.js"
+
 	export default {
 		data() {
 			return {
 				name: '',
-				phone:'',
+				phone: '',
 				id: ''
 			}
 		},
@@ -43,48 +45,48 @@
 			clearPhone() {
 				this.phone = '';
 			},
-			
+
 			async submitInfo() {
 				// 请求之前先判断一下
-				if(this.name.length===0 && this.phone.length!==11) {
+				if (this.name.length === 0 && this.phone.length !== 11) {
 					uni.showModal({
 						content: "请输入姓名和手机号"
 					})
 				}
-				
-				
-				
+
 				const params = {
 					carId: Number(this.id),
 					name: this.name,
 					phone: this.phone
 				}
 				const info = parseQueryString(params);
-				
+
+				console.log(this.id)
+
 				const opts = {
-					url: "/sc/driverMng/bindDriver" +info,
+					url: "/sc/driverMng/bindDriver" + info,
 					method: "post"
 				}
 				const res = await this.$http.httpTokenRequest(opts);
 				console.log(res)
-				if(res.data.desc === "[请输入正确的手机号]") {
-					uni.showModal({
-						content: "请输入正确的手机号"
+				
+				if (res.data.code === 0) {
+					uni.reLaunch({
+						url: "/pages/home/home"
 					})
 				}
-			}
-			
-			
-		},
-		
-		onLoad(options) {
-			this.id = options.id
-		},
-		
-		components: {
-			infoBox
-		}
 
+
+			},
+
+			onLoad(options) {
+				this.id = options.id
+			},
+
+			components: {
+				infoBox
+			}
+		}
 
 	}
 </script>

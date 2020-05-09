@@ -1,13 +1,24 @@
 <script>
 export default {
 	onLaunch: function() {
-		console.log('App Launch');
+		// console.log('App Launch');
+		// var isFir = uni.getStorageSync("USER_TOKEN");
+		// console.log("isFir"+isFir)
+		// if(isFir) {
+		// 	uni.navigateTo({
+		// 		url:"/pages/home/home"
+		// 	});
+		// }else{
+		// 	uni.navigateTo({
+		// 		url:"/pages/login/login"
+		// 	})
+		// }
 	},
 	onShow: function() {
-		console.log('App Show');
+		// console.log('App Show');
 	},
 	onHide: function() {
-		console.log('App Hide');
+		// console.log('App Hide');
 	}
 };
 </script>

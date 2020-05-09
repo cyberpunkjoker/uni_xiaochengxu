@@ -6,41 +6,21 @@
 					<text>上传开始卸货图片</text>
 				</view>
 				<!-- 上传图片模块 -->
-				<view class="upload">
-					<view class="add">
-						<view class="spacer1"></view>
-						<view class="spacer2"></view>
-					</view>
-				</view>
+				<upload-mode
+				@showPath="imgPath"
+				></upload-mode>
 
 				<text class="tips">最多可上传三张</text>
 
-				<view class="warp">
-					<textarea value="" placeholder="备注(选填)" />
-					<view class="right">
-						<text>余200个字</text>
-					</view>
-					<view class="left">
-						<text>清空</text>
-					</view>
-				</view>
-				
-				<view class="warp">
-					<textarea value="" placeholder="备注(选填)" />
-					<view class="right">
-						<text>余200个字</text>
-					</view>
-					<view class="left">
-						<text>清空</text>
-					</view>
-				</view>
+				<messBox tipMess="输入本次任务到达延迟原因(选填)" @getMess="getMessage"></messBox>
+				<messBox tipMess="输入本次任务卸货延迟原因(选填)" @getMess="getMessage2"></messBox>
 
 			</view>
-	</info-box>
+		</info-box>
 			
-	<view class="btn">
-		<btn>提交</btn>
-	</view>
+		<view class="btn">
+			<btn @tap="submitMessage">提交</btn>
+		</view>
 	
 	</view>
 </template>
@@ -48,20 +28,84 @@
 <script>
 import infoBox from "../../components/boxstyle/infobox.vue"
 import btn from "../../components/boxstyle/buttonstyle.vue"
+import messBox from '../../components/message.vue'
+import uploadMode from '../../components/uploadMode.vue'
+
 	export default {
 		data() {
 			return {
-				
+				// 留言模块接收值
+				message: '',
+				message2: '',
+				// 上传图片模块
+				imgPathList: null,
+				// 获取运单id值
+				id: 0,
+				longitude: null,
+				latitude: null
 			}
 		},
 		
 		methods: {
+			getMessage(data) {
+				this.message =data;
+			},
 			
+			getMessage2(data) {
+				this.message2 = data;
+			},
+			
+			imgPath(data) {
+				this.imgPathList = data;
+			},
+			
+			async submitMessage() {
+				const opts = {
+					url: "/personal/driver/modReceiptImg",
+					method: "post"
+				}
+				const param = {
+					id: this.id,
+					imgs: this.imgPathList,
+					arriveLateReason: this.message,
+					disburdenLateReason: this.message2
+				}
+				const res = await this.$http.httpTokenRequest(opts, param);
+				
+				res.data.code === 0 &&
+				uni.reLaunch({
+					url:"/pages/home/home"
+				})
+				
+				console.log(res);
+			},
+			
+			getLocation() {
+				var that = this;
+				uni.getLocation({
+					type: 'wgs84',
+					success: function(res) {
+						console.log('当前位置的经度：' + res.longitude)
+						that.longitude = res.longitude;
+						console.log('当前位置的纬度：' + res.latitude);
+						that.latitude = res.latitude;
+					}
+				})
+			}
+			
+		},
+		
+		
+		onLoad(options) {
+			this.id = options.id
+			this.getLocation();
 		},
 		
 		components: {
 			infoBox,
-			btn
+			btn,
+			messBox,
+			uploadMode
 		}
 		
 		
@@ -84,31 +128,6 @@ import btn from "../../components/boxstyle/buttonstyle.vue"
 			  font-weight:400;
 			  color:rgba(153,153,153,1);
 		  }
-		  .warp {
-			  position: relative;
-			  font-size:12px;
-			  font-weight:400;
-			  margin: 12px 0 28px 0;
-			  color:rgba(153,153,153,1);
-			  textarea {
-				  box-sizing: border-box;
-				  height:118px;
-				  width: 100%;
-				  padding: 8px 16px;
-				  font-size: 14px;
-				  border:1px solid rgba(242,242,242,1);
-			  }
-			  .left {
-				  position: absolute;
-				  bottom: 12px;
-				  left: 16px;
-			  }
-			  .right {
-				  position: absolute;
-				  bottom: 12px;
-				  right: 16px;
-			  }
-		  }
 	  }
   
 		.btn {
@@ -116,32 +135,5 @@ import btn from "../../components/boxstyle/buttonstyle.vue"
 		}
   }
 
-	.upload {
-		padding-bottom: 10px;
-		.add {
-			position: relative;
-			width: 69px;
-			height: 69px;
-			border: 1px dashed #000;
-			.spacer1 {
-				width: 1px;
-				height: 25px;
-				position: absolute;
-				left: 50%;
-				top: 50%;
-				transform: translate(-50%, -50%);
-				background-color: #000;
-			}
-			.spacer2 {
-				width: 25px;
-				height: 1px;
-				position: absolute;
-				left: 50%;
-				top: 50%;
-				transform: translate(-50%, -50%);
-				background-color: #000;
-			}
-		}
-	}
-
+	
 </style>
