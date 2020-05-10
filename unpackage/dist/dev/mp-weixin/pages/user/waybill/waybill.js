@@ -568,6 +568,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
 __webpack_require__(/*! ../../../common/itemcontent.css */ 75);
 __webpack_require__(/*! ../../../common/twolinelayout.css */ 131);
 var _carwarn = _interopRequireDefault(__webpack_require__(/*! ../../order/carwarn.vue */ 132));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 92));};var tabBar = function tabBar() {return __webpack_require__.e(/*! import() | pages/components/tabbar2 */ "pages/components/tabbar2").then(__webpack_require__.bind(null, /*! ../../components/tabbar2.vue */ 212));};var _default =
@@ -593,7 +598,11 @@ var _carwarn = _interopRequireDefault(__webpack_require__(/*! ../../order/carwar
       // 获取货物详情列表
       goodsList: [],
       // 当前货单的id
-      id: 4 };
+      // id: '',
+      strTwo: '',
+      strThree: '',
+      strFour: [],
+      strThreeCurrent: '' };
 
   },
 
@@ -621,10 +630,14 @@ var _carwarn = _interopRequireDefault(__webpack_require__(/*! ../../order/carwar
                   this.$http.httpTokenRequest(opts));case 5:res = _context.sent;
                 this.userInfo = res.data.result;
                 this.goodsList = res.data.result.materielDetails;
-                console.log(res);case 9:case "end":return _context.stop();}}}, _callee, this);}));function firstClick(_x) {return _firstClick.apply(this, arguments);}return firstClick;}(),
+
+                this.strThreeCurrent = this.userInfo.logisticsLocation.slice(0, 10);
+                console.log(this.strThreeCurrent);
+
+                console.log(res);case 11:case "end":return _context.stop();}}}, _callee, this);}));function firstClick(_x) {return _firstClick.apply(this, arguments);}return firstClick;}(),
 
 
-    getOrderList: function () {var _getOrderList = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var opts, num, params, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+    getOrderList: function () {var _getOrderList = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _this = this;var opts, num, params, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 opts = {
                   url: '/personal/waybill/getConsigneeWaybillList',
                   method: 'post' };
@@ -647,7 +660,26 @@ var _carwarn = _interopRequireDefault(__webpack_require__(/*! ../../order/carwar
 
                 if (res.data.result.records.length === 0) {
                   this.showTipsList[this.current] = true;
-                }case 11:case "end":return _context2.stop();}}}, _callee2, this);}));function getOrderList() {return _getOrderList.apply(this, arguments);}return getOrderList;}(),
+                }
+
+                // 获取当前地址截取字符
+                if (this.current === 0) {
+                  console.log(this.goOutList);
+                  this.strTwo = this.goOutList[0].destination.slice(0, 10);
+                  console.log(strTwo);
+                }
+                if (this.current === 1) {
+                  this.strThree = this.transitList[0].destination.slice(0, 10);
+                }
+                if (this.current === 2) {
+                  this.doneList.map(function (item, idx) {
+                    _this.strFour.push(item.destination.slice(0, 10));
+                  });
+                  console.log(this.strFour);
+                }
+
+
+                console.log(this.showTipsList);case 15:case "end":return _context2.stop();}}}, _callee2, this);}));function getOrderList() {return _getOrderList.apply(this, arguments);}return getOrderList;}(),
 
 
     showWay: function showWay(i) {

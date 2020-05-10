@@ -90,7 +90,7 @@
 						uni.reLaunch({
 							url: '/pages/home/home'
 						})
-						this.shouquan();
+						// this.shouquan();
 					}
 				}
 			},

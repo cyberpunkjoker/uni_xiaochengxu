@@ -225,7 +225,7 @@ var _default =
                     uni.reLaunch({
                       url: '/pages/home/home' });
 
-                    this.shouquan();
+                    // this.shouquan();
                   }
                 }case 12:case "end":return _context.stop();}}}, _callee, this);}));function toChoosePage() {return _toChoosePage.apply(this, arguments);}return toChoosePage;}(),
 

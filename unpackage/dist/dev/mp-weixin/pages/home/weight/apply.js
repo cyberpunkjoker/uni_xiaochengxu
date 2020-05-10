@@ -193,19 +193,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 92));};var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 233));};var pickerRegion = function pickerRegion() {return __webpack_require__.e(/*! import() | pages/components/pickerregion */ "pages/components/pickerregion").then(__webpack_require__.bind(null, /*! ../../components/pickerregion.vue */ 240));};var timePicker = function timePicker() {return __webpack_require__.e(/*! import() | pages/components/timePicker */ "pages/components/timePicker").then(__webpack_require__.bind(null, /*! ../../components/timePicker.vue */ 247));};var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/buttonstyle.vue */ 205));};var _default =
 
 {
@@ -226,9 +213,17 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
       // popupList: ["popup","popup2","popup3"],
       popName: '',
       // 当前时间列表
-      timeList: [[], [], [], [], []],
+      timeList: [
+      [],
+      [],
+      [],
+      [],
+      []],
+
       // 选中的预计到厂时间
-      arriveTime: "" };
+      arriveTime: "",
+      // 判断时间是否在这之后 false 正确
+      isTure: "" };
 
   },
 
@@ -279,9 +274,28 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
       var fen = timeArr[4] < 10 ? "0" + timeArr[4] : timeArr[4];
 
       this.arriveTime = timeArr[0] + "-" + mouth + "-" + day + " " + hour + ":" + fen + ":00";
+      this.isTure = this.compareDate(new Date(), this.arriveTime);
+
+      if (this.isTure) {
+        uni.showModal({
+          content: "请输入大于当前时间的预计时间" });
+
+      }
 
       this.$refs.popup3.close();
     },
+
+    // 比较时间大小
+    compareDate: function compareDate(date1, date2) {
+      var oDate1 = new Date(date1);
+      var oDate2 = new Date(date2);
+      if (oDate1.getTime() > oDate2.getTime()) {
+        return true; //第一个大
+      } else {
+        return false; //第二个大
+      }
+    },
+
 
     toChooseCar: function toChooseCar() {
       this.$refs.popup.open();
@@ -294,6 +308,21 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
 
     toChooseTime: function toChooseTime() {
       this.$refs.popup3.open();
+    },
+
+    // 获取推送
+    shouquan: function shouquan() {
+      var tmplIds = 'P0yJj1sqB8oNODpPd5TpUA9I-qMCM-tih783bIpLZLQ';
+      wx.requestSubscribeMessage({
+        tmplIds: ["P0yJj1sqB8oNODpPd5TpUA9I-qMCM-tih783bIpLZLQ"],
+        subscription_type: 'permanent',
+        success: function success(res) {
+          console.log("成功", res);
+        },
+        fail: function fail(res) {
+          console.log("失败", res);
+        } });
+
     },
 
     // 获取页面内信息
@@ -310,10 +339,7 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
                 });
                 this.infoList.map(function (item, index) {
                   _this2.carIdList.push(item.carId);
-                });
-
-                console.log(this.infoList);
-                console.log(this.carIdList);case 9:case "end":return _context.stop();}}}, _callee, this);}));function getCarInfo() {return _getCarInfo.apply(this, arguments);}return getCarInfo;}(),
+                });case 7:case "end":return _context.stop();}}}, _callee, this);}));function getCarInfo() {return _getCarInfo.apply(this, arguments);}return getCarInfo;}(),
 
 
     getPlanInfo: function () {var _getPlanInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _this3 = this;var opts, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
@@ -328,10 +354,7 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
                 });
                 this.gotPlanList.map(function (item, index) {
                   _this3.planListId.push(item.id);
-                });
-
-                console.log(res);case 8:case "end":return _context2.stop();}}}, _callee2, this);}));function getPlanInfo() {return _getPlanInfo.apply(this, arguments);}return getPlanInfo;}(),
-
+                });case 7:case "end":return _context2.stop();}}}, _callee2, this);}));function getPlanInfo() {return _getPlanInfo.apply(this, arguments);}return getPlanInfo;}(),
 
 
     initTime: function initTime() {var _this4 = this;
@@ -362,12 +385,19 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
       new Array(60).fill('').map(function (item, i) {
         _this4.timeList[4].push(i + 1);
       });
+
       console.log(this.timeList);
     },
 
     // 提交并判断是否跳转
-    submitApply: function () {var _submitApply = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var params, opts, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
-                // 提交信息
+    submitApply: function () {var _submitApply = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var params, opts, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:if (!
+
+                this.isTure) {_context3.next = 4;break;}
+                uni.showModal({
+                  content: "请输入大于当前时间的预计时间" });_context3.next = 13;break;case 4:
+
+
+                this.shouquan();
                 params = {
                   carId: this.carIdList[this.current],
                   carNo: this.carList[this.current],
@@ -376,21 +406,28 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
                   routeId: this.planListId[this.current1] };
 
 
-                console.log(params);
-
                 opts = {
                   url: "/personal/driver/modTaskAppRoute",
-                  method: "post" };_context3.next = 5;return (
+                  method: "post" };_context3.next = 9;return (
 
 
-                  this.$http.httpTokenRequest(opts, params));case 5:res = _context3.sent;
-                if (res.data.desc === "操作成功") {
+                  this.$http.httpTokenRequest(opts, params));case 9:res = _context3.sent;
+
+                console.log(res);
+                if (res.data.code === 0) {
                   uni.navigateBack({
                     delta: 1 });
 
                 }
+                if (res.data.code === 1) {
+                  uni.showToast({
+                    title: "申请失败请重试",
+                    icon: "none" });
 
-                console.log(res);case 8:case "end":return _context3.stop();}}}, _callee3, this);}));function submitApply() {return _submitApply.apply(this, arguments);}return submitApply;}() },
+                }case 13:case "end":return _context3.stop();}}}, _callee3, this);}));function submitApply() {return _submitApply.apply(this, arguments);}return submitApply;}() },
+
+
+
 
 
 

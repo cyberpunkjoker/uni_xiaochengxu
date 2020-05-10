@@ -24,7 +24,7 @@
 				<view class="carmode">
 					<text class="textcon">点击选择车型</text>
 					<view class="modeitem">
-						<view v-for="(item,index) in carModeList" :key="index" @tap="chooseCar(index)" :class="index===carCurrent-1 ? 'itemcurrent' : '' ">
+						<view v-for="(item,index) in carModeList" :key="index" @tap="chooseCar(index)" :class="index===carCurrent ? 'itemcurrent' : '' ">
 							{{item}}
 							<image v-if="carCurrent===index" src="../../../static/img/selected.png" mode=""></image>
 						</view>
@@ -98,7 +98,7 @@
 			initPage() {
 				this.carNum = this.info.carNo;
 				this.companyName = this.info.companyName;
-				this.carCurrent = Number(this.info.carType);
+				this.carCurrent = this.info.carType - 1;
 				this.longCurrent = 4;
 				this.length = this.info.containerLength;
 				this.upLength.some((i, index) => {

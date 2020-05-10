@@ -788,6 +788,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
 __webpack_require__(/*! ../../../common/itemcontent.css */ 75);
 __webpack_require__(/*! ../../../common/twolinelayout.css */ 131);
 var _carwarn = _interopRequireDefault(__webpack_require__(/*! ../carwarn.vue */ 132));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 92));};var tabBar = function tabBar() {return __webpack_require__.e(/*! import() | pages/components/tabbar2 */ "pages/components/tabbar2").then(__webpack_require__.bind(null, /*! ../../components/tabbar2.vue */ 212));};var _default =
@@ -816,7 +820,17 @@ var _carwarn = _interopRequireDefault(__webpack_require__(/*! ../carwarn.vue */ 
       id: 0,
       // 已完成列表的详情
       doneListDetail: [],
-      modifyArr: [] };
+      modifyArr: [],
+      // 页面中长字符串的截取
+      strTwo: '',
+      strThree: '',
+      strFour: [],
+      strThreeCurrent: '',
+      detailCurrent: '',
+      doneUserInfo: '',
+      // 物料列表
+      goodsDetail: [] };
+
 
   },
 
@@ -831,7 +845,6 @@ var _carwarn = _interopRequireDefault(__webpack_require__(/*! ../carwarn.vue */ 
     },
     // 待出场点击部分
     firstClick: function () {var _firstClick = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var opts, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-
                 opts = {
                   url: '/personal/driver/getDetails?orderId=' + this.id,
                   method: 'post' };_context.next = 3;return (
@@ -840,14 +853,19 @@ var _carwarn = _interopRequireDefault(__webpack_require__(/*! ../carwarn.vue */ 
                   this.$http.httpTokenRequest(opts));case 3:res = _context.sent;
                 this.userInfo = res.data.result;
                 this.goodsList = res.data.result.materielDetails;
+
+                this.strThreeCurrent = this.userInfo.logisticsLocation.slice(0, 10);
+
                 console.log(res);
+                console.log(this.userInfo);
+
                 this.showDetail = true;
                 // 保存状态
-                this.lastStatus = this.current;case 9:case "end":return _context.stop();}}}, _callee, this);}));function firstClick() {return _firstClick.apply(this, arguments);}return firstClick;}(),
+                this.lastStatus = this.current;case 11:case "end":return _context.stop();}}}, _callee, this);}));function firstClick() {return _firstClick.apply(this, arguments);}return firstClick;}(),
 
 
     // 获取完成订单
-    doneClick: function () {var _doneClick = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _this = this;var opts, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+    doneClick: function () {var _doneClick = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(i) {var _this = this;var opts, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 opts = {
                   url: '/personal/driver/getOrderRecords',
                   method: 'post' };_context2.next = 3;return (
@@ -856,18 +874,24 @@ var _carwarn = _interopRequireDefault(__webpack_require__(/*! ../carwarn.vue */ 
 
                 this.doneListDetail = res.data.result;
 
-                console.log(this.doneListDetail);
+                this.detailCurrent = i;
+
+                this.doneUserInfo = this.doneListDetail[this.detailCurrent];
+
+                console.log(this.doneUserInfo);
+                this.modifyArr = [];
 
                 this.doneListDetail.map(function (i, idx) {
                   _this.modifyArr.push(JSON.parse(i.materiel));
                 });
 
-                console.log(this.modifyArr);
-                // this.modifyArr = JSON.parse(this.doneListDetail[0].materiel)
+                this.goodsDetail = this.modifyArr[i];
 
+                console.log(this.modifyArr);
+                // 控制页面状态
                 this.showDetail = true;
                 // 保存状态
-                this.lastStatus = this.current;case 10:case "end":return _context2.stop();}}}, _callee2, this);}));function doneClick() {return _doneClick.apply(this, arguments);}return doneClick;}(),
+                this.lastStatus = this.current;case 14:case "end":return _context2.stop();}}}, _callee2, this);}));function doneClick(_x) {return _doneClick.apply(this, arguments);}return doneClick;}(),
 
 
     // 获取表单id值
@@ -876,14 +900,11 @@ var _carwarn = _interopRequireDefault(__webpack_require__(/*! ../carwarn.vue */ 
                   url: '/personal/driver/getOrderRecord',
                   method: 'post' };_context3.next = 3;return (
 
-
                   this.$http.httpTokenRequest(opts));case 3:res = _context3.sent;
+                this.id = res.data.result.id;case 5:case "end":return _context3.stop();}}}, _callee3, this);}));function getOrderId() {return _getOrderId.apply(this, arguments);}return getOrderId;}(),
 
-                this.id = res.data.result.id;
-                // console.log(res)
-              case 5:case "end":return _context3.stop();}}}, _callee3, this);}));function getOrderId() {return _getOrderId.apply(this, arguments);}return getOrderId;}(),
 
-    getOrderList: function () {var _getOrderList = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var opts, currentStatus, params, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
+    getOrderList: function () {var _getOrderList = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var _this2 = this;var opts, currentStatus, params, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
                 opts = {
                   url: '/personal/driver/getTaskAppRecordList',
                   method: 'post' };
@@ -904,10 +925,27 @@ var _carwarn = _interopRequireDefault(__webpack_require__(/*! ../carwarn.vue */ 
                 if (this.current === 2) this.transitList = res.data.result.records;
                 if (this.current === 3) this.doneList = res.data.result.records;
 
-                console.log(res);
                 if (res.data.result.records.length === 0) {
                   this.showTipsList[this.current] = true;
-                }case 12:case "end":return _context4.stop();}}}, _callee4, this);}));function getOrderList() {return _getOrderList.apply(this, arguments);}return getOrderList;}(),
+                }
+
+                // 获取当前地址截取字符
+                if (this.current === 1) {
+                  console.log(this.goOutList);
+                  this.strTwo = this.goOutList[0].destination.slice(0, 10);
+                  console.log(strTwo);
+                }
+                if (this.current === 2) {
+                  this.strThree = this.transitList[0].destination.slice(0, 10);
+                }
+                if (this.current === 3) {
+                  this.doneList.map(function (item, idx) {
+                    _this2.strFour.push(item.destination.slice(0, 10));
+                  });
+                }
+
+                console.log(res);case 15:case "end":return _context4.stop();}}}, _callee4, this);}));function getOrderList() {return _getOrderList.apply(this, arguments);}return getOrderList;}(),
+
 
 
     // 获得已申请页面的数据

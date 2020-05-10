@@ -37,7 +37,7 @@
 									<image class="addr" src="../../../static/img/shouhuo.png" mode=""></image>
 								</view>
 								<view class="two">
-									<text class="content">{{item.destination}}...</text>
+									<text class="content">{{strTwo}}</text>
 									<image src="../../../static/img/right.png"></image>
 								</view>
 							</view>
@@ -86,7 +86,7 @@
 								<image class="addr" src="../../../static/img/shouhuo.png" mode=""></image>
 							</view>
 							<view class="two">
-								<text class="content">{{userInfo.destination}}...</text>
+								<text class="content">{{strTwo}}...</text>
 								<image src="../../../static/img/right.png"></image>
 							</view>
 						</view>
@@ -127,7 +127,7 @@
 							<!-- {{userInfo.timeOfAppearance}} -->
 						</view>
 						<info-box>
-							<view class="itembox" @tap="firstClick(id)">
+							<view class="itembox" @tap="firstClick(item.id)">
 								<text class="one">车牌号：{{item.carNo}}</text>
 								<view class="two">
 									<text class="content red">查看详情</text>
@@ -142,25 +142,27 @@
 								</view>
 							</view>
 
-							<view class="itembox">
+							<view class="itembox" @tap="showWay(item.destination)">
 								<view class="one">
 									<text>收货地址：</text>
 									<image class="addr" src="../../../static/img/shouhuo.png" mode=""></image>
 								</view>
 								<view class="two">
-									<text class="content">{{item.destination}}</text>
+									<text class="content">{{strThree}}</text>
+									<image src="../../../static/img/right.png" class="red"></image>
 								</view>
 							</view>
 
-							<view class="itembox">
+							<!-- <view class="itembox" @tap="showWay(item.destination)">
 								<view class="one">
 									<text> 当前物流地址：</text>
 									<image class="addr" src="../../../static/img/position.png" mode=""></image>
 								</view>
 								<view class="two">
-									<text class="content">dsdsdsdsd</text>
+									<text class="content">{{}}</text>
+									<image src="../../../static/img/right.png" class="red"></image>
 								</view>
-							</view>
+							</view> -->
 						</info-box>
 
 
@@ -171,7 +173,7 @@
 				<!-- 详情页面的显示 -->
 				<view v-if="showDetail">
 					<info-box>
-						<view class="itembox" @tap="firstClick">
+						<view class="itembox">
 							<text class="one">车牌号：{{userInfo.carNo}}</text>
 						</view>
 
@@ -210,23 +212,25 @@
 							</view>
 						</view>
 
-						<view class="itembox">
+						<view class="itembox" @tap="showWay(userInfo.destination)">
 							<view class="one">
 								<text>收货地址：</text>
 								<image class="addr" src="../../../static/img/shouhuo.png" mode=""></image>
 							</view>
 							<view class="two">
-								<text class="content">{{userInfo.destination}}</text>
+								<text class="content">{{strThree}}...</text>
+								<image src="../../../static/img/right.png" class="red"></image>
 							</view>
 						</view>
 
-						<view class="itembox">
+						<view class="itembox" @tap="showWay(userInfo.logisticsLocation)">
 							<view class="one">
 								<text>当前物流地址：</text>
 								<image class="addr" src="../../../static/img/position.png" mode=""></image>
 							</view>
 							<view class="two">
-								<text class="content">{{userInfo.logisticsLocation }}</text>
+								<text class="content">{{strThreeCurrent}}...</text>
+								<image src="../../../static/img/right.png" class="red"></image>
 							</view>
 						</view>
 
@@ -249,7 +253,7 @@
 									</view>
 									<view class="right">
 										<view>数量：{{item.materialNum}}</view>
-										<view>重量：{{item.materialWeight}}</view>
+										<view>重量：{{item.materialWeight}}吨</view>
 									</view>
 								</view>
 							</view>
@@ -267,8 +271,7 @@
 				<view v-if="!showDetail&&!showTipsList[current]">
 					<view v-for="(item,index) in doneList" :key="index">
 						<view class="timebox">
-							<!-- {{userInfo.timeOfAppearance}} -->
-							123123131
+							{{item.createTime}}
 						</view>
 						<info-box>
 							<view class="itembox" @tap="firstClick(item.id)">
@@ -286,23 +289,25 @@
 								</view>
 							</view>
 
-							<view class="itembox">
+							<view class="itembox" @tap="showWay(item.destination)">
 								<view class="one">
 									<text>收货地址：</text>
 									<image class="addr" src="../../../static/img/shouhuo.png" mode=""></image>
 								</view>
 								<view class="two">
-									<text class="content">{{item.destination}}</text>
+									<text class="content">{{strFour[index]}}...</text>
+									<image src="../../../static/img/right.png" mode=""></image>
 								</view>
 							</view>
 
-							<view class="itembox">
+							<view class="itembox" @tap="showWay(item.destination)">
 								<view class="one">
 									<text> 当前物流地址：</text>
 									<image class="addr" src="../../../static/img/position.png" mode=""></image>
 								</view>
 								<view class="two">
-									<text class="content">{{item.logisticsLocation}}</text>
+									<text class="content">{{strFour[index]}}...</text>
+									<image src="../../../static/img/right.png" mode=""></image>
 								</view>
 							</view>
 						</info-box>
@@ -311,93 +316,93 @@
 
 				<!-- 详情页面的显示 -->
 				<view v-if="showDetail">
-					<info-box>
-						<view class="itembox" @tap="firstClick">
-							<text class="one">车牌号：{{userInfo.carNo}}</text>
-						</view>
-
-						<view class="itembox">
-							<text class="one">订单号</text>
-							<view class="two">
-								<text class="content">{{userInfo.orderNo}}</text>
+						<info-box>
+							<view class="itembox" @tap="firstClick">
+								<text class="one">车牌号：{{userInfo.carNo}}</text>
 							</view>
-						</view>
 
-						<view class="itembox">
-							<text class="one">物流出发时间</text>
-							<view class="two">
-								<text class="content">{{userInfo.orderStartTime}}</text>
+							<view class="itembox">
+								<text class="one">订单号</text>
+								<view class="two">
+									<text class="content">{{userInfo.orderNo}}</text>
+								</view>
 							</view>
-						</view>
 
-						<view class="itembox">
-							<text class="one">客户姓名</text>
-							<view class="two">
-								<text class="content">{{userInfo.consigneeName}}</text>
+							<view class="itembox">
+								<text class="one">物流出发时间</text>
+								<view class="two">
+									<text class="content">{{userInfo.orderStartTime}}</text>
+								</view>
 							</view>
-						</view>
 
-						<view class="itembox">
-							<text class="one">客户联系方式</text>
-							<view class="two">
-								<text class="content">{{userInfo.consigneePhone}}</text>
+							<view class="itembox">
+								<text class="one">客户姓名</text>
+								<view class="two">
+									<text class="content">{{userInfo.consigneeName}}</text>
+								</view>
 							</view>
-						</view>
 
-						<view class="itembox">
-							<text class="one">发货单位</text>
-							<view class="two">
-								<text class="content">{{userInfo.carrierId}}</text>
+							<view class="itembox">
+								<text class="one">客户联系方式</text>
+								<view class="two">
+									<text class="content">{{userInfo.consigneePhone}}</text>
+								</view>
 							</view>
-						</view>
 
-						<view class="itembox">
-							<view class="one">
-								<text>收货地址：</text>
-								<image class="addr" src="../../../static/img/shouhuo.png" mode=""></image>
+							<view class="itembox">
+								<text class="one">发货单位</text>
+								<view class="two">
+									<text class="content">{{userInfo.carrierId}}</text>
+								</view>
 							</view>
-							<view class="two">
-								<text class="content">{{userInfo.destination}}</text>
+
+							<view class="itembox" @tap="showWay(userInfo.destination)">
+								<view class="one">
+									<text>收货地址：</text>
+									<image class="addr" src="../../../static/img/shouhuo.png" mode=""></image>
+								</view>
+								<view class="two">
+									<text class="content">{{userInfo.destination}}</text>
+									<image src="../../../static/img/right.png" mode=""></image>
+								</view>
 							</view>
-						</view>
 
-						<view class="itembox">
-							<text class="one">司机到达时间</text>
-							<view class="two">
-								<text class="content">{{userInfo.arriveTime}}</text>
+							<view class="itembox">
+								<text class="one">司机到达时间</text>
+								<view class="two">
+									<text class="content">{{userInfo.arriveTime}}</text>
+								</view>
 							</view>
-						</view>
 
-						<view class="itembox">
-							<text class="one">卸货等待时间</text>
-							<view class="two">
-								<text class="content">{{userInfo.unloadWaitTime}}</text>
+							<view class="itembox">
+								<text class="one">卸货等待时间</text>
+								<view class="two">
+									<text class="content">{{userInfo.unloadWaitTime}}</text>
+								</view>
 							</view>
-						</view>
 
-						<view class="itembox">
-							<text class="one">开始卸货时间</text>
-							<view class="two">
-								<text class="content">{{userInfo.startUnloadTime}}</text>
+							<view class="itembox">
+								<text class="one">开始卸货时间</text>
+								<view class="two">
+									<text class="content">{{userInfo.startUnloadTime}}</text>
+								</view>
 							</view>
-						</view>
 
-						<view class="itembox">
-							<text class="one">卸货完成时间</text>
-							<view class="two">
-								<text class="content">{{userInfo.orderFinishTime}}</text>
+							<view class="itembox">
+								<text class="one">卸货完成时间</text>
+								<view class="two">
+									<text class="content">{{userInfo.orderFinishTime}}</text>
+								</view>
 							</view>
-						</view>
 
-						<view class="itembox">
-							<text class="one">任务周期</text>
-							<view class="two">
-								<text class="content">{{userInfo.orderCycle}}</text>
+							<view class="itembox">
+								<text class="one">任务周期</text>
+								<view class="two">
+									<text class="content">{{userInfo.orderCycle}}</text>
+								</view>
 							</view>
-						</view>
 
-					</info-box>
-
+						</info-box>
 					<!-- 物料内容部分 -->
 					<view class="outer">
 						<info-box>
@@ -415,7 +420,7 @@
 									</view>
 									<view class="right">
 										<view>数量：{{item.materialNum}}</view>
-										<view>重量：{{item.materialWeight}}</view>
+										<view>重量：{{item.materialWeight}}吨</view>
 									</view>
 								</view>
 							</view>
@@ -458,7 +463,11 @@
 				// 获取货物详情列表
 				goodsList: [],
 				// 当前货单的id
-				id: 4
+				// id: '',
+				strTwo: '',
+				strThree: '',
+				strFour: [],
+				strThreeCurrent: ''
 			}
 		},
 
@@ -486,6 +495,10 @@
 				const res = await this.$http.httpTokenRequest(opts);
 				this.userInfo = res.data.result;
 				this.goodsList = res.data.result.materielDetails;
+				
+				this.strThreeCurrent = this.userInfo.logisticsLocation.slice(0, 10)
+				console.log(this.strThreeCurrent)
+				
 				console.log(res);
 			},
 
@@ -494,8 +507,8 @@
 					url: '/personal/waybill/getConsigneeWaybillList',
 					method: 'post'
 				};
-				const num = this.current+1 === 3 ? 5 : this.current+1
-				
+				const num = this.current + 1 === 3 ? 5 : this.current + 1
+
 				const params = {
 					current: 0,
 					data: {
@@ -509,10 +522,29 @@
 				if (this.current === 0) this.goOutList = res.data.result.records;
 				if (this.current === 1) this.transitList = res.data.result.records;
 				if (this.current === 2) this.doneList = res.data.result.records;
-				
+
 				if (res.data.result.records.length === 0) {
 					this.showTipsList[this.current] = true
 				}
+
+				// 获取当前地址截取字符
+				if (this.current === 0) {
+					console.log(this.goOutList)
+					this.strTwo = this.goOutList[0].destination.slice(0, 10)
+					console.log(strTwo)
+				}
+				if (this.current === 1) {
+					this.strThree = this.transitList[0].destination.slice(0, 10)
+				}
+				if (this.current === 2) {
+					this.doneList.map((item, idx) => {
+						this.strFour.push(item.destination.slice(0, 10))
+					})
+					console.log(this.strFour)
+				}
+
+
+				console.log(this.showTipsList)
 			},
 
 			showWay(i) {

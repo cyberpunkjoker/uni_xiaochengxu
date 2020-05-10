@@ -38,7 +38,7 @@ import uploadMode from '../../components/uploadMode.vue'
 				message: '',
 				message2: '',
 				// 上传图片模块
-				imgPathList: null,
+				imgPathList: [],
 				// 获取运单id值
 				id: 0,
 				longitude: null,
@@ -70,14 +70,19 @@ import uploadMode from '../../components/uploadMode.vue'
 					arriveLateReason: this.message,
 					disburdenLateReason: this.message2
 				}
-				const res = await this.$http.httpTokenRequest(opts, param);
 				
-				res.data.code === 0 &&
-				uni.reLaunch({
-					url:"/pages/home/home"
-				})
-				
-				console.log(res);
+				if(this.imgPathList.length !== 0) {
+					const res = await this.$http.httpTokenRequest(opts, param);
+					console.log(res);
+					res.data.code === 0 &&
+						uni.navigateBack({
+							delta: 1
+						})
+				}else {
+					uni.showModal({
+						content: "请至少上传一张图片"
+					})
+				}
 			},
 			
 			getLocation() {

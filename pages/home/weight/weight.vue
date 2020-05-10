@@ -21,8 +21,9 @@
 					<text>收货地址：</text>
 					<image class="addr" src="../../../static/img/shouhuo.png" mode=""></image>
 				</view>
-				<view class="two">
-					<text class="content">{{userInfo.destination}}</text>
+				<view class="two" @tap="showTip(userInfo.destination)">
+					<text class="content">{{userInfo.destination.slice(0,10)}}...</text>
+					<image src="../../../static/img/right.png" mode=""></image>
 				</view>
 			</view>
 		</info-box>
@@ -132,6 +133,11 @@
 		},
 
 		methods: {
+			showTip(i) {
+				uni.showModal({
+					content: i
+				})
+			},
 			chooseItem(i) {
 				// 置空选中状态
 				this.selectedList = new Array(this.formList.length).fill(false)

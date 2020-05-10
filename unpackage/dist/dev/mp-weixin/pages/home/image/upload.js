@@ -172,7 +172,7 @@ __webpack_require__.r(__webpack_exports__);
       message: '',
       reminNum: 200,
       // 上传图片模块
-      imgPathList: null,
+      imgPathList: [],
       // 获取运单id值
       id: 0,
       longitude: null,
@@ -201,15 +201,20 @@ __webpack_require__.r(__webpack_exports__);
                   id: this.id,
                   imgs: this.imgPathList,
                   longitude: this.longitude,
-                  latitude: this.latitude };
+                  latitude: this.latitude };if (!(
 
 
-                console.log(param);_context.next = 5;return (
+                this.imgPathList.length !== 0)) {_context.next = 10;break;}_context.next = 5;return (
                   this.$http.httpTokenRequest(opts, param));case 5:res = _context.sent;
                 console.log(res);
                 res.data.code === 0 &&
-                uni.reLaunch({
-                  url: "/pages/home/home" });case 8:case "end":return _context.stop();}}}, _callee, this);}));function submitMessage() {return _submitMessage.apply(this, arguments);}return submitMessage;}(),
+                uni.navigateBack({
+                  delta: 1 });_context.next = 11;break;case 10:
+
+
+                uni.showModal({
+                  content: "请至少上传一张图片" });case 11:case "end":return _context.stop();}}}, _callee, this);}));function submitMessage() {return _submitMessage.apply(this, arguments);}return submitMessage;}(),
+
 
 
 

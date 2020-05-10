@@ -141,6 +141,7 @@
 				}
 
 				// console.log(param)
+				const res = await this.$http.httpTokenRequest(opts, param);
 
 				// console.log(res)
 				// console.log(res.data.code)

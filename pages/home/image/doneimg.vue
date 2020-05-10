@@ -34,7 +34,7 @@
 				// 留言模块接收值
 				message: '',
 				// 上传图片模块
-				imgPathList: null,
+				imgPathList: [],
 				// 获取运单id值
 				id: 0,
 				longitude: null,
@@ -63,14 +63,21 @@
 					longitude: this.longitude,
 					latitude: this.latitude
 				}
-				console.log(param)
-				const res = await this.$http.httpTokenRequest(opts, param);
 				
-				res.data.code === 0 &&
-					uni.navigateBack({
-						delta: 1
+				if(this.imgPathList.length !== 0) {
+					const res = await this.$http.httpTokenRequest(opts, param);
+					console.log(res);
+					res.data.code === 0 &&
+						uni.navigateBack({
+							delta: 1
+						})
+				}else {
+					uni.showModal({
+						content: "请至少上传一张图片"
 					})
-				console.log(res);
+				}
+				
+				
 			},
 
 			getLocation() {

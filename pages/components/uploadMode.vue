@@ -55,7 +55,7 @@
 						let that = this;
 						var uper = uni.uploadFile({
 							// 需要上传的地址
-							url: 'http://192.168.0.104:8001/upload/picture',
+							url: 'http://192.168.0.108:8001/upload/picture',
 							header: {
 								'Token': token,
 								'Content-Type': 'multipart/form-data',

@@ -233,7 +233,7 @@ __webpack_require__.r(__webpack_exports__);
     initPage: function initPage() {var _this = this;
       this.carNum = this.info.carNo;
       this.companyName = this.info.companyName;
-      this.carCurrent = Number(this.info.carType);
+      this.carCurrent = this.info.carType - 1;
       this.longCurrent = 4;
       this.length = this.info.containerLength;
       this.upLength.some(function (i, index) {
