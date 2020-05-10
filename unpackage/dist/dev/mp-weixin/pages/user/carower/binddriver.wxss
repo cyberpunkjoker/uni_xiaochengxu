@@ -81,6 +81,9 @@
   padding-top: 20px;
   background: #fafafa;
 }
+.box.data-v-5d474649 {
+  padding-bottom: 10px;
+}
 .bigbox.data-v-5d474649 {
   margin-bottom: 100px;
 }

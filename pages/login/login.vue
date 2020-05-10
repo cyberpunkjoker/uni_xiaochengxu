@@ -33,7 +33,6 @@
 
 <script>
 	import { parseQueryString } from "../../utils/query.js"
-	// import http from "../../utils/api.js"
 
 	export default {
 		data() {
@@ -44,19 +43,6 @@
 		},
 
 		methods: {
-			// formSubmit(e) {
-			// 	console.log(e)
-			// 	const phone = e.detail.value.phone;
-			// 	const code = e.detail.value.code;
-			// 	console.log(phone)
-			// 	if (phone.length !== 11 || code.length === 0) {
-			// 		uni.showModal({
-			// 			content: '请确认手机号和验证码是否输入正确',
-			// 			showCancel: false
-			// 		});
-			// 	}
-			// },
-			
 			isTruePhoneNum(str) {
 				return /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/ .test(str);
 			},
@@ -97,7 +83,7 @@
 				};
 				const res = await this.$http.httpRequest(opts, params);
 				
-				console.log(res);
+				this.code = res.data.result;
 			},
 		},
 		

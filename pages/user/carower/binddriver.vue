@@ -2,34 +2,34 @@
 	<view>
 		<view class="outer">
 			<view class="bigbox">
-				<info-box>
-					<view v-for="(item, index) in bindDriverList" :key="index">
-						<view class="itembox" @tap="deleteDriver(item)">
-							<text class="one">司机信息</text>
-							<view class="two">
-								<text class="content red">解除绑定</text>
-								<image src="../../../static/img/right.png" mode=""></image>
+				<view v-for="(item, index) in bindDriverList" :key="index">
+					<view class="box">
+						<info-box>
+							<view class="itembox" @tap="deleteDriver(item)">
+								<text class="one">司机信息</text>
+								<view class="two">
+									<text class="content red">解除绑定</text>
+									<image src="../../../static/img/right.png" mode=""></image>
+								</view>
 							</view>
-						</view>
 
-						<view class="itembox">
-							<text class="one">姓名</text>
-							<view class="two">
-								<text class="content">{{item.name}}</text>
+							<view class="itembox">
+								<text class="one">姓名</text>
+								<view class="two">
+									<text class="content">{{item.name}}</text>
+								</view>
 							</view>
-						</view>
-
-						<view class="itembox">
-							<text class="one">手机号</text>
-							<view class="two">
-								<text class="content redbig">{{item.phone}}</text>
+							<view class="itembox">
+								<text class="one">手机号</text>
+								<view class="two">
+									<text class="content redbig">{{item.phone}}</text>
+								</view>
 							</view>
-						</view>
+						</info-box>
 					</view>
-
-				</info-box>
-
+				</view>
 			</view>
+
 			<view class="btntop">
 				<btn @tap='addDriver'>添加司机</btn>
 			</view>
@@ -93,9 +93,13 @@
 				}
 
 				const res = await this.$http.httpTokenRequest(opts);
-				if (res.data.desc !== "操作成功") {
+				if (res.data.code !== 0) {
 					uni.showModal({
 						content: "解绑失败请重试"
+					})
+				} else {
+					uni.navigateBack({
+						delta: 1
 					})
 				}
 
@@ -133,6 +137,10 @@
 		height: 83px;
 		padding-top: 20px;
 		background: rgba(250, 250, 250, 1);
+	}
+
+	.box {
+		padding-bottom: 10px;
 	}
 
 	.bigbox {

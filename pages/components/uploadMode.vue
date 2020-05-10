@@ -10,7 +10,6 @@
 				<view v-if="imagePathList[index]" class="addimg">
 					<image :src="imagePathList[index][0]"></image>
 				</view>
-
 			</view>
 		</view>
 	</view>
@@ -55,7 +54,8 @@
 						let that = this;
 						var uper = uni.uploadFile({
 							// 需要上传的地址
-							url: 'http://192.168.0.108:8001/upload/picture',
+							url: 'https://scwl.huicsy.com',
+							// url:"http://192.168.0.108:8001",
 							header: {
 								'Token': token,
 								'Content-Type': 'multipart/form-data',

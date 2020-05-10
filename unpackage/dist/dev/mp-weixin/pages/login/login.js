@@ -178,9 +178,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _query = __webpack_require__(/*! ../../utils/query.js */ 26);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
-// import http from "../../utils/api.js"
-var _default =
+var _query = __webpack_require__(/*! ../../utils/query.js */ 26);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var _default =
+
 {
   data: function data() {
     return {
@@ -190,19 +189,6 @@ var _default =
   },
 
   methods: {
-    // formSubmit(e) {
-    // 	console.log(e)
-    // 	const phone = e.detail.value.phone;
-    // 	const code = e.detail.value.code;
-    // 	console.log(phone)
-    // 	if (phone.length !== 11 || code.length === 0) {
-    // 		uni.showModal({
-    // 			content: '请确认手机号和验证码是否输入正确',
-    // 			showCancel: false
-    // 		});
-    // 	}
-    // },
-
     isTruePhoneNum: function isTruePhoneNum(str) {
       return /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/.test(str);
     },
@@ -243,7 +229,7 @@ var _default =
 
                   this.$http.httpRequest(opts, params));case 6:res = _context.sent;
 
-                console.log(res);case 8:case "end":return _context.stop();}}}, _callee, this);}));function sendCode() {return _sendCode.apply(this, arguments);}return sendCode;}() },
+                this.code = res.data.result;case 8:case "end":return _context.stop();}}}, _callee, this);}));function sendCode() {return _sendCode.apply(this, arguments);}return sendCode;}() },
 
 
 

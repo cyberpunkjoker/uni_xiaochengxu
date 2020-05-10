@@ -178,7 +178,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 __webpack_require__(/*! ../../../common/itemcontent.css */ 75);
-var _query = __webpack_require__(/*! ../../../utils/query.js */ 26);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 92));};var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/buttonstyle.vue */ 205));};var _default =
+var _query = __webpack_require__(/*! ../../../utils/query.js */ 26);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 92));};var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/buttonstyle.vue */ 199));};var _default =
 
 
 
@@ -228,9 +228,13 @@ var _query = __webpack_require__(/*! ../../../utils/query.js */ 26);function _in
 
 
                   this.$http.httpTokenRequest(opts));case 6:res = _context2.sent;
-                if (res.data.desc !== "操作成功") {
+                if (res.data.code !== 0) {
                   uni.showModal({
                     content: "解绑失败请重试" });
+
+                } else {
+                  uni.navigateBack({
+                    delta: 1 });
 
                 }
 

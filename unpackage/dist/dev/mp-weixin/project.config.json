@@ -48,8 +48,15 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/order/orderlist/orderlist",
-					"pathName": "pages/order/orderlist/orderlist",
+					"name": "pages/home/home",
+					"pathName": "pages/home/home",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user/carower/managementcar",
+					"pathName": "pages/user/carower/managementcar",
 					"query": "",
 					"scene": null
 				},
@@ -57,41 +64,6 @@
 					"id": -1,
 					"name": "pages/login/login",
 					"pathName": "pages/login/login",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/home/weight/apply",
-					"pathName": "pages/home/weight/apply",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/user/waybill/waybill",
-					"pathName": "pages/user/waybill/waybill",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/home/image/doneimg",
-					"pathName": "pages/home/image/doneimg",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/home/image/signupload",
-					"pathName": "pages/home/image/signupload",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/home/image/upload",
-					"pathName": "pages/home/image/upload",
 					"scene": null
 				}
 			]

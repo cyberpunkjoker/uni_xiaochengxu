@@ -136,7 +136,8 @@ import uploadMode from '../../components/uploadMode.vue'
 	  }
   
 		.btn {
-			margin-top: 140px;
+			margin-top: 100px;
+			padding-bottom: 50px;
 		}
   }
 
