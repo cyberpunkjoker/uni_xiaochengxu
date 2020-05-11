@@ -127,13 +127,13 @@
 			"style": {
 				"navigationBarTitleText": "新增车辆"
 			}
+		},
+		{
+			"path": "pages/block/block",
+			"style": {
+				"navigationBarTitleText": "none"
+			}
 		}
-		// {
-		// 	"path": "pages/block/block",
-		// 	"style": {
-		// 		"navigationBarTitleText": "none"
-		// 	}
-		// }
 
 	],
 	"globalStyle": {

@@ -216,6 +216,11 @@ var _default =
                   data: this.info.userPhone });
 
 
+                if (res.data.code === 1) {
+                  uni.showModal({
+                    content: res.data.desc });
+
+                }
                 if (res.data.code === 0) {
                   if (this.statusCode[this.current] === "CONSIGNEE") {
                     uni.reLaunch({
@@ -227,7 +232,7 @@ var _default =
 
                     // this.shouquan();
                   }
-                }case 12:case "end":return _context.stop();}}}, _callee, this);}));function toChoosePage() {return _toChoosePage.apply(this, arguments);}return toChoosePage;}(),
+                }case 13:case "end":return _context.stop();}}}, _callee, this);}));function toChoosePage() {return _toChoosePage.apply(this, arguments);}return toChoosePage;}(),
 
 
     // 获取提示信息

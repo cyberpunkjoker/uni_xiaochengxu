@@ -1,0 +1,1 @@
+<view class="data-v-d12cb91a"><image src="../../../static/img/meiyou.png" mode class="data-v-d12cb91a"></image><view class="content data-v-d12cb91a"><text class="data-v-d12cb91a">暂无绑定司机</text></view><btn vue-id="62d84df6-1" toPages="{{toPages}}" class="data-v-d12cb91a" bind:__l="__l" vue-slots="{{['default']}}">绑定司机</btn></view>

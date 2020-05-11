@@ -201,10 +201,15 @@ var _query = __webpack_require__(/*! ../../utils/query.js */ 26);function _inter
 
       var info = (0, _query.parseQueryString)(params);
 
-      this.userPhone.length === 11 && this.code.length !== 0 &&
-      uni.navigateTo({
-        url: '/pages/login/status' + info });
+      if (this.userPhone.length === 11 && this.code.length === 6) {
+        uni.navigateTo({
+          url: '/pages/login/status' + info });
 
+      } else {
+        uni.showModal({
+          title: "请输入6位验证码" });
+
+      }
     },
 
     clearText: function clearText() {
@@ -218,18 +223,19 @@ var _query = __webpack_require__(/*! ../../utils/query.js */ 26);function _inter
                     content: "请输入正确的手机号码" });
 
                 }
-
                 opts = {
                   url: '/sc/sms/send',
                   method: 'post' };
+
 
                 params = {
                   phone: this.userPhone,
                   smsTypeEnum: "LOGIN_SMS" };_context.next = 6;return (
 
-                  this.$http.httpRequest(opts, params));case 6:res = _context.sent;
 
-                this.code = res.data.result;case 8:case "end":return _context.stop();}}}, _callee, this);}));function sendCode() {return _sendCode.apply(this, arguments);}return sendCode;}() },
+                  this.$http.httpRequest(opts, params));case 6:res = _context.sent;
+                console.log(res);
+                this.code = res.data.result;case 9:case "end":return _context.stop();}}}, _callee, this);}));function sendCode() {return _sendCode.apply(this, arguments);}return sendCode;}() },
 
 
 

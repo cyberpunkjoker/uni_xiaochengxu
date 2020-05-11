@@ -12,23 +12,19 @@
 			</view>
 		</view>
 
-		<!-- 		<view 
-		v-for="(item, index) in timeList" 
-		:key="index" 
-		v-if="index === current"
-		> -->
-		<picker-view 
-		style="height: 300px;" 
-		indicator-style="height: 36px; line-height:36px" 
-		@change="bindChange"
-		:value="value"
-		>
-			<picker-view-column class="flex-col">
-				<view class="item flex-center" v-for="item in timeList[current]" :key="item">{{item}}</view>
-			</picker-view-column>
-		</picker-view>
+		<view v-for="(item, index) in timeList" :key="index" v-if="index === current">
+			<picker-view 
+			style="height: 300px;" 
+			indicator-style="height: 36px; line-height:36px" 
+			@change="bindChange"
+			selected = 0
+			 :value="value">
+				<picker-view-column class="flex-col">
+					<view class="item flex-center" v-for="item in timeList[current]" :key="item">{{item}}</view>
+				</picker-view-column>
+			</picker-view>
+		</view>
 	</view>
-	<!-- </view> -->
 
 </template>
 
@@ -41,6 +37,22 @@
 				status: false,
 				current: 0,
 				tablist: ["年", "月", "日", "时", "分"],
+				pickList: [{
+						doSome: "doSomg1"
+					},
+					{
+						doSome: "doSomg2"
+					},
+					{
+						doSome: "doSomg3"
+					},
+					{
+						doSome: "doSomg4"
+					},
+					{
+						doSome: "doSomg5"
+					},
+				],
 				// 日期数组
 				year: '',
 				mouth: '',
@@ -53,15 +65,49 @@
 		},
 		props: ['timeList'],
 		methods: {
+
 			bindChange(e) {
-				if (this.current === 0) this.year = e.detail.value;
-				if (this.current === 1) this.mouth = e.detail.value;
-				if (this.current === 2) this.day = e.detail.value;
-				if (this.current === 3) this.hour = e.detail.value;
-				if (this.current === 4) this.minutes = e.detail.value;
-				this.timeArr = [this.year, this.mouth, this.day, this.hour, this.minutes]
-				console.log(this.day)
+				// console.log(e);
+				// console.log(current);
+				const doSomes = this.pickList[this.current].doSome;
+				this[doSomes](e);
+				console.log(e)
+				console.log(this.timeArr)
 			},
+
+			doSomg1(e) {
+				console.log(e)
+				const year = e.detail.value;
+				this.timeArr[0] =year
+			},
+			doSomg2(e) {
+				const mouth = e.detail.value;
+				this.timeArr[1] =mouth
+			},
+			doSomg3(e) {
+				const day = e.detail.value;
+				this.timeArr[2] =day
+			},
+			doSomg4(e) {
+				const hour = e.detail.value;
+				this.timeArr[3] =hour
+			},
+			doSomg5(e) {
+				const minutes = e.detail.value;
+				this.timeArr[4] =minutes
+			},
+
+
+
+			// bindChange(e) {
+			// 	if (this.current === 0) this.year = e.detail.value;
+			// 	if (this.current === 1) this.mouth = e.detail.value;
+			// 	if (this.current === 2) this.day = e.detail.value;
+			// 	if (this.current === 3) this.hour = e.detail.value;
+			// 	if (this.current === 4) this.minutes = e.detail.value;
+			// 	this.timeArr = [this.year, this.mouth, this.day, this.hour, this.minutes]
+			// 	console.log(this.day)
+			// },
 
 			justClose() {
 				this.status = true;
@@ -71,8 +117,26 @@
 			reSelected() {
 				this.status = true
 				this.$emit('showStatus', this.status)
-				// this.$emit('listenChild', this.recordList)
-				this.$emit("showSeletedTime", this.timeArr)
+				
+				const isture = false;
+				// this.timeArr.map(item=>{
+				// 	if (item === ) {
+				// 		isture = true;
+				// 		console.log(isture)
+				// 		return;
+				// 	};
+				// })
+				// console.log(isture)
+				
+				if(isture) {
+					uni.showToast({
+						title: "请重新选择时间",
+						icon: "none"
+					})
+				}else{
+					this.$emit("showSeletedTime", this.timeArr)
+				}
+				
 			},
 
 			clickTab(index) {

@@ -70,7 +70,7 @@
 				</view>
 				<view class="outer">
 					<view class="outsidebox none">
-						<view class="clos left">
+						<view class="clos right">
 							<view>名称：<text>{{name}}</text></view>
 							<view>规格：<text>{{size}}</text></view>
 						</view>
@@ -199,6 +199,12 @@
 					materielDetails: copyList
 				}
 					
+				if(this.weight === '') {
+					uni.showModal({
+						content: "请填写物料重量"
+					})
+				}
+				
 				console.log(params)
 				const res = await this.$http.httpTokenRequest(opts, params);
 				console.log(res)

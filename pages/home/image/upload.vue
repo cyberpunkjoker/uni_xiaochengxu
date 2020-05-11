@@ -13,7 +13,6 @@
 				<text class="tips">最多可上传三张</text>
 
 				<messBox tipMess="备注(选填)" @getMess="getMessage"></messBox>
-
 			</view>
 		</info-box>
 			
@@ -63,11 +62,12 @@ import uploadMode from '../../components/uploadMode.vue'
 					method: "post"
 				}
 				const param = {
-					id: this.id,
+					id: Number(this.id),
 					imgs: this.imgPathList,
 					longitude: this.longitude,
 					latitude: this.latitude
 				}
+				console.log(param)
 				
 				if(this.imgPathList.length !== 0) {
 					const res = await this.$http.httpTokenRequest(opts, param);

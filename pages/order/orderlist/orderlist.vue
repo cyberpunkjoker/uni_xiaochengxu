@@ -507,10 +507,10 @@
 				doneListDetail: [],
 				modifyArr:[],
 				// 页面中长字符串的截取
-				strTwo: '',
-				strThree: '',
+				strTwo: '..',
+				strThree: '..',
 				strFour: [],
-				strThreeCurrent: '',
+				strThreeCurrent: '..',
 				detailCurrent: '',
 				doneUserInfo: '',
 				// 物料列表
@@ -539,7 +539,7 @@
 				this.userInfo = res.data.result;
 				this.goodsList = res.data.result.materielDetails;
 				
-				this.strThreeCurrent = this.userInfo.logisticsLocation.slice(0, 10)
+				this.strThreeCurrent = this.userInfo.logisticsLocation.slice(0, 6)
 				
 				console.log(res);
 				console.log(this.userInfo)
@@ -617,15 +617,15 @@
 				// 获取当前地址截取字符
 				if (this.current === 1) {
 					console.log(this.goOutList)
-					this.strTwo  = this.goOutList[0].destination.slice(0, 10)
+					this.strTwo  = this.goOutList[0].destination.slice(0, 6)
 					console.log(strTwo)
 				}
 				if (this.current === 2) {
-					this.strThree = this.transitList[0].destination.slice(0, 10)
+					this.strThree = this.transitList[0].destination.slice(0, 6)
 				}
 				if (this.current === 3) {
 					this.doneList.map((item, idx)=>{
-						this.strFour.push(item.destination.slice(0, 10))
+						this.strFour.push(item.destination.slice(0, 6))
 					})
 				}
 				

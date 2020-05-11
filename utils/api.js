@@ -1,5 +1,5 @@
-const baseUrl = 'https://scwl.huicsy.com';
-// const baseUrl = 'http://192.168.0.108:8001';
+// const baseUrl = 'https://scwl.huicsy.com';
+const baseUrl = 'http://192.168.0.104:8001';
 const httpRequest = (opts, data) => {
 	let httpDefaultOpts = {
 		url: baseUrl + opts.url,

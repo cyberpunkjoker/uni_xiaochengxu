@@ -56,6 +56,7 @@ import uploadMode from '../../components/uploadMode.vue'
 			},
 			
 			imgPath(data) {
+				console.log(data)
 				this.imgPathList = data;
 			},
 			
@@ -65,11 +66,12 @@ import uploadMode from '../../components/uploadMode.vue'
 					method: "post"
 				}
 				const param = {
-					id: this.id,
+					id: Number(this.id),
 					imgs: this.imgPathList,
 					arriveLateReason: this.message,
 					disburdenLateReason: this.message2
 				}
+				console.log(param)
 				
 				if(this.imgPathList.length !== 0) {
 					const res = await this.$http.httpTokenRequest(opts, param);

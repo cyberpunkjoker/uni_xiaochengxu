@@ -7,12 +7,12 @@
 		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
-		"minified": true
+		"minified": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.2",
 	"appid": "wx6aba3a11bd79552f",
-	"projectname": "uni_project",
+	"projectname": "四川顺程物流",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
@@ -41,29 +41,8 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/home/home",
-					"pathName": "pages/home/home",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/home/home",
-					"pathName": "pages/home/home",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/user/carower/managementcar",
-					"pathName": "pages/user/carower/managementcar",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/login/login",
-					"pathName": "pages/login/login",
+					"name": "pages/block/block",
+					"pathName": "pages/block/block",
 					"scene": null
 				}
 			]

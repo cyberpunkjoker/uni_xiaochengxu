@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   "uni-popup": () =>
-    __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 227))
+    __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 235))
 }
 var render = function() {
   var _vm = this
@@ -193,7 +193,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-__webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 92));};var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 227));};var pickerRegion = function pickerRegion() {return __webpack_require__.e(/*! import() | pages/components/pickerregion */ "pages/components/pickerregion").then(__webpack_require__.bind(null, /*! ../../components/pickerregion.vue */ 234));};var timePicker = function timePicker() {return __webpack_require__.e(/*! import() | pages/components/timePicker */ "pages/components/timePicker").then(__webpack_require__.bind(null, /*! ../../components/timePicker.vue */ 241));};var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/buttonstyle.vue */ 199));};var _default =
+__webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 92));};var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 235));};var pickerRegion = function pickerRegion() {return __webpack_require__.e(/*! import() | pages/components/pickerregion */ "pages/components/pickerregion").then(__webpack_require__.bind(null, /*! ../../components/pickerregion.vue */ 242));};var timePicker = function timePicker() {return __webpack_require__.e(/*! import() | pages/components/timePicker */ "pages/components/timePicker").then(__webpack_require__.bind(null, /*! ../../components/timePicker.vue */ 249));};var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/buttonstyle.vue */ 207));};var _default =
 
 {
   data: function data() {
@@ -244,7 +244,6 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
       }
     },
 
-
     showIndex1: function showIndex1(data) {
       console.log(data);
       if (data.length === 0) {
@@ -261,6 +260,11 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
       }
     },
 
+    showStatus2: function showStatus2(data) {
+      if (data) {
+        this.$refs.popup3.close();
+      }
+    },
 
     timeSelect: function timeSelect(data) {var _this = this;
       console.log(data);
@@ -349,12 +353,14 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
 
                   this.$http.httpTokenRequest(opts));case 3:res = _context2.sent;
                 this.gotPlanList = res.data.result;
+                this.planList = [];
+                this.planListId = [];
                 this.gotPlanList.map(function (item, index) {
                   _this3.planList.push(item.routeName);
                 });
                 this.gotPlanList.map(function (item, index) {
                   _this3.planListId.push(item.id);
-                });case 7:case "end":return _context2.stop();}}}, _callee2, this);}));function getPlanInfo() {return _getPlanInfo.apply(this, arguments);}return getPlanInfo;}(),
+                });case 9:case "end":return _context2.stop();}}}, _callee2, this);}));function getPlanInfo() {return _getPlanInfo.apply(this, arguments);}return getPlanInfo;}(),
 
 
     initTime: function initTime() {var _this4 = this;
@@ -394,10 +400,9 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
 
                 this.isTure) {_context3.next = 4;break;}
                 uni.showModal({
-                  content: "请输入大于当前时间的预计时间" });_context3.next = 13;break;case 4:
+                  content: "请输入大于当前时间的预计时间" });_context3.next = 12;break;case 4:
 
 
-                this.shouquan();
                 params = {
                   carId: this.carIdList[this.current],
                   carNo: this.carList[this.current],
@@ -408,23 +413,24 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
 
                 opts = {
                   url: "/personal/driver/modTaskAppRoute",
-                  method: "post" };_context3.next = 9;return (
+                  method: "post" };_context3.next = 8;return (
 
 
-                  this.$http.httpTokenRequest(opts, params));case 9:res = _context3.sent;
+                  this.$http.httpTokenRequest(opts, params));case 8:res = _context3.sent;
 
                 console.log(res);
                 if (res.data.code === 0) {
+                  this.shouquan();
                   uni.navigateBack({
                     delta: 1 });
 
                 }
                 if (res.data.code === 1) {
-                  uni.showToast({
-                    title: "申请失败请重试",
+                  uni.showModal({
+                    title: res.data.desc,
                     icon: "none" });
 
-                }case 13:case "end":return _context3.stop();}}}, _callee3, this);}));function submitApply() {return _submitApply.apply(this, arguments);}return submitApply;}() },
+                }case 12:case "end":return _context3.stop();}}}, _callee3, this);}));function submitApply() {return _submitApply.apply(this, arguments);}return submitApply;}() },
 
 
 

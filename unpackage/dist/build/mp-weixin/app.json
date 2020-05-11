@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/home/home",
+    "pages/login/status",
+    "pages/user/user",
+    "pages/user/carower/drivernone",
+    "pages/user/carower/carnone",
+    "pages/user/carower/managementcar",
+    "pages/user/carower/modifycar",
+    "pages/user/carower/adddriver",
+    "pages/user/carower/binddriver",
+    "pages/user/carower/editcar",
+    "pages/user/carmanagement/carmanagement",
+    "pages/user/waybill/waybill",
+    "pages/order/carwarn",
+    "pages/order/orderlist/orderlist",
+    "pages/home/image/upload",
+    "pages/home/image/signupload",
+    "pages/home/image/doneimg",
+    "pages/home/weight/weight",
+    "pages/home/weight/apply",
+    "pages/user/carower/addcar"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#EDEDED"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#333",
+    "borderStyle": "black",
+    "backgroundColor": "#FAFAFA",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "static/img/home.png",
+        "selectedIconPath": "static/img/homexuan.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/order/orderlist/orderlist",
+        "iconPath": "static/img/yundan.png",
+        "selectedIconPath": "static/img/yundannone.png",
+        "text": "运单查看"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "static/img/user.png",
+        "selectedIconPath": "static/img/userxuan.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于运输路程显示"
+    }
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

@@ -39,7 +39,7 @@
 
 		<!-- pick3 -->
 		<uni-popup ref="popup3" type="bottom">
-			<time-picker :timeList="timeList" @showSeletedTime="timeSelect"></time-picker>
+			<time-picker :timeList="timeList" @showSeletedTime="timeSelect" @showStatus="showStatus2"></time-picker>
 		</uni-popup>
 
 		<view class="btn">
@@ -106,7 +106,6 @@
 				}
 			},
 
-
 			showIndex1(data) {
 				console.log(data)
 				if (data.length === 0) {
@@ -122,8 +121,13 @@
 					this.$refs.popup2.close();
 				}
 			},
-
-
+			
+			showStatus2(data) {
+				if (data) {
+					this.$refs.popup3.close();
+				}
+			},
+			
 			timeSelect(data) {
 				console.log(data);
 				let timeArr = [];
@@ -211,6 +215,8 @@
 				}
 				const res = await this.$http.httpTokenRequest(opts);
 				this.gotPlanList = res.data.result;
+				this.planList = [];
+				this.planListId = [];
 				this.gotPlanList.map((item, index) => {
 					this.planList.push(item.routeName);
 				})
@@ -259,7 +265,6 @@
 						content: "请输入大于当前时间的预计时间"
 					})
 				} else {
-					this.shouquan();
 					const params = {
 						carId: this.carIdList[this.current],
 						carNo: this.carList[this.current],
@@ -277,13 +282,14 @@
 					
 					console.log(res);
 					if (res.data.code === 0) {
+						this.shouquan();
 						uni.navigateBack({
 							delta: 1
 						});
 					}
 					if(res.data.code === 1) {
-						uni.showToast({
-							title: "申请失败请重试",
+						uni.showModal({
+							title: res.data.desc,
 							icon: "none"
 						})
 					}

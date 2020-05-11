@@ -25,7 +25,7 @@
 					</view>
 				</view>
 
-				<button form-type="submit" class="submitbtn" @click="toStatusPage">登录</button>
+				<button class="submitbtn" @click="toStatusPage">登录</button>
 			</form>
 		</view>
 	</view>
@@ -55,10 +55,15 @@
 				}
 				const info = parseQueryString(params)
 
-				this.userPhone.length === 11 && this.code.length !== 0 &&
+				if(this.userPhone.length === 11 && this.code.length === 6) {
 					uni.navigateTo({
 						url: '/pages/login/status' + info
 					});
+				} else {
+					uni.showModal({
+						title: "请输入6位验证码"
+					})
+				}
 			},
 
 			clearText() {
@@ -72,17 +77,18 @@
 						content:"请输入正确的手机号码"
 					})
 				}
-				
 				const opts = {
 					url: '/sc/sms/send',
 					method: 'post'
 				};
+				
 				let params = {
 					phone: this.userPhone,
 					smsTypeEnum: "LOGIN_SMS"
 				};
-				const res = await this.$http.httpRequest(opts, params);
 				
+				const res = await this.$http.httpRequest(opts, params);
+				console.log(res);
 				this.code = res.data.result;
 			},
 		},

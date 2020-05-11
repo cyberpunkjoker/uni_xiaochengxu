@@ -20,7 +20,8 @@
     "pages/home/image/doneimg",
     "pages/home/weight/weight",
     "pages/home/weight/apply",
-    "pages/user/carower/addcar"
+    "pages/user/carower/addcar",
+    "pages/block/block"
   ],
   "subPackages": [],
   "window": {
@@ -59,5 +60,5 @@
     }
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap75.json"
+  "sitemapLocation": "sitemap73.json"
 }

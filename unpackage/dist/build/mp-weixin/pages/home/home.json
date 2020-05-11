@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "四川顺程物流有限公司",
+  "usingComponents": {
+    "info-box": "/pages/components/boxstyle/infobox"
+  }
+}

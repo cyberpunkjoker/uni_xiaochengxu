@@ -81,6 +81,11 @@
 					data: this.info.userPhone,
 				})
 
+				if (res.data.code === 1) {
+					uni.showModal({
+						content: res.data.desc
+					})
+				}
 				if (res.data.code === 0) {
 					if (this.statusCode[this.current] === "CONSIGNEE") {
 						uni.reLaunch({

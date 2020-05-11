@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 92));};var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/buttonstyle.vue */ 199));};var messBox = function messBox() {return __webpack_require__.e(/*! import() | pages/components/message */ "pages/components/message").then(__webpack_require__.bind(null, /*! ../../components/message.vue */ 213));};var uploadMode = function uploadMode() {return __webpack_require__.e(/*! import() | pages/components/uploadMode */ "pages/components/uploadMode").then(__webpack_require__.bind(null, /*! ../../components/uploadMode.vue */ 220));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 92));};var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/buttonstyle.vue */ 207));};var messBox = function messBox() {return __webpack_require__.e(/*! import() | pages/components/message */ "pages/components/message").then(__webpack_require__.bind(null, /*! ../../components/message.vue */ 221));};var uploadMode = function uploadMode() {return __webpack_require__.e(/*! import() | pages/components/uploadMode */ "pages/components/uploadMode").then(__webpack_require__.bind(null, /*! ../../components/uploadMode.vue */ 228));};var _default =
 
 
 
@@ -191,6 +191,7 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     imgPath: function imgPath(data) {
+      console.log(data);
       this.imgPathList = data;
     },
 
@@ -200,22 +201,23 @@ __webpack_require__.r(__webpack_exports__);
                   method: "post" };
 
                 param = {
-                  id: this.id,
+                  id: Number(this.id),
                   imgs: this.imgPathList,
                   arriveLateReason: this.message,
-                  disburdenLateReason: this.message2 };if (!(
+                  disburdenLateReason: this.message2 };
 
+                console.log(param);if (!(
 
-                this.imgPathList.length !== 0)) {_context.next = 10;break;}_context.next = 5;return (
-                  this.$http.httpTokenRequest(opts, param));case 5:res = _context.sent;
+                this.imgPathList.length !== 0)) {_context.next = 11;break;}_context.next = 6;return (
+                  this.$http.httpTokenRequest(opts, param));case 6:res = _context.sent;
                 console.log(res);
                 res.data.code === 0 &&
                 uni.navigateBack({
-                  delta: 1 });_context.next = 11;break;case 10:
+                  delta: 1 });_context.next = 12;break;case 11:
 
 
                 uni.showModal({
-                  content: "请至少上传一张图片" });case 11:case "end":return _context.stop();}}}, _callee, this);}));function submitMessage() {return _submitMessage.apply(this, arguments);}return submitMessage;}(),
+                  content: "请至少上传一张图片" });case 12:case "end":return _context.stop();}}}, _callee, this);}));function submitMessage() {return _submitMessage.apply(this, arguments);}return submitMessage;}(),
 
 
 

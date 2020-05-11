@@ -754,7 +754,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1703,8 +1703,8 @@ function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {var baseUrl = 'https://scwl.huicsy.com';
-// const baseUrl = 'http://192.168.0.108:8001';
+/* WEBPACK VAR INJECTION */(function(uni) { // const baseUrl = 'https://scwl.huicsy.com';
+var baseUrl = 'http://192.168.0.104:8001';
 var httpRequest = function httpRequest(opts, data) {
   var httpDefaultOpts = {
     url: baseUrl + opts.url,
@@ -7321,7 +7321,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7342,14 +7342,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7425,7 +7425,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9574,7 +9574,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/login/login": { "navigationBarTitleText": "首页", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/home/home": { "navigationBarTitleText": "四川顺程物流有限公司", "usingComponents": { "info-box": "/pages/components/boxstyle/infobox" }, "usingAutoImportComponents": {} }, "pages/login/status": { "navigationBarTitleText": "选择登录身份", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/user": { "navigationBarTitleText": "个人中心", "usingComponents": { "info-box": "/pages/components/boxstyle/infobox" }, "usingAutoImportComponents": {} }, "pages/user/carower/drivernone": { "navigationBarTitleText": "车主车辆管理", "usingComponents": { "btn": "/pages/components/boxstyle/buttonstyle" }, "usingAutoImportComponents": {} }, "pages/user/carower/carnone": { "navigationBarTitleText": "车主车辆管理", "usingComponents": { "btn": "/pages/components/boxstyle/buttonstyle" }, "usingAutoImportComponents": {} }, "pages/user/carower/managementcar": { "navigationBarTitleText": "车主车辆管理", "usingComponents": { "info-box": "/pages/components/boxstyle/infobox", "no-car": "/pages/user/carower/carnone", "btn": "/pages/components/boxstyle/buttonstyle" }, "usingAutoImportComponents": {} }, "pages/user/carower/modifycar": { "navigationBarTitleText": "修改车辆", "usingComponents": { "info-box": "/pages/components/boxstyle/infobox" }, "usingAutoImportComponents": {} }, "pages/user/carower/adddriver": { "navigationBarTitleText": "添加司机", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/carower/binddriver": { "navigationBarTitleText": "绑定司机列表", "usingComponents": { "info-box": "/pages/components/boxstyle/infobox", "btn": "/pages/components/boxstyle/buttonstyle" }, "usingAutoImportComponents": {} }, "pages/user/carower/editcar": { "navigationBarTitleText": "编辑车辆信息", "usingComponents": { "info-box": "/pages/components/boxstyle/infobox", "btn": "/pages/components/boxstyle/buttonstyle" }, "usingAutoImportComponents": {} }, "pages/user/carmanagement/carmanagement": { "navigationBarTitleText": "司机车辆管理", "usingComponents": { "info-box": "/pages/components/boxstyle/infobox" }, "usingAutoImportComponents": {} }, "pages/user/waybill/waybill": { "navigationBarTitleText": "收货人运单查看", "usingComponents": { "tab-bar": "/pages/components/tabbar2", "info-box": "/pages/components/boxstyle/infobox", "tip-img": "/pages/order/carwarn" }, "usingAutoImportComponents": {} }, "pages/order/carwarn": { "navigationBarTitleText": "车主车辆管理", "usingComponents": { "btn": "/pages/components/boxstyle/buttonstyle" }, "usingAutoImportComponents": {} }, "pages/order/orderlist/orderlist": { "navigationBarTitleText": "运单查看", "usingComponents": { "tab-bar": "/pages/components/tabbar2", "info-box": "/pages/components/boxstyle/infobox", "tip-img": "/pages/order/carwarn" }, "usingAutoImportComponents": {} }, "pages/home/image/upload": { "navigationBarTitleText": "开始卸货打卡", "usingComponents": { "info-box": "/pages/components/boxstyle/infobox", "btn": "/pages/components/boxstyle/buttonstyle", "mess-box": "/pages/components/message", "upload-mode": "/pages/components/uploadMode" }, "usingAutoImportComponents": {} }, "pages/home/image/signupload": { "navigationBarTitleText": "上传签收单图片", "usingComponents": { "info-box": "/pages/components/boxstyle/infobox", "btn": "/pages/components/boxstyle/buttonstyle", "mess-box": "/pages/components/message", "upload-mode": "/pages/components/uploadMode" }, "usingAutoImportComponents": {} }, "pages/home/image/doneimg": { "navigationBarTitleText": "到货打卡", "usingComponents": { "info-box": "/pages/components/boxstyle/infobox", "btn": "/pages/components/boxstyle/buttonstyle", "mess-box": "/pages/components/message", "upload-mode": "/pages/components/uploadMode" }, "usingAutoImportComponents": {} }, "pages/home/weight/weight": { "navigationBarTitleText": "选择物料填写", "usingComponents": { "info-box": "/pages/components/boxstyle/infobox", "uni-popup": "/components/uni-popup/uni-popup", "btn": "/pages/components/boxstyle/buttonstyle" }, "usingAutoImportComponents": { "uni-popup": "/components/uni-popup/uni-popup" } }, "pages/home/weight/apply": { "navigationBarTitleText": "运单申请", "usingComponents": { "info-box": "/pages/components/boxstyle/infobox", "uni-popup": "/components/uni-popup/uni-popup", "picker-region": "/pages/components/pickerregion", "btn": "/pages/components/boxstyle/buttonstyle", "time-picker": "/pages/components/timePicker" }, "usingAutoImportComponents": { "uni-popup": "/components/uni-popup/uni-popup" } }, "pages/user/carower/addcar": { "navigationBarTitleText": "新增车辆", "usingComponents": { "info-box": "/pages/components/boxstyle/infobox" }, "usingAutoImportComponents": {} }, "pages/block/block": { "navigationBarTitleText": "none", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#EDEDED" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/login/login": { "navigationBarTitleText": "首页" }, "pages/home/home": { "navigationBarTitleText": "四川顺程物流有限公司" }, "pages/login/status": { "navigationBarTitleText": "选择登录身份" }, "pages/user/user": { "navigationBarTitleText": "个人中心" }, "pages/user/carower/drivernone": { "navigationBarTitleText": "车主车辆管理" }, "pages/user/carower/carnone": { "navigationBarTitleText": "车主车辆管理" }, "pages/user/carower/managementcar": { "navigationBarTitleText": "车主车辆管理" }, "pages/user/carower/modifycar": { "navigationBarTitleText": "修改车辆" }, "pages/user/carower/adddriver": { "navigationBarTitleText": "添加司机" }, "pages/user/carower/binddriver": { "navigationBarTitleText": "绑定司机列表" }, "pages/user/carower/editcar": { "navigationBarTitleText": "编辑车辆信息" }, "pages/user/carmanagement/carmanagement": { "navigationBarTitleText": "司机车辆管理" }, "pages/user/waybill/waybill": { "navigationBarTitleText": "收货人运单查看" }, "pages/order/carwarn": { "navigationBarTitleText": "车主车辆管理" }, "pages/order/orderlist/orderlist": { "navigationBarTitleText": "运单查看" }, "pages/home/image/upload": { "navigationBarTitleText": "开始卸货打卡" }, "pages/home/image/signupload": { "navigationBarTitleText": "上传签收单图片" }, "pages/home/image/doneimg": { "navigationBarTitleText": "到货打卡" }, "pages/home/weight/weight": { "navigationBarTitleText": "选择物料填写" }, "pages/home/weight/apply": { "navigationBarTitleText": "运单申请" }, "pages/user/carower/addcar": { "navigationBarTitleText": "新增车辆" }, "pages/block/block": { "navigationBarTitleText": "none" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#EDEDED" } };exports.default = _default;
 
 /***/ }),
 

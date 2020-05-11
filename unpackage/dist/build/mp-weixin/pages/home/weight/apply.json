@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "运单申请",
+  "usingComponents": {
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "info-box": "/pages/components/boxstyle/infobox",
+    "picker-region": "/pages/components/pickerregion",
+    "btn": "/pages/components/boxstyle/buttonstyle",
+    "time-picker": "/pages/components/timePicker"
+  }
+}

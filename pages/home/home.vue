@@ -170,6 +170,8 @@
 					}, 800)
 
 				}
+				// console.log(res);
+				
 				this.orderStatus = res.data.result.orderStatus;
 				this.id = res.data.result.id;
 			},

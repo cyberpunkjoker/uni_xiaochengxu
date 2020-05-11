@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "车主车辆管理",
+  "usingComponents": {
+    "btn": "/pages/components/boxstyle/buttonstyle"
+  }
+}

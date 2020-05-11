@@ -104,11 +104,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"pages/components/boxstyle/infobox":1,"pages/components/boxstyle/buttonstyle":1,"pages/components/tabbar2":1,"pages/components/message":1,"pages/components/uploadMode":1,"components/uni-popup/uni-popup":1,"pages/components/pickerregion":1,"pages/components/timePicker":1,"components/uni-transition/uni-transition":1};
+/******/ 		var cssChunks = {"pages/components/boxstyle/infobox":1,"pages/components/boxstyle/buttonstyle":1,"pages/components/tabbar2":1,"pages/components/message":1,"pages/components/uploadMode":1,"components/uni-popup/uni-popup":1,"pages/components/pickerregion":1,"pages/components/timePicker":1,"pages/components/newpicker":1,"components/uni-transition/uni-transition":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"pages/components/boxstyle/infobox":"pages/components/boxstyle/infobox","pages/components/boxstyle/buttonstyle":"pages/components/boxstyle/buttonstyle","pages/components/tabbar2":"pages/components/tabbar2","pages/components/message":"pages/components/message","pages/components/uploadMode":"pages/components/uploadMode","components/uni-popup/uni-popup":"components/uni-popup/uni-popup","pages/components/pickerregion":"pages/components/pickerregion","pages/components/timePicker":"pages/components/timePicker","components/uni-transition/uni-transition":"components/uni-transition/uni-transition"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"pages/components/boxstyle/infobox":"pages/components/boxstyle/infobox","pages/components/boxstyle/buttonstyle":"pages/components/boxstyle/buttonstyle","pages/components/tabbar2":"pages/components/tabbar2","pages/components/message":"pages/components/message","pages/components/uploadMode":"pages/components/uploadMode","components/uni-popup/uni-popup":"components/uni-popup/uni-popup","pages/components/pickerregion":"pages/components/pickerregion","pages/components/timePicker":"pages/components/timePicker","pages/components/newpicker":"pages/components/newpicker","components/uni-transition/uni-transition":"components/uni-transition/uni-transition"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

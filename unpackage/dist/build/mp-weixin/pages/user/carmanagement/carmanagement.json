@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "司机车辆管理",
+  "usingComponents": {
+    "info-box": "/pages/components/boxstyle/infobox"
+  }
+}

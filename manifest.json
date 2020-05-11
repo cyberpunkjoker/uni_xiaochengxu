@@ -1,5 +1,5 @@
 {
-    "name" : "uni_project",
+    "name" : "四川顺程物流",
     "appid" : "",
     "description" : "",
     "versionName" : "1.0.0",
@@ -47,12 +47,15 @@
             "urlCheck" : false,
             "es6" : true,
             "postcss" : true,
-            "minified" : true
+            "minified" : false
         },
         "permission" : {
             "scope.userLocation" : {
                 "desc" : "你的位置信息将用于运输路程显示"
             }
         }
+    },
+    "mp-alipay" : {
+        "appid" : ""
     }
 }

@@ -33,7 +33,6 @@
 		},
 
 		methods: {
-
 			chooseImg(i) {
 				uni.chooseImage({
 					count: 3,
@@ -54,8 +53,8 @@
 						let that = this;
 						var uper = uni.uploadFile({
 							// 需要上传的地址
-							url: 'https://scwl.huicsy.com',
-							// url:"http://192.168.0.108:8001",
+							// url: 'https://scwl.huicsy.com/upload/picture',
+							url:"http://192.168.0.104:8001/upload/picture",
 							header: {
 								'Token': token,
 								'Content-Type': 'multipart/form-data',
@@ -69,6 +68,7 @@
 								const realPath = JSON.parse(res1.data).result
 								that.realPathList[i] = realPath
 								console.log(res1)
+								console.log(that.realPathList[i])
 							}
 						});
 

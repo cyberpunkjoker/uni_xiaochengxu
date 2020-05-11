@@ -305,6 +305,8 @@ __webpack_require__.r(__webpack_exports__);
                   }, 800);
 
                 }
+                // console.log(res);
+
                 this.orderStatus = res.data.result.orderStatus;
                 this.id = res.data.result.id;case 8:case "end":return _context.stop();}}}, _callee, this);}));function getStatus() {return _getStatus.apply(this, arguments);}return getStatus;}(),
 

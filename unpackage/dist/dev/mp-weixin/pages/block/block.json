@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "none",
+  "usingComponents": {
+    "dy-date-picker": "/pages/components/newpicker"
+  }
+}

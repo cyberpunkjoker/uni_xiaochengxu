@@ -116,7 +116,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../components/boxstyle/buttonstyle.vue */ 199));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../components/boxstyle/buttonstyle.vue */ 207));};var _default =
 
 
 
@@ -794,7 +794,7 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__(/*! ../../../common/itemcontent.css */ 75);
 __webpack_require__(/*! ../../../common/twolinelayout.css */ 131);
-var _carwarn = _interopRequireDefault(__webpack_require__(/*! ../carwarn.vue */ 132));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 92));};var tabBar = function tabBar() {return __webpack_require__.e(/*! import() | pages/components/tabbar2 */ "pages/components/tabbar2").then(__webpack_require__.bind(null, /*! ../../components/tabbar2.vue */ 206));};var _default =
+var _carwarn = _interopRequireDefault(__webpack_require__(/*! ../carwarn.vue */ 132));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 92));};var tabBar = function tabBar() {return __webpack_require__.e(/*! import() | pages/components/tabbar2 */ "pages/components/tabbar2").then(__webpack_require__.bind(null, /*! ../../components/tabbar2.vue */ 214));};var _default =
 
 {
   data: function data() {
@@ -822,10 +822,10 @@ var _carwarn = _interopRequireDefault(__webpack_require__(/*! ../carwarn.vue */ 
       doneListDetail: [],
       modifyArr: [],
       // 页面中长字符串的截取
-      strTwo: '',
-      strThree: '',
+      strTwo: '..',
+      strThree: '..',
       strFour: [],
-      strThreeCurrent: '',
+      strThreeCurrent: '..',
       detailCurrent: '',
       doneUserInfo: '',
       // 物料列表
@@ -854,7 +854,7 @@ var _carwarn = _interopRequireDefault(__webpack_require__(/*! ../carwarn.vue */ 
                 this.userInfo = res.data.result;
                 this.goodsList = res.data.result.materielDetails;
 
-                this.strThreeCurrent = this.userInfo.logisticsLocation.slice(0, 10);
+                this.strThreeCurrent = this.userInfo.logisticsLocation.slice(0, 6);
 
                 console.log(res);
                 console.log(this.userInfo);
@@ -932,15 +932,15 @@ var _carwarn = _interopRequireDefault(__webpack_require__(/*! ../carwarn.vue */ 
                 // 获取当前地址截取字符
                 if (this.current === 1) {
                   console.log(this.goOutList);
-                  this.strTwo = this.goOutList[0].destination.slice(0, 10);
+                  this.strTwo = this.goOutList[0].destination.slice(0, 6);
                   console.log(strTwo);
                 }
                 if (this.current === 2) {
-                  this.strThree = this.transitList[0].destination.slice(0, 10);
+                  this.strThree = this.transitList[0].destination.slice(0, 6);
                 }
                 if (this.current === 3) {
                   this.doneList.map(function (item, idx) {
-                    _this2.strFour.push(item.destination.slice(0, 10));
+                    _this2.strFour.push(item.destination.slice(0, 6));
                   });
                 }
 

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "编辑车辆信息",
+  "usingComponents": {
+    "info-box": "/pages/components/boxstyle/infobox",
+    "btn": "/pages/components/boxstyle/buttonstyle"
+  }
+}

@@ -58,11 +58,12 @@
 					method: "post"
 				}
 				const param = {
-					id: this.id,
+					id: Number(this.id),
 					imgs: this.imgPathList,
 					longitude: this.longitude,
 					latitude: this.latitude
 				}
+				console.log(param)
 				
 				if(this.imgPathList.length !== 0) {
 					const res = await this.$http.httpTokenRequest(opts, param);
