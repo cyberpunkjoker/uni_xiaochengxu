@@ -1703,8 +1703,8 @@ function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) { // const baseUrl = 'https://scwl.huicsy.com';
-var baseUrl = 'http://192.168.0.104:8001';
+/* WEBPACK VAR INJECTION */(function(uni) {var baseUrl = 'https://scwl.huicsy.com';
+// const baseUrl = 'http://192.168.0.104:8001';
 var httpRequest = function httpRequest(opts, data) {
   var httpDefaultOpts = {
     url: baseUrl + opts.url,

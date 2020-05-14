@@ -195,11 +195,16 @@ var _query = __webpack_require__(/*! ../../../utils/query.js */ 42);function _in
     submitInfo: function () {var _submitInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var params, info, opts, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 // 请求之前先判断一下
                 if (this.name.length === 0 && this.phone.length !== 11) {
-                  uni.showModal({
-                    content: "请输入姓名和手机号" });
+                  setTimeout(function () {
+                    uni.hideLoading({});
+                    uni.showModal({
+                      content: "请输入姓名和手机号" });
+
+                  }, 700);
 
                 }
 
+                uni.showLoading({});
                 params = {
                   carId: Number(this.id),
                   name: this.name,
@@ -211,19 +216,24 @@ var _query = __webpack_require__(/*! ../../../utils/query.js */ 42);function _in
 
                 opts = {
                   url: "/sc/driverMng/bindDriver" + info,
-                  method: "post" };_context.next = 7;return (
+                  method: "post" };_context.next = 8;return (
 
-                  this.$http.httpTokenRequest(opts));case 7:res = _context.sent;
+                  this.$http.httpTokenRequest(opts));case 8:res = _context.sent;
                 console.log(res);
 
                 if (res.data.code === 0) {
+                  uni.hideLoading({});
                   uni.reLaunch({
                     url: "/pages/home/home" });
 
-                }case 10:case "end":return _context.stop();}}}, _callee, this);}));function submitInfo() {return _submitInfo.apply(this, arguments);}return submitInfo;}(),
-
-
-
+                }
+                // else {
+                // 	uni.hideLoading({})
+                // 	uni.showModal({
+                // 		content: ""
+                // 	})
+                // }
+              case 11:case "end":return _context.stop();}}}, _callee, this);}));function submitInfo() {return _submitInfo.apply(this, arguments);}return submitInfo;}(),
 
     onLoad: function onLoad(options) {
       this.id = options.id;

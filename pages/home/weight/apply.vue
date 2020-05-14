@@ -130,41 +130,12 @@
 				}
 			},
 			
-			// showStatus2(data) {
-			// 	if (data) {
-			// 		this.$refs.popup3.close();
-			// 	}
-			// },
-			
 			changeTime(e) {
 				console.log(e)
 				this.arriveTime = e
 				console.log(e)
 			},
 			
-			// timeSelect(data) {
-			// 	console.log(data);
-			// 	let timeArr = [];
-			// 	data.map((item, index) => {
-			// 		timeArr.push(this.timeList[index][item]);
-			// 	})
-			// 	const mouth = timeArr[1] < 10 ? "0" + timeArr[1] : timeArr[1]
-			// 	const day = timeArr[2] < 10 ? "0" + timeArr[2] : timeArr[2]
-			// 	const hour = timeArr[3] < 10 ? "0" + timeArr[3] : timeArr[3]
-			// 	const fen = timeArr[4] < 10 ? "0" + timeArr[4] : timeArr[4]
-
-			// 	this.arriveTime = timeArr[0] + "-" + mouth + "-" + day + " " + hour + ":" + fen + ":00";
-			// 	this.isTure = this.compareDate(new Date(), this.arriveTime)
-
-			// 	if (this.isTure) {
-			// 		uni.showModal({
-			// 			content: "请输入大于当前时间的预计时间"
-			// 		})
-			// 	}
-
-			// 	this.$refs.popup3.close();
-			// },
-
 			// 比较时间大小
 			compareDate(date1, date2) {
 				var oDate1 = new Date(date1);
@@ -238,41 +209,10 @@
 				})
 			},
 
-			// initTime() {
-			// 	const myDate = new Date();
-			// 	// const year = myDate.getYear();        //获取当前年份(2位)
-			// 	const year = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
-			// 	const month = myDate.getMonth() + 1; //获取当前月份(0-11,0代表1月)
-			// 	const date = myDate.getDate(); //获取当前日(1-31)
-			// 	// myDate.getTime();        //获取当前时间(从1970.1.1开始的毫秒数)
-			// 	const hour = myDate.getHours(); //获取当前小时数(0-23)
-			// 	const minute = myDate.getMinutes(); //获取当前分钟数(0-59)
-
-			// 	// this.timeList = [year,month,date,hour,minute]
-			// 	// 添加年份列表
-			// 	// this.timeList[1] =
-			// 	new Array(10).fill(year).map((item, i) => {
-			// 		this.timeList[0].push(item - 5 + i);
-			// 	})
-			// 	new Array(12).fill('').map((item, i) => {
-			// 		this.timeList[1].push(i + 1);
-			// 	})
-			// 	new Array(31).fill('').map((item, i) => {
-			// 		this.timeList[2].push(i + 1);
-			// 	})
-			// 	new Array(24).fill('').map((item, i) => {
-			// 		this.timeList[3].push(i + 1);
-			// 	})
-			// 	new Array(60).fill('').map((item, i) => {
-			// 		this.timeList[4].push(i + 1);
-			// 	})
-
-			// 	console.log(this.timeList);
-			// },
-
 			// 提交并判断是否跳转
 			async submitApply() {
 				// 提交信息
+				uni.showLoading({});
 				if (this.isTure) {
 					uni.showModal({
 						content: "请输入大于当前时间的预计时间"
@@ -297,6 +237,7 @@
 						
 						console.log(res);
 						if (res.data.code === 0) {
+							uni.hideLoading({});
 							this.shouquan();
 							uni.navigateBack({
 								delta: 1
@@ -309,9 +250,12 @@
 							})
 						}
 					} else {
-						uni.showModal({
-							content: "请填写内容"
-						})
+						setTimeout(()=>{
+							uni.hideLoading({});
+							uni.showModal({
+								content: "请填写内容"
+							})
+						},700)
 					}
 				}
 
@@ -320,7 +264,6 @@
 
 		onLoad() {
 			this.getCarInfo();
-			this.initTime()
 			console.log(this.timeList)
 		},
 

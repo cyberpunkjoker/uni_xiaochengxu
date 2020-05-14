@@ -196,6 +196,7 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     submitMessage: function () {var _submitMessage = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var opts, param, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                uni.showLoading({});
                 opts = {
                   url: "/personal/driver/modReceiptImg",
                   method: "post" };
@@ -208,23 +209,30 @@ __webpack_require__.r(__webpack_exports__);
 
                 console.log(param);if (!(
 
-                this.imgPathList.length !== 0)) {_context.next = 11;break;}_context.next = 6;return (
-                  this.$http.httpTokenRequest(opts, param));case 6:res = _context.sent;
+                this.imgPathList.length !== 0)) {_context.next = 12;break;}_context.next = 7;return (
+                  this.$http.httpTokenRequest(opts, param));case 7:res = _context.sent;
                 console.log(res);
                 if (res.data.code === 0) {
+                  uni.hideLoading({});
                   uni.navigateBack({
                     delta: 1 });
 
                 } else {
+                  setTimeout(function () {
+                    uni.hideLoading({});
+                    uni.showModal({
+                      content: res.data.desc });
+
+                  }, 700);
+                }_context.next = 13;break;case 12:
+
+
+                setTimeout(function () {
+                  uni.hideLoading({});
                   uni.showModal({
-                    content: res.data.desc });
+                    content: "请至少上传一张图片" });
 
-                }_context.next = 12;break;case 11:
-
-
-                uni.showModal({
-                  content: "请至少上传一张图片" });case 12:case "end":return _context.stop();}}}, _callee, this);}));function submitMessage() {return _submitMessage.apply(this, arguments);}return submitMessage;}(),
-
+                }, 700);case 13:case "end":return _context.stop();}}}, _callee, this);}));function submitMessage() {return _submitMessage.apply(this, arguments);}return submitMessage;}(),
 
 
 

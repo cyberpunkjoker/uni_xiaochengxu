@@ -253,39 +253,44 @@ __webpack_require__.r(__webpack_exports__);
                 isTrue = this.isLicensePlate(this.carNum);if (
                 isTrue) {_context.next = 5;break;}
                 uni.showModal({
-                  content: "请输入正确车牌号" });_context.next = 13;break;case 5:
+                  content: "请输入正确车牌号" });_context.next = 14;break;case 5:
 
 
+                uni.showLoading({});
                 //判断length的值
                 length = this.longCurrent === 4 && Number(this.length) || this.upLength[this.longCurrent];
-
                 opts = {
                   url: '/sc/carMng/addCar',
                   method: 'post' };
-
 
                 param = {
                   carNo: this.carNum,
                   carType: this.carCurrent + 1,
                   companyName: this.companyName,
-                  containerLength: length
+                  containerLength: length };_context.next = 11;return (
 
-
-                  // console.log(param)
-                };_context.next = 10;return this.$http.httpTokenRequest(opts, param);case 10:res = _context.sent;
-
+                  this.$http.httpTokenRequest(opts, param));case 11:res = _context.sent;
                 // console.log(res)
                 // console.log(res.data.code)
 
-                res.data.code === 1 &&
-                uni.showModal({
-                  content: res.data.desc });
+                if (res.data.code === 1) {
+                  setTimeout(function () {
+                    uni.hideLoading({});
+                    uni.showModal({
+                      content: res.data.desc });
+
+                  }, 700);
+                }
 
 
-                res.data.code === 0 &&
-                uni.reLaunch({
-                  url: "/pages/home/home" });case 13:case "end":return _context.stop();}}}, _callee, this);}));function addCarInfo() {return _addCarInfo.apply(this, arguments);}return addCarInfo;}() },
+                if (res.data.code === 0) {
+                  setTimeout(function () {
+                    uni.hideLoading({});
+                    uni.reLaunch({
+                      url: "/pages/home/home" });
 
+                  }, 700);
+                }case 14:case "end":return _context.stop();}}}, _callee, this);}));function addCarInfo() {return _addCarInfo.apply(this, arguments);}return addCarInfo;}() },
 
 
 

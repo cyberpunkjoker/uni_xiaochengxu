@@ -10,8 +10,9 @@
 					<text class="textcon">车牌号</text>
 					<view class="uni-form-item uni-column fatherbox">
 						<input disabled="disabled" class="uni-input" name="carnum" v-model="carNum" placeholder="请输入车牌号" />
-<!-- 						<image src="../../../static/img/clear.png" mode="" @tap="clearCarNo"></image>
- -->					</view>
+						<!-- 						<image src="../../../static/img/clear.png" mode="" @tap="clearCarNo"></image>
+ -->
+					</view>
 
 					<text class="textcon">车辆所属挂靠公司全称</text>
 					<view class="uni-form-item uni-column fatherbox">
@@ -34,7 +35,8 @@
 				<view class="carmode">
 					<text class="textcon">货箱长度</text>
 					<view class="modeitem">
-						<view disabled="disabled" v-for="(item, idx) in carList" :key="item" :class="idx===longCurrent ? 'itemcurrent item' : 'item' " @tap="chooseLong(idx)">
+						<view disabled="disabled" v-for="(item, idx) in carList" :key="item" :class="idx===longCurrent ? 'itemcurrent item' : 'item' "
+						 @tap="chooseLong(idx)">
 							{{item}}
 							<image v-if="idx===longCurrent" src="../../../static/img/selected.png" mode=""></image>
 						</view>
@@ -56,7 +58,7 @@
 
 <script>
 	import infoBox from "../../components/boxstyle/infobox.vue"
-	
+
 	export default {
 		data() {
 			return {
@@ -77,11 +79,6 @@
 		},
 
 		methods: {
-			// 表单清空
-			// clearCarNo() {
-			// 	this.carNum = ''
-			// },
-
 			clearCompanyName() {
 				this.companyName = ''
 			},
@@ -116,6 +113,7 @@
 
 			// 提交修改信息
 			async modifyInfo() {
+				uni.showLoading({});
 				let isTure = this.isLicensePlate(this.carNum)
 				if (isTure) {
 					const opts = {
@@ -132,25 +130,33 @@
 						companyName: this.companyName,
 						containerLength: length
 					};
-					
+
 					console.log(params)
 					const res = await this.$http.httpTokenRequest(opts, params);
 					console.log(res)
-					
-					if(res.data.code === 0) {
+
+					if (res.data.code === 0) {
+						uni.hideLoading({});
 						uni.navigateTo({
 							url: "/pages/user/user"
 						})
-					}else {
-						uni.showModal({
+					} else {
+						setTimeout(() => {
+							uni.hideLoading({});
+							uni.showModal({
 								content: res.data.desc,
 								showCancel: false
 							})
+						}, 700)
 					}
 				} else {
-					uni.showModal({
-						content: "请输入正确车牌号"
-					})
+					setTimeout(() => {
+						uni.hideLoading({});
+						uni.showModal({
+							content: "请输入正确车牌号"
+						})
+					}, 700)
+
 				}
 
 				if (this.longCurrent === 4 && Number(this.length) < 9) {
@@ -168,9 +174,9 @@
 					// }
 					// 保证长度大于9
 					// else {
-						// uni.navigateTo({
-						// 	url: "/pages/user/carower/managementcar"
-						// })
+					// uni.navigateTo({
+					// 	url: "/pages/user/carower/managementcar"
+					// })
 
 					// }
 				}

@@ -192,6 +192,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 {
   data: function data() {
     return {
@@ -212,11 +214,6 @@ __webpack_require__.r(__webpack_exports__);
   },
 
   methods: {
-    // 表单清空
-    // clearCarNo() {
-    // 	this.carNum = ''
-    // },
-
     clearCompanyName: function clearCompanyName() {
       this.companyName = '';
     },
@@ -251,8 +248,9 @@ __webpack_require__.r(__webpack_exports__);
 
     // 提交修改信息
     modifyInfo: function () {var _modifyInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var isTure, opts, length, params, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                uni.showLoading({});
                 isTure = this.isLicensePlate(this.carNum);if (!
-                isTure) {_context.next = 13;break;}
+                isTure) {_context.next = 14;break;}
                 opts = {
                   url: '/sc/carMng/modCar',
                   method: 'post' };
@@ -268,23 +266,31 @@ __webpack_require__.r(__webpack_exports__);
                   containerLength: length };
 
 
-                console.log(params);_context.next = 8;return (
-                  this.$http.httpTokenRequest(opts, params));case 8:res = _context.sent;
+                console.log(params);_context.next = 9;return (
+                  this.$http.httpTokenRequest(opts, params));case 9:res = _context.sent;
                 console.log(res);
 
                 if (res.data.code === 0) {
+                  uni.hideLoading({});
                   uni.navigateTo({
                     url: "/pages/user/user" });
 
                 } else {
+                  setTimeout(function () {
+                    uni.hideLoading({});
+                    uni.showModal({
+                      content: res.data.desc,
+                      showCancel: false });
+
+                  }, 700);
+                }_context.next = 15;break;case 14:
+
+                setTimeout(function () {
+                  uni.hideLoading({});
                   uni.showModal({
-                    content: res.data.desc,
-                    showCancel: false });
+                    content: "请输入正确车牌号" });
 
-                }_context.next = 14;break;case 13:
-
-                uni.showModal({
-                  content: "请输入正确车牌号" });case 14:
+                }, 700);case 15:
 
 
 
@@ -308,7 +314,7 @@ __webpack_require__.r(__webpack_exports__);
                   // })
 
                   // }
-                }case 15:case "end":return _context.stop();}}}, _callee, this);}));function modifyInfo() {return _modifyInfo.apply(this, arguments);}return modifyInfo;}() },
+                }case 16:case "end":return _context.stop();}}}, _callee, this);}));function modifyInfo() {return _modifyInfo.apply(this, arguments);}return modifyInfo;}() },
 
 
 

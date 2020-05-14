@@ -320,7 +320,7 @@ __webpack_require__(/*! ../../../common/threecols.css */ 180);function _interopR
 
 
     submitBtn: function () {var _submitBtn = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _this = this;var copyList, opts, params, istrue, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
-                // let copyList = new Array(this.goodsDetailList.length).fill({});
+                uni.showLoading({});
                 copyList = this.goodsDetailList.concat();
 
                 copyList.map(function (i, idx) {
@@ -330,7 +330,7 @@ __webpack_require__(/*! ../../../common/threecols.css */ 180);function _interopR
                   copyList[idx].materialWeight = _this.valueArr[idx];
                 });
 
-                console.log(copyList);
+                // console.log(copyList)
 
                 opts = {
                   url: '/personal/driver/modTaskAppRecord',
@@ -353,15 +353,20 @@ __webpack_require__(/*! ../../../common/threecols.css */ 180);function _interopR
 
                 console.log(istrue);if (!
                 istrue) {_context2.next = 14;break;}
-                uni.showModal({
-                  content: "请填写物料重量" });_context2.next = 18;break;case 14:_context2.next = 16;return (
+                setTimeout(function () {
+                  uni.hideLoading({});
+                  uni.showModal({
+                    content: "请填写物料重量" });
 
+                }, 700);_context2.next = 18;break;case 14:_context2.next = 16;return (
 
                   this.$http.httpTokenRequest(opts, params));case 16:res = _context2.sent;
-                res.data.code === 0 &&
-                uni.navigateBack({
-                  delta: 1 });case 18:case "end":return _context2.stop();}}}, _callee2, this);}));function submitBtn() {return _submitBtn.apply(this, arguments);}return submitBtn;}() },
+                if (res.data.code === 0) {
+                  uni.hideLoading({});
+                  uni.navigateBack({
+                    delta: 1 });
 
+                }case 18:case "end":return _context2.stop();}}}, _callee2, this);}));function submitBtn() {return _submitBtn.apply(this, arguments);}return submitBtn;}() },
 
 
 

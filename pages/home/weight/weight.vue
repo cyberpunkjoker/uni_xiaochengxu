@@ -173,7 +173,7 @@
 			},
 
 			async submitBtn() {
-				// let copyList = new Array(this.goodsDetailList.length).fill({});
+				uni.showLoading({});
 				let copyList = this.goodsDetailList.concat();
 
 				copyList.map((i, idx) => {
@@ -183,7 +183,7 @@
 					copyList[idx].materialWeight = this.valueArr[idx];
 				})
 
-				console.log(copyList)
+				// console.log(copyList)
 
 				const opts = {
 					url: '/personal/driver/modTaskAppRecord',
@@ -206,15 +206,20 @@
 
 				console.log(istrue);
 				if (istrue) {
-					uni.showModal({
-						content: "请填写物料重量"
-					})
+					setTimeout(()=>{
+						uni.hideLoading({})
+						uni.showModal({
+							content: "请填写物料重量"
+						})
+					},700)
 				} else {
 					const res = await this.$http.httpTokenRequest(opts, params);
-					res.data.code === 0 &&
+					if (res.data.code === 0) {
+						uni.hideLoading({});
 						uni.navigateBack({
 							delta: 1
 						})
+					}
 				}
 			}
 		},

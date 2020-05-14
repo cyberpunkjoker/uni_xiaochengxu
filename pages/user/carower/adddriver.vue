@@ -49,11 +49,16 @@
 			async submitInfo() {
 				// 请求之前先判断一下
 				if (this.name.length === 0 && this.phone.length !== 11) {
-					uni.showModal({
-						content: "请输入姓名和手机号"
-					})
+					setTimeout(()=>{
+						uni.hideLoading({})
+						uni.showModal({
+							content: "请输入姓名和手机号"
+						})
+					},700)
+					
 				}
-
+				
+				uni.showLoading({});
 				const params = {
 					carId: Number(this.id),
 					name: this.name,
@@ -71,12 +76,17 @@
 				console.log(res)
 				
 				if (res.data.code === 0) {
+					uni.hideLoading({})
 					uni.reLaunch({
 						url: "/pages/home/home"
 					})
 				}
-
-
+				// else {
+				// 	uni.hideLoading({})
+				// 	uni.showModal({
+				// 		content: ""
+				// 	})
+				// }
 			},
 
 			onLoad(options) {

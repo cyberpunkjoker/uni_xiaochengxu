@@ -189,7 +189,6 @@ var _query = __webpack_require__(/*! ../../utils/query.js */ 42);function _inter
     // 页面跳转表单验证部分
     toStatusPage: function () {var _toStatusPage = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var params, openCode, statusCode, opts, param, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 uni.showLoading({});if (!
-
                 this.status) {_context.next = 15;break;}
                 params = {
                   userPhone: this.userPhone,
@@ -221,9 +220,12 @@ var _query = __webpack_require__(/*! ../../utils/query.js */ 42);function _inter
 
 
                 if (res.data.code === 1) {
-                  uni.showModal({
-                    content: res.data.desc });
+                  setTimeout(function () {
+                    uni.hideLoading();
+                    uni.showModal({
+                      content: res.data.desc });
 
+                  }, 700);
                 }
                 if (res.data.code === 0) {
                   uni.hideLoading({});

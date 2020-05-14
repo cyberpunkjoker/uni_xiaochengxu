@@ -61,6 +61,7 @@ import uploadMode from '../../components/uploadMode.vue'
 			},
 			
 			async submitMessage() {
+				uni.showLoading({});
 				const opts = {
 					url: "/personal/driver/modReceiptImg",
 					method: "post"
@@ -76,20 +77,27 @@ import uploadMode from '../../components/uploadMode.vue'
 				if(this.imgPathList.length !== 0) {
 					const res = await this.$http.httpTokenRequest(opts, param);
 					console.log(res);
-					if (res.data.code === 0){
+					if (res.data.code === 0) {
+						uni.hideLoading({});
 						uni.navigateBack({
 							delta: 1
 						})
 					}else {
-						uni.showModal({
-							content: res.data.desc
-						})
+						setTimeout(() => {
+							uni.hideLoading({});
+							uni.showModal({
+								content: res.data.desc
+							})
+						},700)
 					}
 						
 				}else {
-					uni.showModal({
-						content: "请至少上传一张图片"
-					})
+					setTimeout(() => {
+						uni.hideLoading({});
+						uni.showModal({
+							content: "请至少上传一张图片"
+						})
+					},700)
 				}
 			},
 			

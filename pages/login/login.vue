@@ -53,8 +53,7 @@
 
 			// 页面跳转表单验证部分
 			async toStatusPage() {
-				uni.showLoading({
-				})
+				uni.showLoading({})
 				if (this.status) {
 					const params = {
 						userPhone: this.userPhone,
@@ -86,9 +85,12 @@
 					})
 				
 					if (res.data.code === 1) {
-						uni.showModal({
-							content: res.data.desc
-						})
+						setTimeout(()=>{
+							uni.hideLoading();
+							uni.showModal({
+								content: res.data.desc
+							})
+						},700)
 					}
 					if (res.data.code === 0) {
 						uni.hideLoading({})

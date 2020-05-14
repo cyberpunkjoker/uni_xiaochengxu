@@ -121,36 +121,41 @@
 						content: "请输入正确车牌号"
 					})
 				} else {
+					uni.showLoading({});
 					//判断length的值
 					let length = (this.longCurrent === 4 && Number(this.length)) || this.upLength[this.longCurrent]
-
 					const opts = {
 						url: '/sc/carMng/addCar',
 						method: 'post'
 					}
-
 					const param = {
 						carNo: this.carNum,
 						carType: this.carCurrent + 1,
 						companyName: this.companyName,
 						containerLength: length
 					}
-
-					// console.log(param)
 					const res = await this.$http.httpTokenRequest(opts, param);
-
 					// console.log(res)
 					// console.log(res.data.code)
 
-					res.data.code === 1 &&
-						uni.showModal({
-							content: res.data.desc
-						})
-
-					res.data.code === 0 &&
-						uni.reLaunch({
-							url: "/pages/home/home"
-						})
+					if (res.data.code === 1) {
+						setTimeout(() => {
+							uni.hideLoading({});
+							uni.showModal({
+								content: res.data.desc
+							})
+						}, 700)
+					}
+					
+					
+					if (res.data.code === 0) {
+						setTimeout(() => {
+							uni.hideLoading({});
+							uni.reLaunch({
+								url: "/pages/home/home"
+							})
+						}, 700)
+					} 
 				}
 			}
 		},

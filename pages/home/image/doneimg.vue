@@ -53,6 +53,7 @@
 			},
 
 			async submitMessage() {
+				uni.showLoading({});
 				const opts = {
 					url: "/personal/driver/modArriveImg",
 					method: "post"
@@ -64,21 +65,26 @@
 					latitude: this.latitude
 				}
 				console.log(param)
-				
-				if(this.imgPathList.length !== 0) {
+
+				if (this.imgPathList.length !== 0) {
 					const res = await this.$http.httpTokenRequest(opts, param);
 					console.log(res);
-					res.data.code === 0 &&
+					if (res.data.code === 0) {
+						uni.hideLoading({});
 						uni.navigateBack({
 							delta: 1
 						})
-				}else {
-					uni.showModal({
-						content: "请至少上传一张图片"
-					})
+					}
+				} else {
+					setTimeout(() => {
+						uni.hideLoading({});
+						uni.showModal({
+							content: "请至少上传一张图片"
+						})
+					},700)
 				}
-				
-				
+
+
 			},
 
 			getLocation() {

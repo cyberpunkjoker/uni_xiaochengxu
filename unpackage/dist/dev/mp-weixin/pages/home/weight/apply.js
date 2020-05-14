@@ -268,40 +268,11 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
       }
     },
 
-    // showStatus2(data) {
-    // 	if (data) {
-    // 		this.$refs.popup3.close();
-    // 	}
-    // },
-
     changeTime: function changeTime(e) {
       console.log(e);
       this.arriveTime = e;
       console.log(e);
     },
-
-    // timeSelect(data) {
-    // 	console.log(data);
-    // 	let timeArr = [];
-    // 	data.map((item, index) => {
-    // 		timeArr.push(this.timeList[index][item]);
-    // 	})
-    // 	const mouth = timeArr[1] < 10 ? "0" + timeArr[1] : timeArr[1]
-    // 	const day = timeArr[2] < 10 ? "0" + timeArr[2] : timeArr[2]
-    // 	const hour = timeArr[3] < 10 ? "0" + timeArr[3] : timeArr[3]
-    // 	const fen = timeArr[4] < 10 ? "0" + timeArr[4] : timeArr[4]
-
-    // 	this.arriveTime = timeArr[0] + "-" + mouth + "-" + day + " " + hour + ":" + fen + ":00";
-    // 	this.isTure = this.compareDate(new Date(), this.arriveTime)
-
-    // 	if (this.isTure) {
-    // 		uni.showModal({
-    // 			content: "请输入大于当前时间的预计时间"
-    // 		})
-    // 	}
-
-    // 	this.$refs.popup3.close();
-    // },
 
     // 比较时间大小
     compareDate: function compareDate(date1, date2) {
@@ -376,47 +347,16 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
                 });case 9:case "end":return _context2.stop();}}}, _callee2, this);}));function getPlanInfo() {return _getPlanInfo.apply(this, arguments);}return getPlanInfo;}(),
 
 
-    // initTime() {
-    // 	const myDate = new Date();
-    // 	// const year = myDate.getYear();        //获取当前年份(2位)
-    // 	const year = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
-    // 	const month = myDate.getMonth() + 1; //获取当前月份(0-11,0代表1月)
-    // 	const date = myDate.getDate(); //获取当前日(1-31)
-    // 	// myDate.getTime();        //获取当前时间(从1970.1.1开始的毫秒数)
-    // 	const hour = myDate.getHours(); //获取当前小时数(0-23)
-    // 	const minute = myDate.getMinutes(); //获取当前分钟数(0-59)
-
-    // 	// this.timeList = [year,month,date,hour,minute]
-    // 	// 添加年份列表
-    // 	// this.timeList[1] =
-    // 	new Array(10).fill(year).map((item, i) => {
-    // 		this.timeList[0].push(item - 5 + i);
-    // 	})
-    // 	new Array(12).fill('').map((item, i) => {
-    // 		this.timeList[1].push(i + 1);
-    // 	})
-    // 	new Array(31).fill('').map((item, i) => {
-    // 		this.timeList[2].push(i + 1);
-    // 	})
-    // 	new Array(24).fill('').map((item, i) => {
-    // 		this.timeList[3].push(i + 1);
-    // 	})
-    // 	new Array(60).fill('').map((item, i) => {
-    // 		this.timeList[4].push(i + 1);
-    // 	})
-
-    // 	console.log(this.timeList);
-    // },
-
     // 提交并判断是否跳转
-    submitApply: function () {var _submitApply = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var params, opts, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:if (!
-
-                this.isTure) {_context3.next = 4;break;}
+    submitApply: function () {var _submitApply = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var params, opts, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+                // 提交信息
+                uni.showLoading({});if (!
+                this.isTure) {_context3.next = 5;break;}
                 uni.showModal({
-                  content: "请输入大于当前时间的预计时间" });_context3.next = 17;break;case 4:if (!(
+                  content: "请输入大于当前时间的预计时间" });_context3.next = 18;break;case 5:if (!(
 
 
-                this.planList[this.current] !== undefined && this.carList[this.current] !== undefined)) {_context3.next = 16;break;}
+                this.planList[this.current] !== undefined && this.carList[this.current] !== undefined)) {_context3.next = 17;break;}
                 params = {
                   carId: this.carIdList[this.current],
                   carNo: this.carList[this.current],
@@ -430,11 +370,12 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
                   method: "post" };
 
 
-                console.log(this.arriveTime);_context3.next = 10;return (
-                  this.$http.httpTokenRequest(opts, params));case 10:res = _context3.sent;
+                console.log(this.arriveTime);_context3.next = 11;return (
+                  this.$http.httpTokenRequest(opts, params));case 11:res = _context3.sent;
 
                 console.log(res);
                 if (res.data.code === 0) {
+                  uni.hideLoading({});
                   this.shouquan();
                   uni.navigateBack({
                     delta: 1 });
@@ -445,11 +386,14 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
                     title: res.data.desc,
                     icon: "none" });
 
-                }_context3.next = 17;break;case 16:
+                }_context3.next = 18;break;case 17:
 
-                uni.showModal({
-                  content: "请填写内容" });case 17:case "end":return _context3.stop();}}}, _callee3, this);}));function submitApply() {return _submitApply.apply(this, arguments);}return submitApply;}() },
+                setTimeout(function () {
+                  uni.hideLoading({});
+                  uni.showModal({
+                    content: "请填写内容" });
 
+                }, 700);case 18:case "end":return _context3.stop();}}}, _callee3, this);}));function submitApply() {return _submitApply.apply(this, arguments);}return submitApply;}() },
 
 
 
@@ -458,7 +402,6 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
 
   onLoad: function onLoad() {
     this.getCarInfo();
-    this.initTime();
     console.log(this.timeList);
   },
 
