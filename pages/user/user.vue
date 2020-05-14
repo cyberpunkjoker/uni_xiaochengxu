@@ -99,7 +99,7 @@
 							data: ""
 						}) &&
 						uni.reLaunch({
-							url: "/pages/login/login"
+							url: "/pages/login/status"
 						}) && this.toExit();
 				},
 

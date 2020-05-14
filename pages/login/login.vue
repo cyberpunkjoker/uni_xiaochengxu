@@ -32,38 +32,85 @@
 </template>
 
 <script>
-	import { parseQueryString } from "../../utils/query.js"
+	import {
+		parseQueryString
+	} from "../../utils/query.js"
 
 	export default {
 		data() {
 			return {
 				userPhone: "",
-				code: ""
+				code: "",
+				isture: "disabled",
+				status: false
 			}
 		},
 
 		methods: {
 			isTruePhoneNum(str) {
-				return /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/ .test(str);
+				return /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/.test(str);
 			},
 
 			// 页面跳转表单验证部分
-			toStatusPage() {
-				const params = {
-					userPhone: this.userPhone,
-					code: this.code
-				}
-				const info = parseQueryString(params)
-
-				if(this.userPhone.length === 11 && this.code.length === 6) {
-					uni.navigateTo({
-						url: '/pages/login/status' + info
-					});
-				} else {
-					uni.showModal({
-						title: "请输入6位验证码"
+			async toStatusPage() {
+				uni.showLoading({
+				})
+				if (this.status) {
+					const params = {
+						userPhone: this.userPhone,
+						code: this.code
+					}
+					const openCode = uni.getStorageSync('USER_OPENCODE');
+				
+					const statusCode = uni.getStorageSync('USER_STATUS');
+				
+					const opts = {
+						url: "/sc/user/login",
+						method: "post"
+					}
+					const param = {
+						phone: this.userPhone,
+						code: this.code,
+						openId: openCode,
+						identityEnum: statusCode
+					}
+				
+					console.log(param);
+				
+					const res = await this.$http.httpRequest(opts, param);
+					console.log(res)
+				
+					uni.setStorage({
+						key: "USER_TOKEN",
+						data: res.data.result,
 					})
+				
+					if (res.data.code === 1) {
+						uni.showModal({
+							content: res.data.desc
+						})
+					}
+					if (res.data.code === 0) {
+						uni.hideLoading({})
+						if (statusCode === "CONSIGNEE") {
+							uni.reLaunch({
+								url: '/pages/user/user'
+							})
+						} else {
+							uni.reLaunch({
+								url: '/pages/home/home'
+							})
+						}
+					}
+				
+				
 				}
+				// else{
+				// 	uni.showToast({
+				// 		title: "请填写内容",
+				// 		icon: "none"
+				// 	})
+				// }
 			},
 
 			clearText() {
@@ -72,30 +119,35 @@
 
 			async sendCode() {
 				const isTure = this.isTruePhoneNum(this.userPhone);
-				if(!isTure) {
+				if (!isTure) {
 					uni.showModal({
-						content:"请输入正确的手机号码"
+						content: "请输入正确的手机号码"
 					})
 				}
 				const opts = {
 					url: '/sc/sms/send',
 					method: 'post'
 				};
-				
+
 				let params = {
 					phone: this.userPhone,
 					smsTypeEnum: "LOGIN_SMS"
 				};
-				
+
 				const res = await this.$http.httpRequest(opts, params);
 				console.log(res);
+
+				uni.showLoading({})
+				setTimeout(() => {
+					uni.hideLoading({});
+					this.status = true
+				}, 2000)
+
 				this.code = res.data.result;
 			},
 		},
-		
-		onLoad() {
-			// this.shouquan();
-		}
+
+		onLoad() {}
 
 	}
 </script>

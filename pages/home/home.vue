@@ -82,18 +82,15 @@
 				// 获取经纬度
 				longitude: '',
 				latitude: ""
-
 			}
 		},
 
 		methods: {
 			// 页面跳转部分
 			toApply() {
+				this.getStatus()
 				if (this.orderStatus !== '') {
-					uni.showToast({
-						title: "请按顺序填写流程",
-						icon: "none"
-					})
+					this.infoToShow()
 				}
 				this.orderStatus === '' &&
 					uni.navigateTo({
@@ -101,11 +98,9 @@
 					})
 			},
 			toWeight() {
+				this.getStatus()
 				if (this.orderStatus !== 1) {
-					uni.showToast({
-						title: "请按顺序填写流程",
-						icon: "none"
-					})
+					this.infoToShow()
 				}
 				this.orderStatus === 1 &&
 					uni.navigateTo({
@@ -113,11 +108,9 @@
 					})
 			},
 			toDone() {
+				this.getStatus()
 				if (this.orderStatus !== 2) {
-					uni.showToast({
-						title: "请按顺序填写流程",
-						icon: "none"
-					})
+					this.infoToShow()
 				}
 				this.orderStatus === 2 &&
 					uni.navigateTo({
@@ -125,11 +118,9 @@
 					})
 			},
 			toDownSign() {
+				this.getStatus()
 				if (this.orderStatus !== 3) {
-					uni.showToast({
-						title: "请按顺序填写流程",
-						icon: "none"
-					})
+					this.infoToShow()
 				}
 				this.orderStatus === 3 &&
 					uni.navigateTo({
@@ -137,11 +128,9 @@
 					})
 			},
 			toUpload() {
+				this.getStatus()
 				if (this.orderStatus !== 4) {
-					uni.showToast({
-						title: "请按顺序填写流程",
-						icon: "none"
-					})
+					this.infoToShow()
 				}
 				this.orderStatus === 4 &&
 					uni.navigateTo({
@@ -165,21 +154,39 @@
 					})
 					setTimeout(() => {
 						uni.reLaunch({
-							url: "/pages/login/login"
+							url: "/pages/login/status"
 						})
 					}, 800)
 
 				}
-				// console.log(res);
-				
-				this.orderStatus = res.data.result.orderStatus;
+				if (res.data.code === 1) {
+					this.orderStatus = ''
+				} else {
+					this.orderStatus = res.data.result.orderStatus;
+				}
 				this.id = res.data.result.id;
 			},
+
+			// 提示内容
+			infoToShow() {
+				let content = '';
+				if (this.orderStatus === "") content = "请填写运单申请页面";
+				if (this.orderStatus === 1) content = "请填写物料重量页面";
+				if (this.orderStatus === 2) content = "请填写到货打卡页面";
+				if (this.orderStatus === 3) content = "请填写开始卸货打卡页面";
+				if (this.orderStatus === 4) content = "请填写上传签收单页面";
+
+				uni.showToast({
+					title: content,
+					icon: "none"
+				})
+			},
+
 			// 获取当前的身份状态
 			statusOfMan() {
 				const status = uni.getStorageSync("USER_STATUS");
 				console.log(status);
-				if(status === "CONSIGNEE") {
+				if (status === "CONSIGNEE") {
 					uni.reLaunch({
 						url: "/pages/user/user"
 					})
@@ -189,7 +196,6 @@
 					})
 				}
 			},
-
 			// 上传身份信息
 			async subUserInfo() {
 				const info = this.longitude + "," + this.latitude;
@@ -202,7 +208,7 @@
 					location: info
 				}
 				console.log(params)
-				const res = await this.$http.httpTokenRequest(opts,params);
+				const res = await this.$http.httpTokenRequest(opts, params);
 				console.log(res);
 
 			},
@@ -226,13 +232,17 @@
 		},
 
 		onShow() {
+			this.getStatus();
+			this.getLocation();
+		},
+
+		onLoad() {
 			this.statusOfMan();
-			setTimeout(()=>{
+			setTimeout(() => {
 				this.subUserInfo();
 				this.getStatus();
 				this.subUserInfo();
-			},500)
-			this.getLocation();
+			}, 500)
 		},
 	}
 </script>

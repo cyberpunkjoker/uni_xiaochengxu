@@ -67,7 +67,7 @@ import uploadMode from '../../components/uploadMode.vue'
 				}
 				const param = {
 					id: Number(this.id),
-					imgs: this.imgPathList,
+					receiptImg: this.imgPathList,
 					arriveLateReason: this.message,
 					disburdenLateReason: this.message2
 				}
@@ -76,10 +76,16 @@ import uploadMode from '../../components/uploadMode.vue'
 				if(this.imgPathList.length !== 0) {
 					const res = await this.$http.httpTokenRequest(opts, param);
 					console.log(res);
-					res.data.code === 0 &&
+					if (res.data.code === 0){
 						uni.navigateBack({
 							delta: 1
 						})
+					}else {
+						uni.showModal({
+							content: res.data.desc
+						})
+					}
+						
 				}else {
 					uni.showModal({
 						content: "请至少上传一张图片"

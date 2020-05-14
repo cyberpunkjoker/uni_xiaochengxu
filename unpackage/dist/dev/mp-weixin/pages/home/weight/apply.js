@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   "uni-popup": () =>
-    __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 235))
+    __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 233))
 }
 var render = function() {
   var _vm = this
@@ -193,7 +193,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-__webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 92));};var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 235));};var pickerRegion = function pickerRegion() {return __webpack_require__.e(/*! import() | pages/components/pickerregion */ "pages/components/pickerregion").then(__webpack_require__.bind(null, /*! ../../components/pickerregion.vue */ 242));};var timePicker = function timePicker() {return __webpack_require__.e(/*! import() | pages/components/timePicker */ "pages/components/timePicker").then(__webpack_require__.bind(null, /*! ../../components/timePicker.vue */ 249));};var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/buttonstyle.vue */ 207));};var _default =
+
+
+
+
+
+
+
+
+__webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var infoBox = function infoBox() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/infobox */ "pages/components/boxstyle/infobox").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/infobox.vue */ 92));};var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 233));};var pickerRegion = function pickerRegion() {return __webpack_require__.e(/*! import() | pages/components/pickerregion */ "pages/components/pickerregion").then(__webpack_require__.bind(null, /*! ../../components/pickerregion.vue */ 240));};var timePicker = function timePicker() {return __webpack_require__.e(/*! import() | pages/components/timePicker */ "pages/components/timePicker").then(__webpack_require__.bind(null, /*! ../../components/timePicker.vue */ 247));};var btn = function btn() {return __webpack_require__.e(/*! import() | pages/components/boxstyle/buttonstyle */ "pages/components/boxstyle/buttonstyle").then(__webpack_require__.bind(null, /*! ../../components/boxstyle/buttonstyle.vue */ 205));};var hTimePicker = function hTimePicker() {return __webpack_require__.e(/*! import() | components/h-timePicker/h-timePicker */ "components/h-timePicker/h-timePicker").then(__webpack_require__.bind(null, /*! @/components/h-timePicker/h-timePicker.vue */ 254));};var _default =
 
 {
   data: function data() {
@@ -260,34 +268,40 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
       }
     },
 
-    showStatus2: function showStatus2(data) {
-      if (data) {
-        this.$refs.popup3.close();
-      }
+    // showStatus2(data) {
+    // 	if (data) {
+    // 		this.$refs.popup3.close();
+    // 	}
+    // },
+
+    changeTime: function changeTime(e) {
+      console.log(e);
+      this.arriveTime = e;
+      console.log(e);
     },
 
-    timeSelect: function timeSelect(data) {var _this = this;
-      console.log(data);
-      var timeArr = [];
-      data.map(function (item, index) {
-        timeArr.push(_this.timeList[index][item]);
-      });
-      var mouth = timeArr[1] < 10 ? "0" + timeArr[1] : timeArr[1];
-      var day = timeArr[2] < 10 ? "0" + timeArr[2] : timeArr[2];
-      var hour = timeArr[3] < 10 ? "0" + timeArr[3] : timeArr[3];
-      var fen = timeArr[4] < 10 ? "0" + timeArr[4] : timeArr[4];
+    // timeSelect(data) {
+    // 	console.log(data);
+    // 	let timeArr = [];
+    // 	data.map((item, index) => {
+    // 		timeArr.push(this.timeList[index][item]);
+    // 	})
+    // 	const mouth = timeArr[1] < 10 ? "0" + timeArr[1] : timeArr[1]
+    // 	const day = timeArr[2] < 10 ? "0" + timeArr[2] : timeArr[2]
+    // 	const hour = timeArr[3] < 10 ? "0" + timeArr[3] : timeArr[3]
+    // 	const fen = timeArr[4] < 10 ? "0" + timeArr[4] : timeArr[4]
 
-      this.arriveTime = timeArr[0] + "-" + mouth + "-" + day + " " + hour + ":" + fen + ":00";
-      this.isTure = this.compareDate(new Date(), this.arriveTime);
+    // 	this.arriveTime = timeArr[0] + "-" + mouth + "-" + day + " " + hour + ":" + fen + ":00";
+    // 	this.isTure = this.compareDate(new Date(), this.arriveTime)
 
-      if (this.isTure) {
-        uni.showModal({
-          content: "请输入大于当前时间的预计时间" });
+    // 	if (this.isTure) {
+    // 		uni.showModal({
+    // 			content: "请输入大于当前时间的预计时间"
+    // 		})
+    // 	}
 
-      }
-
-      this.$refs.popup3.close();
-    },
+    // 	this.$refs.popup3.close();
+    // },
 
     // 比较时间大小
     compareDate: function compareDate(date1, date2) {
@@ -300,7 +314,6 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
       }
     },
 
-
     toChooseCar: function toChooseCar() {
       this.$refs.popup.open();
     },
@@ -310,9 +323,9 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
       this.$refs.popup2.open();
     },
 
-    toChooseTime: function toChooseTime() {
-      this.$refs.popup3.open();
-    },
+    // toChooseTime() {
+    // 	this.$refs.popup3.open()
+    // },
 
     // 获取推送
     shouquan: function shouquan() {
@@ -330,7 +343,7 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
     },
 
     // 获取页面内信息
-    getCarInfo: function () {var _getCarInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this2 = this;var opts, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+    getCarInfo: function () {var _getCarInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;var opts, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 opts = {
                   url: "/sc/carMng/getCanUseCars",
                   method: "post" };_context.next = 3;return (
@@ -339,14 +352,14 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
                   this.$http.httpTokenRequest(opts));case 3:res = _context.sent;
                 this.infoList = res.data.result;
                 this.infoList.map(function (item, index) {
-                  _this2.carList.push(item.carNo);
+                  _this.carList.push(item.carNo);
                 });
                 this.infoList.map(function (item, index) {
-                  _this2.carIdList.push(item.carId);
+                  _this.carIdList.push(item.carId);
                 });case 7:case "end":return _context.stop();}}}, _callee, this);}));function getCarInfo() {return _getCarInfo.apply(this, arguments);}return getCarInfo;}(),
 
 
-    getPlanInfo: function () {var _getPlanInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _this3 = this;var opts, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+    getPlanInfo: function () {var _getPlanInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _this2 = this;var opts, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 opts = {
                   url: "/personal/driver/getTaskAppRouteList",
                   method: "post" };_context2.next = 3;return (
@@ -356,53 +369,54 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
                 this.planList = [];
                 this.planListId = [];
                 this.gotPlanList.map(function (item, index) {
-                  _this3.planList.push(item.routeName);
+                  _this2.planList.push(item.routeName);
                 });
                 this.gotPlanList.map(function (item, index) {
-                  _this3.planListId.push(item.id);
+                  _this2.planListId.push(item.id);
                 });case 9:case "end":return _context2.stop();}}}, _callee2, this);}));function getPlanInfo() {return _getPlanInfo.apply(this, arguments);}return getPlanInfo;}(),
 
 
-    initTime: function initTime() {var _this4 = this;
-      var myDate = new Date();
-      // const year = myDate.getYear();        //获取当前年份(2位)
-      var year = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
-      var month = myDate.getMonth() + 1; //获取当前月份(0-11,0代表1月)
-      var date = myDate.getDate(); //获取当前日(1-31)
-      // myDate.getTime();        //获取当前时间(从1970.1.1开始的毫秒数)
-      var hour = myDate.getHours(); //获取当前小时数(0-23)
-      var minute = myDate.getMinutes(); //获取当前分钟数(0-59)
+    // initTime() {
+    // 	const myDate = new Date();
+    // 	// const year = myDate.getYear();        //获取当前年份(2位)
+    // 	const year = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
+    // 	const month = myDate.getMonth() + 1; //获取当前月份(0-11,0代表1月)
+    // 	const date = myDate.getDate(); //获取当前日(1-31)
+    // 	// myDate.getTime();        //获取当前时间(从1970.1.1开始的毫秒数)
+    // 	const hour = myDate.getHours(); //获取当前小时数(0-23)
+    // 	const minute = myDate.getMinutes(); //获取当前分钟数(0-59)
 
-      // this.timeList = [year,month,date,hour,minute]
-      // 添加年份列表
-      // this.timeList[1] =
-      new Array(10).fill(year).map(function (item, i) {
-        _this4.timeList[0].push(item - 5 + i);
-      });
-      new Array(12).fill('').map(function (item, i) {
-        _this4.timeList[1].push(i + 1);
-      });
-      new Array(31).fill('').map(function (item, i) {
-        _this4.timeList[2].push(i + 1);
-      });
-      new Array(24).fill('').map(function (item, i) {
-        _this4.timeList[3].push(i + 1);
-      });
-      new Array(60).fill('').map(function (item, i) {
-        _this4.timeList[4].push(i + 1);
-      });
+    // 	// this.timeList = [year,month,date,hour,minute]
+    // 	// 添加年份列表
+    // 	// this.timeList[1] =
+    // 	new Array(10).fill(year).map((item, i) => {
+    // 		this.timeList[0].push(item - 5 + i);
+    // 	})
+    // 	new Array(12).fill('').map((item, i) => {
+    // 		this.timeList[1].push(i + 1);
+    // 	})
+    // 	new Array(31).fill('').map((item, i) => {
+    // 		this.timeList[2].push(i + 1);
+    // 	})
+    // 	new Array(24).fill('').map((item, i) => {
+    // 		this.timeList[3].push(i + 1);
+    // 	})
+    // 	new Array(60).fill('').map((item, i) => {
+    // 		this.timeList[4].push(i + 1);
+    // 	})
 
-      console.log(this.timeList);
-    },
+    // 	console.log(this.timeList);
+    // },
 
     // 提交并判断是否跳转
     submitApply: function () {var _submitApply = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var params, opts, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:if (!
 
                 this.isTure) {_context3.next = 4;break;}
                 uni.showModal({
-                  content: "请输入大于当前时间的预计时间" });_context3.next = 12;break;case 4:
+                  content: "请输入大于当前时间的预计时间" });_context3.next = 17;break;case 4:if (!(
 
 
+                this.planList[this.current] !== undefined && this.carList[this.current] !== undefined)) {_context3.next = 16;break;}
                 params = {
                   carId: this.carIdList[this.current],
                   carNo: this.carList[this.current],
@@ -413,10 +427,11 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
 
                 opts = {
                   url: "/personal/driver/modTaskAppRoute",
-                  method: "post" };_context3.next = 8;return (
+                  method: "post" };
 
 
-                  this.$http.httpTokenRequest(opts, params));case 8:res = _context3.sent;
+                console.log(this.arriveTime);_context3.next = 10;return (
+                  this.$http.httpTokenRequest(opts, params));case 10:res = _context3.sent;
 
                 console.log(res);
                 if (res.data.code === 0) {
@@ -430,7 +445,11 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
                     title: res.data.desc,
                     icon: "none" });
 
-                }case 12:case "end":return _context3.stop();}}}, _callee3, this);}));function submitApply() {return _submitApply.apply(this, arguments);}return submitApply;}() },
+                }_context3.next = 17;break;case 16:
+
+                uni.showModal({
+                  content: "请填写内容" });case 17:case "end":return _context3.stop();}}}, _callee3, this);}));function submitApply() {return _submitApply.apply(this, arguments);}return submitApply;}() },
+
 
 
 
@@ -448,7 +467,8 @@ __webpack_require__(/*! ../../../common/itemcontent.css */ 75);function _interop
     uniPopup: uniPopup,
     pickerRegion: pickerRegion,
     btn: btn,
-    timePicker: timePicker } };exports.default = _default;
+    timePicker: timePicker,
+    hTimePicker: hTimePicker } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

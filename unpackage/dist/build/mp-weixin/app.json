@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/home/home",
     "pages/login/status",
+    "pages/login/login",
     "pages/user/user",
     "pages/user/carower/drivernone",
     "pages/user/carower/carnone",
@@ -20,7 +20,8 @@
     "pages/home/image/doneimg",
     "pages/home/weight/weight",
     "pages/home/weight/apply",
-    "pages/user/carower/addcar"
+    "pages/user/carower/addcar",
+    "pages/block/block"
   ],
   "subPackages": [],
   "window": {

@@ -10,17 +10,13 @@
 					<text class="textcon">车牌号</text>
 					<view class="uni-form-item uni-column fatherbox">
 						<input class="uni-input" name="carnum" v-model="carNum" placeholder="请输入车牌号" />
-						<image src="../../../static/img/clear.png" mode=""
-						@tap="toClearCarNo"
-						></image>
+						<image src="../../../static/img/clear.png" mode="" @tap="toClearCarNo"></image>
 					</view>
 
 					<text class="textcon">车辆所属挂靠公司全称</text>
 					<view class="uni-form-item uni-column fatherbox">
 						<input class="uni-input" name="company" v-model="companyName" placeholder="请输入车辆所属挂靠公司全称" />
-						<image src="../../../static/img/clear.png" mode=""
-						@tap="toClearCarName"
-						></image>
+						<image src="../../../static/img/clear.png" mode="" @tap="toClearCarName"></image>
 					</view>
 
 				</form>
@@ -95,7 +91,7 @@
 			toClearCarNo() {
 				this.carNum = ''
 			},
-			
+
 			toClearCarName() {
 				this.companyName = ''
 			},
@@ -113,48 +109,49 @@
 				this.longCurrent = i;
 			},
 			isLicensePlate(str) {
-				return /^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$/.test(str);
+				return /^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$/
+					.test(str);
 			},
 			// 添加车辆信息
 			async addCarInfo() {
 				// 正则验证车牌,验证通过返回true,不通过返回false
-				const isTrue =  this.isLicensePlate(this.carNum)
-				if(!isTrue) {
+				const isTrue = this.isLicensePlate(this.carNum)
+				if (!isTrue) {
 					uni.showModal({
 						content: "请输入正确车牌号"
 					})
-				}
-				
-				//判断length的值
-				let length = (this.longCurrent === 4 && Number(this.length)) || this.upLength[this.longCurrent]
-				
-				const opts = {
-					url: '/sc/carMng/addCar',
-					method: 'post'
-				}
+				} else {
+					//判断length的值
+					let length = (this.longCurrent === 4 && Number(this.length)) || this.upLength[this.longCurrent]
 
-				const param = {
-					carNo: this.carNum,
-					carType: this.carCurrent + 1,
-					companyName: this.companyName,
-					containerLength: length
+					const opts = {
+						url: '/sc/carMng/addCar',
+						method: 'post'
+					}
+
+					const param = {
+						carNo: this.carNum,
+						carType: this.carCurrent + 1,
+						companyName: this.companyName,
+						containerLength: length
+					}
+
+					// console.log(param)
+					const res = await this.$http.httpTokenRequest(opts, param);
+
+					// console.log(res)
+					// console.log(res.data.code)
+
+					res.data.code === 1 &&
+						uni.showModal({
+							content: res.data.desc
+						})
+
+					res.data.code === 0 &&
+						uni.reLaunch({
+							url: "/pages/home/home"
+						})
 				}
-
-				// console.log(param)
-				const res = await this.$http.httpTokenRequest(opts, param);
-
-				// console.log(res)
-				// console.log(res.data.code)
-				
-				res.data.code === 1 &&
-					uni.showModal({
-						content: res.data.desc
-					})
-				
-				res.data.code === 0 &&
-					uni.reLaunch({
-						url: "/pages/home/home"
-					})
 			}
 		},
 

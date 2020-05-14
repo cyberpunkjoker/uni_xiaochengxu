@@ -38,7 +38,7 @@
 				],
 				current: 0,
 				// 获得到首页的传参
-				info: null,
+				// info: null,
 			}
 		},
 
@@ -47,28 +47,28 @@
 				this.current = i
 			},
 			// 提交数据并跳转
-			async toChoosePage() {
+			toChoosePage() {
 				const openCode = uni.getStorageSync('USER_OPENCODE')
 
 				console.log(openCode)
-
-				const opts = {
-					url: "/sc/user/login",
-					method: "post"
-				}
-				const param = {
-					phone: this.info.userPhone,
-					code: this.info.code,
-					openId: openCode,
-					identityEnum: this.statusCode[this.current]
-				}
-				const res = await this.$http.httpRequest(opts, param);
-				console.log(res)
+				
+				// const opts = {
+				// 	url: "/sc/user/login",
+				// 	method: "post"
+				// }
+				// const param = {
+				// 	phone: this.info.userPhone,
+				// 	code: this.info.code,
+				// 	openId: openCode,
+				// 	identityEnum: this.statusCode[this.current]
+				// }
+				// const res = await this.$http.httpRequest(opts, param);
+				// console.log(res)
 				// 保存token到本地
-				uni.setStorage({
-					key: "USER_TOKEN",
-					data: res.data.result,
-				})
+				// uni.setStorage({
+				// 	key: "USER_TOKEN",
+				// 	data: res.data.result,
+				// })
 
 				// 在页面跳转之前将数据存入本地
 				uni.setStorage({
@@ -81,37 +81,24 @@
 					data: this.info.userPhone,
 				})
 
-				if (res.data.code === 1) {
-					uni.showModal({
-						content: res.data.desc
-					})
-				}
-				if (res.data.code === 0) {
-					if (this.statusCode[this.current] === "CONSIGNEE") {
-						uni.reLaunch({
-							url: '/pages/user/user'
-						})
-					} else {
-						uni.reLaunch({
-							url: '/pages/home/home'
-						})
-						// this.shouquan();
-					}
-				}
-			},
-
-			// 获取提示信息
-			shouquan() {
-				const tmplIds = 'P0yJj1sqB8oNODpPd5TpUA9I-qMCM-tih783bIpLZLQ'
-				wx.requestSubscribeMessage({
-					tmplIds: ["P0yJj1sqB8oNODpPd5TpUA9I-qMCM-tih783bIpLZLQ"],
-					subscription_type: 'permanent',
-					success(res) {
-						console.log("成功", res)
-					},
-					fail(res) {
-						console.log("失败", res)
-					}
+				// if (res.data.code === 1) {
+				// 	uni.showModal({
+				// 		content: res.data.desc
+				// 	})
+				// }
+				// if (res.data.code === 0) {
+				// 	if (this.statusCode[this.current] === "CONSIGNEE") {
+				// 		uni.reLaunch({
+				// 			url: '/pages/user/user'
+				// 		})
+				// 	} else {
+				// 		uni.reLaunch({
+				// 			url: '/pages/home/home'
+				// 		})
+				// 	}
+				// }
+				uni.navigateTo({
+					url: "/pages/login/login"
 				})
 			},
 
@@ -124,10 +111,8 @@
 							key: "USER_OPENCODE",
 							data: res.code,
 						})
-
 					}
 				})
-
 
 				uni.getLocation({
 					type: 'wgs84',
@@ -136,14 +121,10 @@
 						console.log('当前位置的纬度：' + res.latitude);
 					}
 				});
-
-
 			}
-
 		},
 
 		onLoad(options) {
-			//options可以接到index 传过来的值
 			this.info = options
 			this.getOpenId();
 		},

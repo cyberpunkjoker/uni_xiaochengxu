@@ -7,7 +7,7 @@
 		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
-		"minified": false
+		"minified": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.2",
@@ -41,8 +41,15 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/block/block",
-					"pathName": "pages/block/block",
+					"name": "pages/login/login",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/login/status",
+					"pathName": "pages/login/status",
 					"scene": null
 				}
 			]

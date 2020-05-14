@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="tabtop">
-			<tab-bar :tablist="tabList" @listenChild='getCurrent'></tab-bar>
+			<tab-bar :tablist="tabList" @listenChild='getCurrent' @tap="getOrderList"></tab-bar>
 		</view>
 		<view class="content">
 
@@ -130,17 +130,17 @@
 							<view class="tlotitle">
 								<text>物料内容</text>
 							</view>
-					
+
 							<view class="twolinebox" v-for="(item, index) in goodsList" :key="index">
 								<view class="twolineflex">
-					
+
 									<view class="left">
 										<view>名称：{{item.materialName}}</view>
 										<view>规格：{{item.materialType}}</view>
 									</view>
 									<view class="right">
 										<view>数量：{{item.materialNum}}</view>
- 									</view>
+									</view>
 								</view>
 							</view>
 						</info-box>
@@ -339,7 +339,7 @@
 								<view class="two">
 									<text class="content">{{strFour[index]}}...</text>
 									<image src="../../../static/img/right.png" mode=""></image>
-									
+
 								</view>
 							</view>
 						</info-box>
@@ -399,7 +399,7 @@
 								<image class="addr" src="../../../static/img/shouhuo.png" @tap="showWay(item.destination)"></image>
 							</view>
 							<view class="two">
-								<text class="content">{{strFour[detailCurrent]}}...</text>
+								<text class="content">{{detailStr}}...</text>
 								<image src="../../../static/img/right.png" mode=""></image>
 							</view>
 						</view>
@@ -414,7 +414,7 @@
 						<view class="itembox">
 							<text class="one">卸货等待时间</text>
 							<view class="two">
-								<text class="content">{{doneUserInfo.unloadWaitTime}}</text>
+								<text class="content">{{doneUserInfo.unloadWaitTime}}小时</text>
 							</view>
 						</view>
 
@@ -435,7 +435,7 @@
 						<view class="itembox">
 							<text class="one">任务周期</text>
 							<view class="two">
-								<text class="content">{{doneUserInfo.orderCycle}}</text>
+								<text class="content">{{doneUserInfo.orderCycle}}小时</text>
 							</view>
 						</view>
 
@@ -448,11 +448,8 @@
 							<view class="tlotitle">
 								<text>物料内容</text>
 							</view>
-							
-							<view class="twolinebox" 
-							v-for="(i, idx) in goodsDetail" 
-							:key="idx"
-							>
+
+							<view class="twolinebox" v-for="(i, idx) in goodsDetail" :key="idx">
 								<view class="twolineflex">
 									<view class="left">
 										<view>名称：{{i.materialName}}</view>
@@ -466,7 +463,7 @@
 							</view>
 						</info-box>
 					</view>
-				<!-- </view> -->
+					<!-- </view> -->
 				</view>
 			</view>
 		</view>
@@ -505,7 +502,7 @@
 				id: 0,
 				// 已完成列表的详情
 				doneListDetail: [],
-				modifyArr:[],
+				modifyArr: [],
 				// 页面中长字符串的截取
 				strTwo: '..',
 				strThree: '..',
@@ -514,8 +511,8 @@
 				detailCurrent: '',
 				doneUserInfo: '',
 				// 物料列表
-				goodsDetail: []
-				
+				goodsDetail: [],
+				detailStr: []
 			}
 		},
 
@@ -538,12 +535,12 @@
 				const res = await this.$http.httpTokenRequest(opts);
 				this.userInfo = res.data.result;
 				this.goodsList = res.data.result.materielDetails;
-				
+
 				this.strThreeCurrent = this.userInfo.logisticsLocation.slice(0, 6)
-				
+
 				console.log(res);
 				console.log(this.userInfo)
-				
+
 				this.showDetail = true;
 				// 保存状态
 				this.lastStatus = this.current;
@@ -556,29 +553,32 @@
 					method: 'post'
 				};
 				const res = await this.$http.httpTokenRequest(opts);
-				
+
 				this.doneListDetail = res.data.result;
-				
+
 				this.detailCurrent = i;
-				
+
 				this.doneUserInfo = this.doneListDetail[this.detailCurrent];
-				
+
+				// 详情显示的字符串
+				this.detailStr = this.strFour[i]
+
 				console.log(this.doneUserInfo)
 				this.modifyArr = [];
-				
-				this.doneListDetail.map((i, idx)=>{
+
+				this.doneListDetail.map((i, idx) => {
 					this.modifyArr.push(JSON.parse(i.materiel))
 				})
-				
+
 				this.goodsDetail = this.modifyArr[i]
-				
+
 				console.log(this.modifyArr);
 				// 控制页面状态
 				this.showDetail = true;
 				// 保存状态
 				this.lastStatus = this.current;
 			},
-			
+
 			// 获取表单id值
 			async getOrderId() {
 				const opts = {
@@ -586,6 +586,7 @@
 					method: 'post'
 				};
 				const res = await this.$http.httpTokenRequest(opts);
+				console.log(res)
 				this.id = res.data.result.id
 			},
 
@@ -596,41 +597,55 @@
 				};
 
 				const currentStatus = this.current === 3 ? 5 : this.current;
-				console.log("currentStatus:"+ currentStatus)
 
-				const params = {
-					current: 0,
-					data: {
-						orderStatus: currentStatus
+				if (currentStatus == 0) {
+					this.getApplyList();
+				} else {
+					console.log("currentStatus:" + currentStatus)
+
+					const params = {
+						current: 0,
+						data: {
+							orderStatus: currentStatus
+						}
 					}
+					const res = await this.$http.httpTokenRequest(opts, params);
+					// 分别判断
+					if (this.current === 1) {this.goOutList = res.data.result.records}
+					if (this.current === 2) {this.transitList = res.data.result.records}
+					if (this.current === 3) {this.doneList = res.data.result.records}
+					
+					console.log(res.data.result.records.length === 0);
+					
+					if (res.data.result.records.length === 0) {
+						this.$set(this.showTipsList, this.current, true)
+						// this.showTipsList[this.current] = true
+					}
+					console.log(this.current)
+					console.log(this.showTipsList);
+
+					// 获取当前地址截取字符
+					if (this.current === 1) {
+						console.log(this.goOutList)
+						this.strTwo = this.goOutList[0].destination.slice(0, 6)
+						console.log(strTwo)
+					}
+					if (this.current === 2) {
+						this.strThree = this.transitList[0].destination.slice(0, 6)
+					}
+					if (this.current === 3) {
+						this.doneList.map((item, idx) => {
+							console.log(this.doneList)
+							// this.$set(this.strFour, idx, item.destination.slice(0, 6))
+							console.log(this.strFour);
+							// this.strFour = [];
+							this.strFour.push(item.destination.slice(0, 6))
+						})
+					}
+
+					console.log(res);
 				}
-				const res = await this.$http.httpTokenRequest(opts, params);
-				// 分别判断
-				if (this.current === 1) this.goOutList = res.data.result.records;
-				if (this.current === 2) this.transitList = res.data.result.records;
-				if (this.current === 3) this.doneList = res.data.result.records;
-				
-				if (res.data.result.records.length === 0) {
-					this.showTipsList[this.current] = true
-				}
-				
-				// 获取当前地址截取字符
-				if (this.current === 1) {
-					console.log(this.goOutList)
-					this.strTwo  = this.goOutList[0].destination.slice(0, 6)
-					console.log(strTwo)
-				}
-				if (this.current === 2) {
-					this.strThree = this.transitList[0].destination.slice(0, 6)
-				}
-				if (this.current === 3) {
-					this.doneList.map((item, idx)=>{
-						this.strFour.push(item.destination.slice(0, 6))
-					})
-				}
-				
-				console.log(res);
-				
+
 			},
 
 			// 获得已申请页面的数据
@@ -643,15 +658,14 @@
 				console.log(res);
 				this.applyList = res.data.result;
 				if (res.data.result.carNo == null) {
-					this.showTipsList[this.current] = true
+					this.showTipsList[this.current] = true;
 				}
 			},
-			
 			// 获取当前的身份状态
 			statusOfMan() {
 				const status = uni.getStorageSync("USER_STATUS");
 				console.log(status);
-				if(status === "CONSIGNEE") {
+				if (status === "CONSIGNEE") {
 					uni.reLaunch({
 						url: "/pages/user/user"
 					})
@@ -661,21 +675,27 @@
 					})
 				}
 			},
-			
+
 			showWay(i) {
 				uni.showModal({
 					content: i
 				})
 			}
 		},
-
 		onShow() {
-			this.getApplyList();
+			// this.getApplyList();
+			this.getOrderList();
 			this.getOrderId();
 		},
-
+		onHide() {
+			uni.redirectTo({
+				url: "/pages/home/home"
+			})
+		},
 		onLoad() {
 			this.statusOfMan();
+			this.getOrderId();
+			this.getApplyList();
 		},
 		components: {
 			tabBar,

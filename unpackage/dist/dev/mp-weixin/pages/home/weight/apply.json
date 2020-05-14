@@ -5,6 +5,7 @@
     "info-box": "/pages/components/boxstyle/infobox",
     "picker-region": "/pages/components/pickerregion",
     "btn": "/pages/components/boxstyle/buttonstyle",
-    "time-picker": "/pages/components/timePicker"
+    "time-picker": "/pages/components/timePicker",
+    "h-time-picker": "/components/h-timePicker/h-timePicker"
   }
 }

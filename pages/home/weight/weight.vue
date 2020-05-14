@@ -6,7 +6,7 @@
 		<info-box>
 			<view class="itembox" @tap="firstClick">
 				<text class="one">车牌号：{{userInfo.carNo}}</text>
-				
+
 			</view>
 
 			<view class="itembox">
@@ -35,13 +35,8 @@
 					<view class="thctitle">
 						<text>选择物料规格型号进行重量填写</text>
 					</view>
-					
-					<view class="outsidebox" 
-					v-for="(item, index) in goodsDetailList" 
-					@tap="chooseItem(index)" 
-					:key="index"
-					@click="open"
-					>
+
+					<view class="outsidebox" v-for="(item, index) in goodsDetailList" @tap="chooseItem(index)" :key="index" @click="open">
 						<view class="clos left">
 							<view>名称：<text>{{item.materialName}}</text></view>
 							<view>规格：<text>{{item.materialType}}</text></view>
@@ -82,7 +77,7 @@
 				</view>
 
 				<view class="container">
-					<input type="text" v-model="newWeight" placeholder="请输入物料重量" />
+					<input type="number" v-model="newWeight" placeholder="请输入物料重量" />
 				</view>
 				<view class="btnouter" @tap="toPages">
 					<btn>确认</btn>
@@ -158,11 +153,11 @@
 				// this.valueArr[this.current] = this.newWeight;
 				this.$refs.popup.close()
 			},
-			
+
 			close() {
 				this.$refs.popup.close()
 			},
-			
+
 			// 获取货物详情
 			async getGoodsInfo() {
 				const opts = {
@@ -172,7 +167,7 @@
 				const res = await this.$http.httpTokenRequest(opts);
 				this.goodsDetailList = res.data.result.materielDetails;
 				console.log(this.goodsDetailList)
-				
+
 				this.valueArr = new Array(this.goodsDetailList.length).fill('');
 				this.userInfo = res.data.result;
 			},
@@ -187,9 +182,9 @@
 					// copyList[idx].materielSpecifications = this.goodsDetailList[idx].materialType
 					copyList[idx].materialWeight = this.valueArr[idx];
 				})
-				
+
 				console.log(copyList)
-				
+
 				const opts = {
 					url: '/personal/driver/modTaskAppRecord',
 					method: 'post',
@@ -198,29 +193,37 @@
 					id: this.id,
 					materielDetails: copyList
 				}
-					
-				if(this.weight === '') {
+
+				console.log(params)
+				console.log(this.valueArr)
+
+				let istrue = false;
+				this.valueArr.map((item, index) => {
+					if (item === "") {
+						istrue = true;
+					};
+				})
+
+				console.log(istrue);
+				if (istrue) {
 					uni.showModal({
 						content: "请填写物料重量"
 					})
+				} else {
+					const res = await this.$http.httpTokenRequest(opts, params);
+					res.data.code === 0 &&
+						uni.navigateBack({
+							delta: 1
+						})
 				}
-				
-				console.log(params)
-				const res = await this.$http.httpTokenRequest(opts, params);
-				console.log(res)
-				res.data.code === 0 &&
-					uni.navigateBack({
-						delta: 1
-					})
 			}
 		},
-		
-		onShow() {
-			this.getGoodsInfo()
-		},
+
+		onShow() {},
 
 		onLoad(options) {
-		    this.id = options.id
+			this.id = options.id
+			this.getGoodsInfo()
 		},
 
 		components: {

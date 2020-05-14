@@ -9,9 +9,9 @@
 				<form @submit="formSubmit" @reset="formReset">
 					<text class="textcon">车牌号</text>
 					<view class="uni-form-item uni-column fatherbox">
-						<input class="uni-input" name="carnum" v-model="carNum" placeholder="请输入车牌号" />
-						<image src="../../../static/img/clear.png" mode="" @tap="clearCarNo"></image>
-					</view>
+						<input disabled="disabled" class="uni-input" name="carnum" v-model="carNum" placeholder="请输入车牌号" />
+<!-- 						<image src="../../../static/img/clear.png" mode="" @tap="clearCarNo"></image>
+ -->					</view>
 
 					<text class="textcon">车辆所属挂靠公司全称</text>
 					<view class="uni-form-item uni-column fatherbox">
@@ -24,7 +24,7 @@
 				<view class="carmode">
 					<text class="textcon">点击选择车型</text>
 					<view class="modeitem">
-						<view v-for="(item,index) in carModeList" :key="index" @tap="chooseCar(index)" :class="index===carCurrent ? 'itemcurrent' : '' ">
+						<view disabled="disabled" v-for="(item,index) in carModeList" :key="index" @tap="chooseCar(index)" :class="index===carCurrent ? 'itemcurrent' : '' ">
 							{{item}}
 							<image v-if="carCurrent===index" src="../../../static/img/selected.png" mode=""></image>
 						</view>
@@ -34,7 +34,7 @@
 				<view class="carmode">
 					<text class="textcon">货箱长度</text>
 					<view class="modeitem">
-						<view v-for="(item, idx) in carList" :key="item" :class="idx===longCurrent ? 'itemcurrent item' : 'item' " @tap="chooseLong(idx)">
+						<view disabled="disabled" v-for="(item, idx) in carList" :key="item" :class="idx===longCurrent ? 'itemcurrent item' : 'item' " @tap="chooseLong(idx)">
 							{{item}}
 							<image v-if="idx===longCurrent" src="../../../static/img/selected.png" mode=""></image>
 						</view>
@@ -56,7 +56,7 @@
 
 <script>
 	import infoBox from "../../components/boxstyle/infobox.vue"
-
+	
 	export default {
 		data() {
 			return {
@@ -78,20 +78,20 @@
 
 		methods: {
 			// 表单清空
-			clearCarNo() {
-				this.carNum = ''
-			},
+			// clearCarNo() {
+			// 	this.carNum = ''
+			// },
 
 			clearCompanyName() {
 				this.companyName = ''
 			},
 
 			chooseCar(i) {
-				this.carCurrent = i;
+				this.carCurrent = this.info.carType - 1;
 			},
 
 			chooseLong(i) {
-				this.longCurrent = i;
+				this.longCurrent = this.length;
 			},
 
 			// 初始化页面数据
@@ -110,28 +110,48 @@
 			},
 
 			isLicensePlate(str) {
-				return /^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$/.test(str);
+				return /^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$/
+					.test(str);
 			},
 
 			// 提交修改信息
 			async modifyInfo() {
-				const isTrue =  this.isLicensePlate(this.carNum)
-				
-				
-				const opts = {
-					url: '/sc/carMng/modCar',
-					method: 'post'
-				};
+				let isTure = this.isLicensePlate(this.carNum)
+				if (isTure) {
+					const opts = {
+						url: '/sc/carMng/modCar',
+						method: 'post'
+					};
 
-				let length = (this.longCurrent === 4 && Number(this.length)) || this.upLength[this.longCurrent]
+					let length = (this.longCurrent === 4 && Number(this.length)) || this.upLength[this.longCurrent]
 
-				const params = {
-					carId: Number(this.info.carId),
-					carNo: this.carNum,
-					carType: this.carCurrent + 1,
-					companyName: this.companyName,
-					containerLength: length
-				};
+					const params = {
+						carId: Number(this.info.carId),
+						carNo: this.carNum,
+						carType: this.carCurrent + 1,
+						companyName: this.companyName,
+						containerLength: length
+					};
+					
+					console.log(params)
+					const res = await this.$http.httpTokenRequest(opts, params);
+					console.log(res)
+					
+					if(res.data.code === 0) {
+						uni.navigateTo({
+							url: "/pages/user/user"
+						})
+					}else {
+						uni.showModal({
+								content: res.data.desc,
+								showCancel: false
+							})
+					}
+				} else {
+					uni.showModal({
+						content: "请输入正确车牌号"
+					})
+				}
 
 				if (this.longCurrent === 4 && Number(this.length) < 9) {
 					uni.showModal({
@@ -139,27 +159,20 @@
 						showCancel: false
 					});
 				} else {
-					const res = await this.$http.httpTokenRequest(opts, params);
-					console.log(res)
-					if (res.data.code !== 0) {
-						if(!isTrue) {
-							uni.showModal({
-								content: "请输入正确车牌号"
-							})
-						}else{
-							uni.showModal({
-								content: "内容不能为空",
-								showCancel: false
-							})
-						}
-					}
+
+					// if (res.data.code !== 0) {
+					// 	uni.showModal({
+					// 		content: "内容不能为空",
+					// 		showCancel: false
+					// 	})
+					// }
 					// 保证长度大于9
-					else {
-						uni.navigateTo({
-							url: "/pages/user/carower/managementcar"
-						})
-						
-					}
+					// else {
+						// uni.navigateTo({
+						// 	url: "/pages/user/carower/managementcar"
+						// })
+
+					// }
 				}
 
 			}

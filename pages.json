@@ -1,22 +1,21 @@
 {
 	"pages": [{
-			"path": "pages/login/login",
-			"style": {
-				"navigationBarTitleText": "首页"
-			}
-		},
-
-		{
 			"path": "pages/home/home",
 			"style": {
 				"navigationBarTitleText": "四川顺程物流有限公司"
 			}
-
 		},
 		{
 			"path": "pages/login/status",
 			"style": {
 				"navigationBarTitleText": "选择登录身份"
+			}
+		},
+
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "首页"
 			}
 		},
 		{
@@ -77,6 +76,8 @@
 			"path": "pages/user/waybill/waybill",
 			"style": {
 				"navigationBarTitleText": "收货人运单查看"
+				// "enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				// "backgroundTextStyle": "dark" //下拉 loading 的样式，仅支持 dark/light				
 			}
 		},
 		{
@@ -89,6 +90,8 @@
 			"path": "pages/order/orderlist/orderlist",
 			"style": {
 				"navigationBarTitleText": "运单查看"
+				// "enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				// "backgroundTextStyle": "dark" //下拉 loading 的样式，仅支持 dark/light				
 			}
 		},
 

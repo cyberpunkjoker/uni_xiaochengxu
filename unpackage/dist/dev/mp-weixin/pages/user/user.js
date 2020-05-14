@@ -234,7 +234,7 @@ __webpack_require__.r(__webpack_exports__);
         data: "" }) &&
 
       uni.reLaunch({
-        url: "/pages/login/login" }) &&
+        url: "/pages/login/status" }) &&
       this.toExit();
     },
 

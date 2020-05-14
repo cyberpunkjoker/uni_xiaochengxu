@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/home/home",
     "pages/login/status",
+    "pages/login/login",
     "pages/user/user",
     "pages/user/carower/drivernone",
     "pages/user/carower/carnone",
@@ -60,5 +60,5 @@
     }
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap73.json"
+  "sitemapLocation": "sitemap43.json"
 }

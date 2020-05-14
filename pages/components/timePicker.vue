@@ -65,10 +65,14 @@
 		},
 		props: ['timeList'],
 		methods: {
-
+			isEmpty(obj) {
+			    for(var key in obj) {
+			       if(obj.hasOwnProperty(key))
+			           return false;
+			       }
+			    return true;
+			},
 			bindChange(e) {
-				// console.log(e);
-				// console.log(current);
 				const doSomes = this.pickList[this.current].doSome;
 				this[doSomes](e);
 				console.log(e)
@@ -97,18 +101,6 @@
 				this.timeArr[4] =minutes
 			},
 
-
-
-			// bindChange(e) {
-			// 	if (this.current === 0) this.year = e.detail.value;
-			// 	if (this.current === 1) this.mouth = e.detail.value;
-			// 	if (this.current === 2) this.day = e.detail.value;
-			// 	if (this.current === 3) this.hour = e.detail.value;
-			// 	if (this.current === 4) this.minutes = e.detail.value;
-			// 	this.timeArr = [this.year, this.mouth, this.day, this.hour, this.minutes]
-			// 	console.log(this.day)
-			// },
-
 			justClose() {
 				this.status = true;
 				this.$emit('showStatus', this.status)
@@ -118,15 +110,16 @@
 				this.status = true
 				this.$emit('showStatus', this.status)
 				
-				const isture = false;
-				// this.timeArr.map(item=>{
-				// 	if (item === ) {
-				// 		isture = true;
-				// 		console.log(isture)
-				// 		return;
-				// 	};
+				let isture = false;
+				
+				console.log(this.timeArr)
+				
+				// this.timeArr.map((item,index)=>{
+					if (this.timeArr.length !==5) {
+						isture = true;
+						console.log(isture);
+					} 
 				// })
-				// console.log(isture)
 				
 				if(isture) {
 					uni.showToast({

@@ -108,8 +108,6 @@
 			messBox,
 			uploadMode
 		}
-
-
 	}
 </script>
 

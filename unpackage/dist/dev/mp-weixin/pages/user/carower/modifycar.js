@@ -213,20 +213,20 @@ __webpack_require__.r(__webpack_exports__);
 
   methods: {
     // 表单清空
-    clearCarNo: function clearCarNo() {
-      this.carNum = '';
-    },
+    // clearCarNo() {
+    // 	this.carNum = ''
+    // },
 
     clearCompanyName: function clearCompanyName() {
       this.companyName = '';
     },
 
     chooseCar: function chooseCar(i) {
-      this.carCurrent = i;
+      this.carCurrent = this.info.carType - 1;
     },
 
     chooseLong: function chooseLong(i) {
-      this.longCurrent = i;
+      this.longCurrent = this.length;
     },
 
     // 初始化页面数据
@@ -245,14 +245,14 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     isLicensePlate: function isLicensePlate(str) {
-      return /^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$/.test(str);
+      return /^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$/.
+      test(str);
     },
 
     // 提交修改信息
-    modifyInfo: function () {var _modifyInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var isTrue, opts, length, params, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-                isTrue = this.isLicensePlate(this.carNum);
-
-
+    modifyInfo: function () {var _modifyInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var isTure, opts, length, params, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                isTure = this.isLicensePlate(this.carNum);if (!
+                isTure) {_context.next = 13;break;}
                 opts = {
                   url: '/sc/carMng/modCar',
                   method: 'post' };
@@ -265,37 +265,50 @@ __webpack_require__.r(__webpack_exports__);
                   carNo: this.carNum,
                   carType: this.carCurrent + 1,
                   companyName: this.companyName,
-                  containerLength: length };if (!(
+                  containerLength: length };
 
 
-                this.longCurrent === 4 && Number(this.length) < 9)) {_context.next = 8;break;}
-                uni.showModal({
-                  content: '请输入长度大于9的车辆信息',
-                  showCancel: false });_context.next = 13;break;case 8:_context.next = 10;return (
-
-
-                  this.$http.httpTokenRequest(opts, params));case 10:res = _context.sent;
+                console.log(params);_context.next = 8;return (
+                  this.$http.httpTokenRequest(opts, params));case 8:res = _context.sent;
                 console.log(res);
-                if (res.data.code !== 0) {
-                  if (!isTrue) {
-                    uni.showModal({
-                      content: "请输入正确车牌号" });
 
-                  } else {
-                    uni.showModal({
-                      content: "内容不能为空",
-                      showCancel: false });
+                if (res.data.code === 0) {
+                  uni.navigateTo({
+                    url: "/pages/user/user" });
 
-                  }
-                }
-                // 保证长度大于9
-                else {
-                    uni.navigateTo({
-                      url: "/pages/user/carower/managementcar" });
+                } else {
+                  uni.showModal({
+                    content: res.data.desc,
+                    showCancel: false });
+
+                }_context.next = 14;break;case 13:
+
+                uni.showModal({
+                  content: "请输入正确车牌号" });case 14:
 
 
-                  }case 13:case "end":return _context.stop();}}}, _callee, this);}));function modifyInfo() {return _modifyInfo.apply(this, arguments);}return modifyInfo;}() },
 
+                if (this.longCurrent === 4 && Number(this.length) < 9) {
+                  uni.showModal({
+                    content: '请输入长度大于9的车辆信息',
+                    showCancel: false });
+
+                } else {
+
+                  // if (res.data.code !== 0) {
+                  // 	uni.showModal({
+                  // 		content: "内容不能为空",
+                  // 		showCancel: false
+                  // 	})
+                  // }
+                  // 保证长度大于9
+                  // else {
+                  // uni.navigateTo({
+                  // 	url: "/pages/user/carower/managementcar"
+                  // })
+
+                  // }
+                }case 15:case "end":return _context.stop();}}}, _callee, this);}));function modifyInfo() {return _modifyInfo.apply(this, arguments);}return modifyInfo;}() },
 
 
 

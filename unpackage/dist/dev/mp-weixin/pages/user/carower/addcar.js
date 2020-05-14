@@ -191,10 +191,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
 {
   data: function data() {
     return {
@@ -248,17 +244,17 @@ __webpack_require__.r(__webpack_exports__);
       this.longCurrent = i;
     },
     isLicensePlate: function isLicensePlate(str) {
-      return /^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$/.test(str);
+      return /^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$/.
+      test(str);
     },
     // 添加车辆信息
     addCarInfo: function () {var _addCarInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var isTrue, length, opts, param, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 // 正则验证车牌,验证通过返回true,不通过返回false
-                isTrue = this.isLicensePlate(this.carNum);
-                if (!isTrue) {
-                  uni.showModal({
-                    content: "请输入正确车牌号" });
+                isTrue = this.isLicensePlate(this.carNum);if (
+                isTrue) {_context.next = 5;break;}
+                uni.showModal({
+                  content: "请输入正确车牌号" });_context.next = 13;break;case 5:
 
-                }
 
                 //判断length的值
                 length = this.longCurrent === 4 && Number(this.length) || this.upLength[this.longCurrent];
@@ -276,7 +272,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
                   // console.log(param)
-                };_context.next = 7;return this.$http.httpTokenRequest(opts, param);case 7:res = _context.sent;
+                };_context.next = 10;return this.$http.httpTokenRequest(opts, param);case 10:res = _context.sent;
 
                 // console.log(res)
                 // console.log(res.data.code)
@@ -288,7 +284,8 @@ __webpack_require__.r(__webpack_exports__);
 
                 res.data.code === 0 &&
                 uni.reLaunch({
-                  url: "/pages/home/home" });case 10:case "end":return _context.stop();}}}, _callee, this);}));function addCarInfo() {return _addCarInfo.apply(this, arguments);}return addCarInfo;}() },
+                  url: "/pages/home/home" });case 13:case "end":return _context.stop();}}}, _callee, this);}));function addCarInfo() {return _addCarInfo.apply(this, arguments);}return addCarInfo;}() },
+
 
 
 

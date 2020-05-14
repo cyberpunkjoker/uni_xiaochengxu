@@ -362,7 +362,7 @@
 									<image class="addr" src="../../../static/img/shouhuo.png" mode=""></image>
 								</view>
 								<view class="two">
-									<text class="content">{{userInfo.destination}}</text>
+									<text class="content">{{strFour[0]}}</text>
 									<image src="../../../static/img/right.png" mode=""></image>
 								</view>
 							</view>
@@ -377,7 +377,7 @@
 							<view class="itembox">
 								<text class="one">卸货等待时间</text>
 								<view class="two">
-									<text class="content">{{userInfo.unloadWaitTime}}</text>
+									<text class="content">{{userInfo.unloadWaitTime}}小时</text>
 								</view>
 							</view>
 
@@ -398,7 +398,7 @@
 							<view class="itembox">
 								<text class="one">任务周期</text>
 								<view class="two">
-									<text class="content">{{userInfo.orderCycle}}</text>
+									<text class="content">{{userInfo.orderCycle}}小时</text>
 								</view>
 							</view>
 
