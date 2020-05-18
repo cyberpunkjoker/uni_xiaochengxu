@@ -6,7 +6,6 @@
 		<info-box>
 			<view class="itembox" @tap="firstClick">
 				<text class="one">车牌号：{{userInfo.carNo}}</text>
-
 			</view>
 
 			<view class="itembox">
@@ -65,7 +64,7 @@
 				</view>
 				<view class="outer">
 					<view class="outsidebox none">
-						<view class="clos right">
+						<view class="clos middle">
 							<view>名称：<text>{{name}}</text></view>
 							<view>规格：<text>{{size}}</text></view>
 						</view>
@@ -77,7 +76,8 @@
 				</view>
 
 				<view class="container">
-					<input type="number" v-model="newWeight" placeholder="请输入物料重量" />
+					<input class="inputcontent" v-model="newWeight" type="digit" @blur="changeNum" placeholder="请输入物料重量" />
+					<input v-model="seconedWeight" type="digit" @blur="changeNum2" placeholder="请再次输入物料重量" />
 				</view>
 				<view class="btnouter" @tap="toPages">
 					<btn>确认</btn>
@@ -116,6 +116,7 @@
 				// 获取货物详情列表
 				goodsDetailList: [],
 				newWeight: '',
+				seconedWeight: '',
 				// 填写框内的内容
 				name: '',
 				num: '',
@@ -123,11 +124,44 @@
 				weight: '',
 				// 父组件上的值
 				valueArr: [],
-				// popupList:['popup1', 'popup2']
+				longitude: null,
+				latitude: null
 			}
 		},
 
 		methods: {
+			isTureNum(str) {
+				return /^\d+(\.\d{1,2})?$/.test(str)
+			},
+			
+			changeNum(e) {
+				if(!this.isTureNum(this.newWeight)) {
+					this.newWeight = Number(e.detail.value).toFixed(2);
+					uni.showToast({
+						title: "请输入两位以内的小数",
+						icon: "none"
+					})
+				} 
+				if (e.detail.value > 100) {
+					this.newWeight = 99.99;
+					// this.newWeight = Number(e.detail.value).toFixed(2);
+					uni.showToast({
+						title: "重量不能超过100吨",
+						icon: "none"
+					})
+				}
+			},
+			
+			changeNum2() {
+				if(Number(this.seconedWeight) !== Number(this.newWeight)) {
+					// this.seconedWeight = this.newWeight;
+					uni.showToast({
+						title: "请确保两次值相同",
+						icon: "none"
+					})
+				}
+			},
+			
 			showTip(i) {
 				uni.showModal({
 					content: i
@@ -148,10 +182,19 @@
 				console.log(index)
 				this.$refs.popup.open()
 			},
+
 			toPages(index) {
-				this.$set(this.valueArr, this.current, this.newWeight)
-				// this.valueArr[this.current] = this.newWeight;
-				this.$refs.popup.close()
+				if (Number(this.newWeight) === Number(this.seconedWeight)) {
+					this.$set(this.valueArr, this.current, this.newWeight)
+					// this.valueArr[this.current] = this.newWeight;
+					this.$refs.popup.close()
+				}else {
+					uni.showToast({
+						title: "请确保两次输入同样的值",
+						icon: "none"
+					})
+				}
+				
 			},
 
 			close() {
@@ -182,53 +225,105 @@
 					// copyList[idx].materielSpecifications = this.goodsDetailList[idx].materialType
 					copyList[idx].materialWeight = this.valueArr[idx];
 				})
-
-				// console.log(copyList)
-
-				const opts = {
-					url: '/personal/driver/modTaskAppRecord',
-					method: 'post',
-				}
-				const params = {
-					id: this.id,
-					materielDetails: copyList
-				}
-
-				console.log(params)
-				console.log(this.valueArr)
-
-				let istrue = false;
-				this.valueArr.map((item, index) => {
-					if (item === "") {
-						istrue = true;
-					};
-				})
-
-				console.log(istrue);
-				if (istrue) {
-					setTimeout(()=>{
-						uni.hideLoading({})
-						uni.showModal({
-							content: "请填写物料重量"
-						})
-					},700)
+				
+				if(this.longitude === null) {
+					uni.hideLoading()
+					this.reGetLocation();
+					uni.showModal({
+						content: "请开启定位服务"
+					})
 				} else {
-					const res = await this.$http.httpTokenRequest(opts, params);
-					if (res.data.code === 0) {
-						uni.hideLoading({});
-						uni.navigateBack({
-							delta: 1
-						})
+					const location = this.longitude+ "," + this.latitude;
+					console.log(location);
+					const opts = {
+						url: '/personal/driver/modTaskAppRecord',
+						method: 'post',
+					}
+					const params = {
+						id: this.id,
+						materielDetails: copyList,
+						location: location
+					}
+					
+					console.log(params)
+					// 控制重量填写和是否超过的参数
+					let istrue = false;
+					let overWeight = false;
+					
+					this.valueArr.map((item, index) => {
+						if (item === "") {
+							istrue = true;
+						}
+						if (item > 100) {
+							overWeight = true;
+						}
+					})
+					
+					if (overWeight) {
+						setTimeout(() => {
+							uni.hideLoading({})
+							uni.showModal({
+								content: "填写的物料重量请小于100吨"
+							})
+						}, 700)
+					} else {
+						if (istrue) {
+							setTimeout(() => {
+								uni.hideLoading({})
+								uni.showModal({
+									content: "请填写物料重量"
+								})
+							}, 700)
+						} else {
+							const res = await this.$http.httpTokenRequest(opts, params);
+							if (res.data.code === 0) {
+								uni.hideLoading({});
+								uni.navigateBack({
+									delta: 1
+								})
+							}
+						}
 					}
 				}
+			},
+			
+			reGetLocation() {
+				uni.showToast({
+					title: "正在重新获取定位请稍后..",
+					icon: "none"
+				})
+				var that = this;
+				uni.getLocation({
+					type: 'wgs84',
+					success: function(res) {
+						console.log('当前位置的经度：' + res.longitude)
+						that.longitude = res.longitude;
+						console.log('当前位置的纬度：' + res.latitude);
+						that.latitude = res.latitude;
+						uni.hideToast({});
+					}
+				})
+			},
+			
+			getLocation() {
+				var that = this;
+				uni.getLocation({
+					type: 'wgs84',
+					success: function(res) {
+						console.log('当前位置的经度：' + res.longitude)
+						that.longitude = res.longitude;
+						console.log('当前位置的纬度：' + res.latitude);
+						that.latitude = res.latitude;
+					}
+				})
 			}
 		},
 
-		onShow() {},
 
 		onLoad(options) {
 			this.id = options.id
-			this.getGoodsInfo()
+			this.getGoodsInfo();
+			this.getLocation();
 		},
 
 		components: {
@@ -290,5 +385,9 @@
 
 	.btnouter {
 		padding-bottom: 20px;
+	}
+	
+	.inputcontent {
+		margin-bottom: 20px;
 	}
 </style>

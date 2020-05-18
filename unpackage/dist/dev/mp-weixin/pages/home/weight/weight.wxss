@@ -169,4 +169,7 @@ input.data-v-5af85235 {
 .btnouter.data-v-5af85235 {
   padding-bottom: 20px;
 }
+.inputcontent.data-v-5af85235 {
+  margin-bottom: 20px;
+}
 

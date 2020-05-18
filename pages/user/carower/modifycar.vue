@@ -25,7 +25,7 @@
 				<view class="carmode">
 					<text class="textcon">点击选择车型</text>
 					<view class="modeitem">
-						<view disabled="disabled" v-for="(item,index) in carModeList" :key="index" @tap="chooseCar(index)" :class="index===carCurrent ? 'itemcurrent' : '' ">
+						<view disabled="disabled" v-for="(item,index) in carModeList" :key="index" :class="index===carCurrent ? 'itemcurrent' : '' ">
 							{{item}}
 							<image v-if="carCurrent===index" src="../../../static/img/selected.png" mode=""></image>
 						</view>
@@ -35,8 +35,7 @@
 				<view class="carmode">
 					<text class="textcon">货箱长度</text>
 					<view class="modeitem">
-						<view disabled="disabled" v-for="(item, idx) in carList" :key="item" :class="idx===longCurrent ? 'itemcurrent item' : 'item' "
-						 @tap="chooseLong(idx)">
+						<view disabled="disabled" v-for="(item, idx) in carList" :key="item" :class="idx===longCurrent ? 'itemcurrent item' : 'item' ">
 							{{item}}
 							<image v-if="idx===longCurrent" src="../../../static/img/selected.png" mode=""></image>
 						</view>
@@ -45,7 +44,7 @@
 				</view>
 
 				<view v-if="longCurrent===4" style="overflow: hidden; margin-bottom: 10px;">
-					<input type="text" name="long" v-model="length" placeholder="请输入其他货箱长度" class="long" /><text class="mi">米</text>
+					<input disabled="disabled" type="text" name="long" v-model="length" placeholder="请输入其他货箱长度" class="long" /><text class="mi">米</text>
 				</view>
 
 			</view>
@@ -83,25 +82,25 @@
 				this.companyName = ''
 			},
 
-			chooseCar(i) {
-				this.carCurrent = this.info.carType - 1;
-			},
+			// chooseCar(i) {
+			// 	this.carCurrent = this.info.carType - 1;
+			// },
 
-			chooseLong(i) {
-				this.longCurrent = this.length;
-			},
+			// chooseLong(i) {
+			// 	this.longCurrent = this.length;
+			// },
 
 			// 初始化页面数据
 			initPage() {
 				this.carNum = this.info.carNo;
 				this.companyName = this.info.companyName;
 				this.carCurrent = this.info.carType - 1;
-				this.longCurrent = 4;
+				// this.longCurrent = 4;
 				this.length = this.info.containerLength;
 				this.upLength.some((i, index) => {
 					if (i === Number(this.info.containerLength)) {
 						this.longCurrent = index;
-						this.length = '';
+						// this.length = '';
 					}
 				})
 			},
@@ -137,7 +136,7 @@
 
 					if (res.data.code === 0) {
 						uni.hideLoading({});
-						uni.navigateTo({
+						uni.switchTab({
 							url: "/pages/user/user"
 						})
 					} else {

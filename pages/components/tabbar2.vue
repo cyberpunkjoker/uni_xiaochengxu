@@ -18,13 +18,13 @@
 			return {
 				current: 0,
 				selectedList: [
-					"../../static/img/apply.png",
+					"../../static/img/apply-sel.png",
 					"../../static/img/daichu-wei.png",
 					"../../static/img/yunshuwei.png",
 					"../../static/img/pagenone.png"
 				],
 				unSelectedList: [
-					"../../static/img/apply-sel.png",
+					"../../static/img/apply.png",
 					"../../static/img/daichu-yi.png",
 					"../../static/img/yunshu.png",
 					"../../static/img/page-sel.png"

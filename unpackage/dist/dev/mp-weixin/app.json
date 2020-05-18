@@ -59,5 +59,6 @@
       "desc": "你的位置信息将用于运输路程显示"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap32.json"
 }

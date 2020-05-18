@@ -238,11 +238,11 @@
 
 		onLoad() {
 			this.statusOfMan();
+			this.subUserInfo();
+			this.getStatus();
 			setTimeout(() => {
 				this.subUserInfo();
-				this.getStatus();
-				this.subUserInfo();
-			}, 500)
+			}, 2000)
 		},
 	}
 </script>

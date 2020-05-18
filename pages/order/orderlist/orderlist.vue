@@ -17,7 +17,7 @@
 						</view>
 
 						<view class="itembox">
-							<text class="one">申请时间</text>
+							<text class="one">申请时间：</text>
 							<view class="two">
 								<text class="content">{{applyList.createTime}}</text>
 							</view>
@@ -238,7 +238,7 @@
 						</view>
 
 						<view class="itembox">
-							<text class="one">发货单位</text>
+							<text class="one">承运单位</text>
 							<view class="two">
 								<text class="content">{{userInfo.carrierName}}</text>
 							</view>
@@ -387,7 +387,7 @@
 						</view>
 
 						<view class="itembox">
-							<text class="one">发货单位</text>
+							<text class="one">承运单位</text>
 							<view class="two">
 								<text class="content">{{doneUserInfo.carrierName}}</text>
 							</view>
@@ -620,6 +620,8 @@
 					if (res.data.result.records.length === 0) {
 						this.$set(this.showTipsList, this.current, true)
 						// this.showTipsList[this.current] = true
+					}else {
+						this.$set(this.showTipsList, this.current, false)
 					}
 					console.log(this.current)
 					console.log(this.showTipsList);
@@ -687,6 +689,14 @@
 			this.getOrderList();
 			this.getOrderId();
 		},
+		// onPullDownRefresh() {
+		// 	// this.statusOfMan();
+		// 	this.getOrderId();
+		// 	this.getApplyList();
+		// 	setTimeout(()=>{
+		// 		uni.stopPullDownRefresh();
+		// 	},700)
+		// },
 		onHide() {
 			uni.redirectTo({
 				url: "/pages/home/home"

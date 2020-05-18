@@ -244,6 +244,7 @@
 							});
 						}
 						if(res.data.code === 1) {
+							uni.hideLoading({});
 							uni.showModal({
 								title: res.data.desc,
 								icon: "none"

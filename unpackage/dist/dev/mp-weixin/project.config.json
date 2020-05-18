@@ -24,84 +24,13 @@
 			"current": -1,
 			"list": []
 		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
 		"game": {
-			"current": -1,
-			"list": []
-		},
-		"gamePlugin": {
 			"current": -1,
 			"list": []
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "pages/home/weight/weight",
-					"pathName": "pages/home/weight/weight",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/home/image/upload",
-					"pathName": "pages/home/image/upload",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/home/image/doneimg",
-					"pathName": "pages/home/image/doneimg",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/home/image/signupload",
-					"pathName": "pages/home/image/signupload",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/home/home",
-					"pathName": "pages/home/home",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/user/carower/modifycar",
-					"pathName": "pages/user/carower/modifycar",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/user/carower/addcar",
-					"pathName": "pages/user/carower/addcar",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/user/carower/adddriver",
-					"pathName": "pages/user/carower/adddriver",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/login/login",
-					"pathName": "pages/login/login",
-					"scene": null
-				}
-			]
+			"list": []
 		}
 	}
 }

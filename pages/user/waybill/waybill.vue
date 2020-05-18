@@ -192,21 +192,21 @@
 						</view>
 
 						<view class="itembox">
-							<text class="one">客户姓名</text>
+							<text class="one">司机姓名</text>
 							<view class="two">
-								<text class="content">{{userInfo.consigneeName}}</text>
+								<text class="content">{{userInfo.driverName}}</text>
 							</view>
 						</view>
 
 						<view class="itembox">
-							<text class="one">客户联系方式</text>
+							<text class="one">司机联系方式</text>
 							<view class="two">
-								<text class="content">{{userInfo.consigneePhone}}</text>
+								<text class="content">{{userInfo.driverPhone}}</text>
 							</view>
 						</view>
 
 						<view class="itembox">
-							<text class="one">发货单位</text>
+							<text class="one">承运单位</text>
 							<view class="two">
 								<text class="content">{{userInfo.carrierName}}</text>
 							</view>
@@ -316,93 +316,93 @@
 
 				<!-- 详情页面的显示 -->
 				<view v-if="showDetail">
-						<info-box>
-							<view class="itembox" @tap="firstClick">
-								<text class="one">车牌号：{{userInfo.carNo}}</text>
-							</view>
+					<info-box>
+						<view class="itembox" @tap="firstClick">
+							<text class="one">车牌号：{{userInfo.carNo}}</text>
+						</view>
 
-							<view class="itembox">
-								<text class="one">订单号</text>
-								<view class="two">
-									<text class="content">{{userInfo.orderNo}}</text>
-								</view>
+						<view class="itembox">
+							<text class="one">订单号</text>
+							<view class="two">
+								<text class="content">{{userInfo.orderNo}}</text>
 							</view>
+						</view>
 
-							<view class="itembox">
-								<text class="one">物流出发时间</text>
-								<view class="two">
-									<text class="content">{{userInfo.orderStartTime}}</text>
-								</view>
+						<view class="itembox">
+							<text class="one">物流出发时间</text>
+							<view class="two">
+								<text class="content">{{userInfo.orderStartTime}}</text>
 							</view>
+						</view>
 
-							<view class="itembox">
-								<text class="one">客户姓名</text>
-								<view class="two">
-									<text class="content">{{userInfo.consigneeName}}</text>
-								</view>
+						<view class="itembox">
+							<text class="one">司机姓名</text>
+							<view class="two">
+								<text class="content">{{userInfo.driverName}}</text>
 							</view>
+						</view>
 
-							<view class="itembox">
-								<text class="one">客户联系方式</text>
-								<view class="two">
-									<text class="content">{{userInfo.consigneePhone}}</text>
-								</view>
+						<view class="itembox">
+							<text class="one">司机联系方式</text>
+							<view class="two">
+								<text class="content">{{userInfo.driverPhone}}</text>
 							</view>
+						</view>
 
-							<view class="itembox">
-								<text class="one">发货单位</text>
-								<view class="two">
-									<text class="content">{{userInfo.carrierName}}</text>
-								</view>
+						<view class="itembox">
+							<text class="one">承运单位</text>
+							<view class="two">
+								<text class="content">{{userInfo.carrierName}}</text>
 							</view>
+						</view>
 
-							<view class="itembox" @tap="showWay(userInfo.destination)">
-								<view class="one">
-									<text>收货地址：</text>
-									<image class="addr" src="../../../static/img/shouhuo.png" mode=""></image>
-								</view>
-								<view class="two">
-									<text class="content">{{strFour[0]}}</text>
-									<image src="../../../static/img/right.png" mode=""></image>
-								</view>
+						<view class="itembox" @tap="showWay(userInfo.destination)">
+							<view class="one">
+								<text>收货地址：</text>
+								<image class="addr" src="../../../static/img/shouhuo.png" mode=""></image>
 							</view>
-
-							<view class="itembox">
-								<text class="one">司机到达时间</text>
-								<view class="two">
-									<text class="content">{{userInfo.arriveTime}}</text>
-								</view>
+							<view class="two">
+								<text class="content">{{strFour[0]}}</text>
+								<image src="../../../static/img/right.png" mode=""></image>
 							</view>
+						</view>
 
-							<view class="itembox">
-								<text class="one">卸货等待时间</text>
-								<view class="two">
-									<text class="content">{{userInfo.unloadWaitTime}}小时</text>
-								</view>
+						<view class="itembox">
+							<text class="one">司机到达时间</text>
+							<view class="two">
+								<text class="content">{{userInfo.arriveTime}}</text>
 							</view>
+						</view>
 
-							<view class="itembox">
-								<text class="one">开始卸货时间</text>
-								<view class="two">
-									<text class="content">{{userInfo.startUnloadTime}}</text>
-								</view>
+						<view class="itembox">
+							<text class="one">卸货等待时间</text>
+							<view class="two">
+								<text class="content">{{userInfo.unloadWaitTime}}小时</text>
 							</view>
+						</view>
 
-							<view class="itembox">
-								<text class="one">卸货完成时间</text>
-								<view class="two">
-									<text class="content">{{userInfo.orderFinishTime}}</text>
-								</view>
+						<view class="itembox">
+							<text class="one">开始卸货时间</text>
+							<view class="two">
+								<text class="content">{{userInfo.startUnloadTime}}</text>
 							</view>
+						</view>
 
-							<view class="itembox">
-								<text class="one">任务周期</text>
-								<view class="two">
-									<text class="content">{{userInfo.orderCycle}}小时</text>
-								</view>
+						<view class="itembox">
+							<text class="one">卸货完成时间</text>
+							<view class="two">
+								<text class="content">{{userInfo.orderFinishTime}}</text>
 							</view>
+						</view>
 
-						</info-box>
+						<view class="itembox">
+							<text class="one">任务周期</text>
+							<view class="two">
+								<text class="content">{{userInfo.orderCycle}}小时</text>
+							</view>
+						</view>
+
+					</info-box>
 					<!-- 物料内容部分 -->
 					<view class="outer">
 						<info-box>
@@ -495,10 +495,10 @@
 				const res = await this.$http.httpTokenRequest(opts);
 				this.userInfo = res.data.result;
 				this.goodsList = res.data.result.materielDetails;
-				
+
 				this.strThreeCurrent = this.userInfo.logisticsLocation.slice(0, 6)
 				console.log(this.strThreeCurrent)
-				
+
 				console.log(res);
 			},
 
@@ -525,8 +525,9 @@
 
 				if (res.data.result.records.length === 0) {
 					this.showTipsList[this.current] = true
+				} else {
+					this.$set(this.showTipsList, this.current, false)
 				}
-
 				// 获取当前地址截取字符
 				if (this.current === 0) {
 					console.log(this.goOutList)

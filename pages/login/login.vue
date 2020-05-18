@@ -21,7 +21,8 @@
 					<text class="textcon">短信验证码</text>
 					<view class="uni-form-item uni-column fatherbox">
 						<input class="uni-input" name="code" v-model="code" placeholder="请输入收到的短信验证码" />
-						<button type="default" class="btn" @tap="sendCode"><text>发送验证码</text></button>
+						<button type="default" v-if="btnStatus" class="btn" @tap="sendCode"><text>发送验证码</text></button>
+						<button type="default" v-if="!btnStatus" disabled="disabled" class="btn"><text>{{count}}秒后再试</text></button>
 					</view>
 				</view>
 
@@ -42,7 +43,14 @@
 				userPhone: "",
 				code: "",
 				isture: "disabled",
-				status: false
+				status: false,
+				btnStatus: true,
+				count: 60,
+				statusCode: {
+					"DRIVER": '2',
+					"MASTER": '1',
+					"CONSIGNEE": '3'
+				}
 			}
 		},
 
@@ -60,9 +68,9 @@
 						code: this.code
 					}
 					const openCode = uni.getStorageSync('USER_OPENCODE');
-				
+
 					const statusCode = uni.getStorageSync('USER_STATUS');
-				
+
 					const opts = {
 						url: "/sc/user/login",
 						method: "post"
@@ -73,24 +81,24 @@
 						openId: openCode,
 						identityEnum: statusCode
 					}
-				
+
 					console.log(param);
-				
+
 					const res = await this.$http.httpRequest(opts, param);
 					console.log(res)
-				
+
 					uni.setStorage({
 						key: "USER_TOKEN",
 						data: res.data.result,
 					})
-				
+
 					if (res.data.code === 1) {
-						setTimeout(()=>{
+						setTimeout(() => {
 							uni.hideLoading();
 							uni.showModal({
 								content: res.data.desc
 							})
-						},700)
+						}, 700)
 					}
 					if (res.data.code === 0) {
 						uni.hideLoading({})
@@ -104,8 +112,8 @@
 							})
 						}
 					}
-				
-				
+
+
 				}
 				// else{
 				// 	uni.showToast({
@@ -121,31 +129,62 @@
 
 			async sendCode() {
 				const isTure = this.isTruePhoneNum(this.userPhone);
+
 				if (!isTure) {
 					uni.showModal({
 						content: "请输入正确的手机号码"
 					})
+				} else {
+
+					const opts = {
+						url: '/sc/sms/send',
+						method: 'post'
+					};
+
+					const man = uni.getStorageSync("USER_STATUS")
+					const type = this.statusCode[man];
+
+					let params = {
+						phone: this.userPhone,
+						smsTypeEnum: "LOGIN_SMS",
+						type: type
+					};
+
+					const res = await this.$http.httpRequest(opts, params);
+					console.log(res);
+
+					// 判断身份类型是否短信倒计时
+					if (res.data.code !== 0) {
+						uni.showToast({
+							title: res.data.result,
+							icon: "none"
+						})
+						setTimeout(()=>{
+							uni.navigateBack({
+								delta: 1
+							})
+						},1000)
+					} else {
+						this.count = 60;
+						if (this.btnStatus) {
+							this.btnStatus = false;
+							let timer = setInterval(() => {
+								this.count = this.count - 1;
+								if (this.count === 0) {
+									clearInterval(timer);
+									this.btnStatus = true;
+								}
+							}, 1000);
+
+						}
+					}
+					// uni.showLoading({})
+					setTimeout(() => {
+						// uni.hideLoading({});
+						this.status = true
+					}, 2000)
+					// this.code = res.data.result;
 				}
-				const opts = {
-					url: '/sc/sms/send',
-					method: 'post'
-				};
-
-				let params = {
-					phone: this.userPhone,
-					smsTypeEnum: "LOGIN_SMS"
-				};
-
-				const res = await this.$http.httpRequest(opts, params);
-				console.log(res);
-
-				uni.showLoading({})
-				setTimeout(() => {
-					uni.hideLoading({});
-					this.status = true
-				}, 2000)
-
-				this.code = res.data.result;
 			},
 		},
 

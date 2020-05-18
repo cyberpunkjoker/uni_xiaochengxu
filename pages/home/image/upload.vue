@@ -56,37 +56,67 @@ import uploadMode from '../../components/uploadMode.vue'
 			
 			async submitMessage() {
 				uni.showLoading({});
-				const opts = {
-					url: "/personal/driver/modUnloadImg",
-					method: "post"
-				}
-				const param = {
-					id: Number(this.id),
-					imgs: this.imgPathList,
-					longitude: this.longitude,
-					latitude: this.latitude
-				}
-				console.log(param)
 				
-				if(this.imgPathList.length !== 0) {
-					const res = await this.$http.httpTokenRequest(opts, param);
-					console.log(res);
-					if (res.data.code === 0) {
-						uni.hideLoading({});
-						uni.navigateBack({
-							delta: 1
-						})
+				if(this.longitude === null) {
+					uni.hideLoading()
+					this.reGetLocation();
+					uni.showModal({
+						content: "请开启定位服务"
+					})
+				} else {
+					const opts = {
+						url: "/personal/driver/modUnloadImg",
+						method: "post"
 					}
-				}else {
-					setTimeout(() => {
-						uni.hideLoading({});
-						uni.showModal({
-							content: "请至少上传一张图片"
-						})
-					},700)
+					const location = this.longitude+ "," + this.latitude;
+					
+					const param = {
+						id: Number(this.id),
+						imgs: this.imgPathList,
+						// longitude: this.longitude,
+						// latitude: this.latitude
+						location: location
+					}
+					console.log(param)
+					
+					if(this.imgPathList.length !== 0) {
+						const res = await this.$http.httpTokenRequest(opts, param);
+						console.log(res);
+						if (res.data.code === 0) {
+							uni.hideLoading({});
+							uni.navigateBack({
+								delta: 1
+							})
+						}
+					}else {
+						setTimeout(() => {
+							uni.hideLoading({});
+							uni.showModal({
+								content: "请至少上传一张图片"
+							})
+						},700)
+					}
 				}
-				
 			},
+			
+			reGetLocation() {
+				uni.showToast({
+					title: "正在重新获取定位请稍后..",
+					icon: "none"
+				})
+				var that = this;
+				uni.getLocation({
+					type: 'wgs84',
+					success: function(res) {
+						console.log('当前位置的经度：' + res.longitude)
+						that.longitude = res.longitude;
+						console.log('当前位置的纬度：' + res.latitude);
+						that.latitude = res.latitude;
+						uni.hideToast({});
+					}
+				})
+			},
+			
 			
 			getLocation() {
 					var that = this;

@@ -36,7 +36,7 @@
 			chooseImg(i) {
 				uni.chooseImage({
 					count: 3,
-					sizeType: "original",
+					sizeType: ['compressed'],
 					success: (res) => {
 						this.imagePathList[i] = res.tempFilePaths;
 											
@@ -51,9 +51,12 @@
 						// 做成一个上传对象
 						let token = uni.getStorageSync('USER_TOKEN');
 						let that = this;
+						uni.showLoading({
+							title: "上传中..."
+						});
 						var uper = uni.uploadFile({
 							// 需要上传的地址
-							url: 'https://scwl.huicsy.com/upload/picture',
+							url:'https://scwl.huicsy.com/upload/picture',
 							// url:"http://192.168.0.104:8001/upload/picture",
 							header: {
 								'Token': token,
@@ -65,6 +68,7 @@
 							name: 'file',
 							success(res1) {
 								// 显示上传信息
+								uni.hideLoading({});
 								const realPath = JSON.parse(res1.data).result
 								that.realPathList[i] = realPath
 								console.log(res1)
